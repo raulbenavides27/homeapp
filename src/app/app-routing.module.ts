@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'addpropiedad',
     loadChildren: () => import('./addpropiedad/addpropiedad.module').then( m => m.AddpropiedadPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({
