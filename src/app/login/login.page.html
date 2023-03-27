@@ -12,18 +12,18 @@
       <ion-card-title>Inicia sesion</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form>
-        <ion-item>
+      <form [formGroup]="formularioLogin">
+        <ion-item fill="outline">
           <ion-label Position="floating">Direccion de correo</ion-label>
-          <ion-input ></ion-input>
+          <ion-input formControlName="mail" type="email" ></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item fill="outline">
           <ion-label Position="floating">Contraseña</ion-label>
-          <ion-input  type="password"></ion-input>
+          <ion-input  formControlName="pass" type="password"></ion-input>
         </ion-item>
       </form>
       <br>
-      <ion-button color="secondary" expand="block" shape="round" >Ingresar</ion-button>
+      <ion-button (click)="ingresar()"color="secondary" expand="block" shape="round" >Ingresar</ion-button>
       <ion-img src="assets/icon/logo3.png"></ion-img>
     </ion-card-content>
    

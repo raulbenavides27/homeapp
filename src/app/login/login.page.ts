@@ -14,7 +14,7 @@ export class LoginPage {
     public navCtrol:NavController){
     
     this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("",Validators.required),
+      'mail': new FormControl("",Validators.required),
       'pass': new FormControl("",Validators.required)
     })
    }
@@ -27,11 +27,11 @@ export class LoginPage {
 
     var usuario = JSON.parse(localStorage.getItem('usuario')!);
 
-    if(usuario.nombre == f.nombre && usuario.password == f.pass){
+    if(usuario.mail == f.mail && usuario.password == f.pass){
       console.log('Ingresado');
 
       localStorage.setItem('ingresado','true');
-      this.navCtrol.navigateRoot('menu/inicio');
+      this.navCtrol.navigateRoot('bienvenida');
     }else{
       const alert = await this.alertController.create({
         header: 'Datos incorrectos',

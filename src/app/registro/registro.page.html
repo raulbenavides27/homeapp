@@ -14,26 +14,30 @@
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
-        <ion-item>
+        <ion-item fill="outline">
           <ion-label position="floating">Nombre Completo</ion-label>
           <ion-input formControlName="nombre" ></ion-input>
         </ion-item>
-        <ion-item>
+        <br>
+        <ion-item fill="outline">
           <ion-label position="floating">Direccion de correo</ion-label>
-          <ion-input formControlName="mail"></ion-input>
-        </ion-item>
-        <ion-item>
+          <ion-input formControlName="mail" type="email" placeholder="email@ejemplo.com" ></ion-input>
+        </ion-item >
+        <br>
+        <ion-item fill="outline">
           <ion-label position="floating">telefono (opcional) </ion-label>
-          <ion-input formControlName="telefono"></ion-input>
+          <ion-input formControlName="telefono" type="tel" placeholder="+56 900000000"></ion-input>
         </ion-item>
-        <ion-item>
+        <br>
+        <ion-item fill="outline">
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input formControlName="pass" type="password" ></ion-input>
         </ion-item>
-        <ion-item>
+        <br>
+        <ion-item fill="outline">
           <ion-label position="floating">Confirmar contraseña</ion-label>
           <ion-input formControlName="confirmacion" type="password"></ion-input>
-        </ion-item>
+        </ion-item >
         <br>
         <ion-button color="secondary" expand="block" shape="round" (click)="guardar()" >Registrarse</ion-button>
       </form>
