@@ -31,7 +31,7 @@ export class LoginPage {
       console.log('Ingresado');
 
       localStorage.setItem('ingresado','true');
-      this.navCtrol.navigateRoot('bienvenida');
+      this.navCtrol.navigateRoot('menu/bienvenida');
     }else{
       const alert = await this.alertController.create({
         header: 'Datos incorrectos',

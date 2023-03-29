@@ -15,11 +15,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'bienvenida',
-    loadChildren: () => import('./bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule),
-   canActivate: [IngresadoGuard]
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
     canActivate: [NoIngresadoGuard]
@@ -30,10 +25,11 @@ const routes: Routes = [
     canActivate: [NoIngresadoGuard]
   },
   {
-    path: 'addpropiedad',
-    loadChildren: () => import('./addpropiedad/addpropiedad.module').then( m => m.AddpropiedadPageModule),
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
     canActivate: [IngresadoGuard]
   },
+
   
 ];
 
