@@ -14,7 +14,20 @@ const routes: Routes = [
         {
           path: 'addpropiedad',
           loadChildren: () => import('../addpropiedad/addpropiedad.module').then( m => m.AddpropiedadPageModule),
+        },
+        {
+          path: 'perfil',
+          loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
+        },
+         {
+          path: 'ayuda',
+          loadChildren: () => import('../ayuda/ayuda.module').then( m => m.AyudaPageModule)
         }
+        ,
+        {
+          path: 'ajuste',
+          loadChildren: () => import('../ajuste/ajuste.module').then( m => m.AjustePageModule)
+         }
   ]
   }
 ];

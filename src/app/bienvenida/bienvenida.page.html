@@ -6,15 +6,10 @@
     <ion-title>
       Bienvenida  
     </ion-title>
-    <ion-title slot="end">
-      <ion-icon [routerLink]="['/login']"name="person-outline"></ion-icon>  
-    </ion-title>
-
-  
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <ion-searchbar color="secondary" class="search" mode="ios" placeholder="Buscar Direccion"></ion-searchbar>
+  <ion-searchbar color="secondary" class="search" mode="ios" placeholder="Buscar"></ion-searchbar>
   <ion-card  >
     <ion-card-title horizontal="center">
     </ion-card-title>
@@ -50,7 +45,7 @@
     </ion-list>
   </ion-card>
   <ion-fab horizontal="center">
-    <ion-fab-button [routerLink]="" color="secondary"> <!--BTN AGREGAR-->
+    <ion-fab-button [routerLink]="['/menu/addpropiedad']" color="secondary"> <!--BTN AGREGAR-->
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

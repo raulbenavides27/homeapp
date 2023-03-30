@@ -11,24 +11,16 @@ export class MenuPage implements OnInit {
   paginas = [
     {
       titulo: 'Inicio',
-      url: '/menu/inicio',
+      url: '/menu/bienvenida',
       icono: 'home'
     },
     {
-      titulo: 'estacionamiento',
-      url: '/menu/detalle-parking',
-      icono: 'business'
+      titulo: 'perfil',
+      url: '/menu/perfil',
+      icono: 'person'
     },
-    {
-      titulo: 'Autos',
-      url: '/menu/m_autos',
-      icono: 'car-sport'
-    },
-    {
-      titulo: 'Pagos',
-      url: '/menu/pagos',
-      icono: 'card'
-    },
+ 
+ 
     {
       titulo: 'Ajustes',
       url: '/menu/ajuste',
