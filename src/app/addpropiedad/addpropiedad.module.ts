@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
 import { AddpropiedadPageRoutingModule } from './addpropiedad-routing.module';
-
 import { AddpropiedadPage } from './addpropiedad.page';
 
 @NgModule({
@@ -13,6 +10,7 @@ import { AddpropiedadPage } from './addpropiedad.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     AddpropiedadPageRoutingModule
   ],
   declarations: [AddpropiedadPage]
