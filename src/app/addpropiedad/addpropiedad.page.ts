@@ -21,6 +21,9 @@ export class AddpropiedadPage implements OnInit {
       'comuna_hogar': new FormControl("", Validators.required),
       'contacto_hogar': new FormControl("", Validators.required),
       'telefono_hogar': new FormControl("", Validators.required)
+
+
+
       
     });
   }
@@ -42,7 +45,7 @@ export class AddpropiedadPage implements OnInit {
       return;
     }
 
-    var Propiedad = {
+    var propiedad = {
       nombre_hogar: f.nombre_hogar,
       direccion_hogar: f.direccion_hogar,
       num_hogar: f.num_hogar,
@@ -59,7 +62,7 @@ export class AddpropiedadPage implements OnInit {
       message: 'Registro exitoso',
       buttons: ['Aceptar']
     });
-    localStorage.setItem('Propiedad', JSON.stringify(Propiedad));
+    localStorage.setItem('propiedad', JSON.stringify(propiedad));
     this.navCtrol.navigateRoot('menu/bienvenida');
     this.navCtrol.navigateRoot('login');
     await alert.present();
