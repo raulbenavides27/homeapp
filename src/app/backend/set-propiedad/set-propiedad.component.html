@@ -15,53 +15,19 @@
       <ion-card-title>Agrega una propiedad</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form>
-       
+   
             <ion-item>
                 <ion-label position="floating">Nombre Propiedad</ion-label>
-                <ion-input formControlName="nombre_hogar" placeholder="casa_ejemplo" type="text" inputmode="text"></ion-input>
+                <ion-input [(ngModel)]="nombre"  placeholder="casa_ejemplo" type="text" inputmode="text"></ion-input>
               </ion-item>
               
               <ion-item>
                 <ion-label position="floating">Direccion</ion-label>
-                <ion-input formControlName="direccion_hogar"placeholder="av. ejemplo" type="text" inputmode="text"> </ion-input>
+                <ion-input [(ngModel)]="direccion"  placeholder="av. ejemplo" type="text" inputmode="text"> </ion-input>
               </ion-item>
-            
-              <ion-item>
-                <ion-label position="floating">Numero </ion-label>
-                <ion-input formControlName="num_hogar" type="number"  inputmode="numeric"placeholder="000"></ion-input>
-              </ion-item>
-       
-        
-        <ion-item>
-          <ion-select formControlName="comuna_hogar" label="Popover" interface="popover" placeholder="Comuna">
-            <ion-select-option value="Santiago">Santiago</ion-select-option>
-            <ion-select-option value="Huechuraba">Huechuraba</ion-select-option>
-            <ion-select-option value="Independencia">Independencia</ion-select-option>
-            <ion-select-option value="Quilicura">Quilicura</ion-select-option>
-            <ion-select-option value="Recoleta">Recoleta</ion-select-option>
-            <ion-select-option value="Renca">Renca</ion-select-option>
-            <ion-select-option value="Las Condes">Las Condes</ion-select-option>
-            <ion-select-option value="Lo Barnechea">Lo Barnechea</ion-select-option>
-            <ion-select-option value="Providencia">Providencia</ion-select-option>
-            <ion-select-option value="Vitacura">Vitacura</ion-select-option>
-            <ion-select-option value="La Reina">La Reina</ion-select-option>
-            <ion-select-option value="Macul">Macul</ion-select-option>
-            <ion-select-option value="Conchalí">Conchalí</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contacto</ion-label>
-          <ion-input formControlName="contacto_hogar" placeholder="ejemplo nombre arrendatario"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">telefono (opcional) </ion-label>
-          <ion-input formControlName="telefono_hogar" type="tel" placeholder="+56 900000000"></ion-input>
-        </ion-item>
-
-
+   
         <ion-button (click)="guardarPropiedad()" color="secondary" expand="block" shape="round" >Guardar</ion-button>
-      </form>
+    
     </ion-card-content>
   </ion-card>
 </ion-content>
