@@ -25,4 +25,11 @@ export class FirestoreService {
   const collection = this.database.collection(path);
   return collection.doc(id).update(data);
 }
+getId(){
+  return this.database.createId();
+}
+getColletion(path:string){
+ const collection = this.database.collection(path);
+ return collection.valueChanges();
+}
 }
