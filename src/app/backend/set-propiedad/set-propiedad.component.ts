@@ -8,7 +8,7 @@ import { Propiedad } from 'src/app/models';
   styleUrls: ['./set-propiedad.component.scss'],
 })
 export class SetPropiedadComponent  implements OnInit {
-   
+  Propiedades: Propiedad [] = []
   newPropiedad: Propiedad = {
     nombre: '',
     direccion: '',
@@ -25,7 +25,9 @@ private path = 'Propiedad/';
   constructor(public menucontroler: MenuController,
               public FirestoService: FirestoreService) { }
               
-  ngOnInit(){}
+  ngOnInit(){
+    this.getPropiedad();
+  }
 
   openMenu(){
 
@@ -40,7 +42,7 @@ this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id);
 }
 getPropiedad(){
   this.FirestoService.getColletion(this.path).subscribe( res =>{
-    console.log(res);
+    this.Propiedades = res;
   });
 }
 }
