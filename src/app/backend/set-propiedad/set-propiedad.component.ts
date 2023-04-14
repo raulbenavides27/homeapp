@@ -8,7 +8,7 @@ import { Propiedad } from 'src/app/models';
   styleUrls: ['./set-propiedad.component.scss'],
 })
 export class SetPropiedadComponent  implements OnInit {
-  Propiedades: Propiedad [] = []
+  Propiedades: Propiedad[] = []
   newPropiedad: Propiedad = {
     nombre: '',
     direccion: '',
@@ -41,7 +41,7 @@ const id = this.FirestoService.getId();
 this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id);
 }
 getPropiedad(){
-  this.FirestoService.getColletion(this.path).subscribe( res =>{
+  this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
     this.Propiedades = res;
   });
 }
