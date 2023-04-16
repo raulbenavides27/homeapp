@@ -1,5 +1,5 @@
 import { Component, Directive, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Propiedad } from 'src/app/models';
 @Component({
@@ -13,9 +13,13 @@ export class SetPropiedadComponent  implements OnInit {
   enableNewPropiedad = false;
 
 private path = 'Propiedad/';
+loading: any;
 
   constructor(public menucontroler: MenuController,
-              public FirestoService: FirestoreService) { }
+              public FirestoService: FirestoreService,
+              public loadingController:LoadingController,
+              public toastController:ToastController,
+              public alertController: AlertController) { }
               
   ngOnInit(){
     this.getPropiedad();
@@ -29,17 +33,24 @@ private path = 'Propiedad/';
 
 guardarPropiedad() 
 { 
-const id = this.FirestoService.getId();
-this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id);
+//const id = this.FirestoService.getId();
+this.presentLoading();
+this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
+this.loading.dismiss();
+this.presentToast('Guardado con exito');
+}).catch(error => {
+this.presentToast('Error intente mas tarde');
+})
 }
 getPropiedad(){
   this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
     this.Propiedades = res;
   });
 }
-deletePropiedad(P: Propiedad){
+async deletePropiedad(P: Propiedad){
   this.FirestoService.deletDoc(this.path,P.id)
 }
+
 bntNuevo(){
   this.enableNewPropiedad = true;
   this.newPropiedad = {
@@ -52,5 +63,20 @@ bntNuevo(){
     id:this.FirestoService.getId(),
     fecha: new Date()
   };
+
+}
+async presentLoading(){
+    this.loading = await this.loadingController.create({
+    cssClass: '',
+    message: 'Guardando...',
+  });
+  await this.loading.present();
+}
+async presentToast(msg: string){
+  const toast = await this.toastController.create({
+    message: msg,
+    duration: 2000
+  });
+  toast.present();
 }
 }
