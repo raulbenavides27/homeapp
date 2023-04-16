@@ -44,7 +44,10 @@
    
         <ion-button (click)="guardarPropiedad()" color="secondary" expand="block" shape="round" >Guardar</ion-button>
     <ion-item *ngFor="let P of Propiedades">
+    
       <ion-label>{{P.nombre}}</ion-label>
+      <ion-label>{{P.direccion}}</ion-label>
+      <ion-label>{{P.numero}}</ion-label>
       <ion-button color="warning" size="small"><ion-icon name="create-outline"></ion-icon>
       </ion-button>
       <ion-button color="danger" size="small"><ion-icon name="trash-outline"></ion-icon></ion-button>
