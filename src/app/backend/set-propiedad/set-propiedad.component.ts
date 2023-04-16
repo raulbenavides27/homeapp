@@ -9,16 +9,8 @@ import { Propiedad } from 'src/app/models';
 })
 export class SetPropiedadComponent  implements OnInit {
   Propiedades: Propiedad[] = []
-  newPropiedad: Propiedad = {
-    nombre: '',
-    direccion: '',
-    numero: 0,
-    comuna: '',
-    contacto: '',
-    telefono: 0,
-    id:this.FirestoService.getId(),
-    fecha: new Date()
-  };
+  newPropiedad!: Propiedad;
+  enableNewPropiedad = false;
 
 private path = 'Propiedad/';
 
@@ -44,5 +36,21 @@ getPropiedad(){
   this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
     this.Propiedades = res;
   });
+}
+deletePropiedad(P: Propiedad){
+  this.FirestoService.deletDoc(this.path,P.id)
+}
+bntNuevo(){
+  this.enableNewPropiedad = true;
+  this.newPropiedad = {
+    nombre: '',
+    direccion: '',
+    numero: 0,
+    comuna: '',
+    contacto: '',
+    telefono: 0,
+    id:this.FirestoService.getId(),
+    fecha: new Date()
+  };
 }
 }

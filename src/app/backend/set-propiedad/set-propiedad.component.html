@@ -9,13 +9,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+ 
+
+
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Agrega una propiedad</ion-card-title>
+
+<ion-card-title>
+  <ion-item>
+  <ion-label slot="end">Nuevo</ion-label>
+  <ion-button shape="round" slot="end" (click)="bntNuevo()" color="secondary">
+     <ion-icon name="add"></ion-icon>
+   </ion-button>
+  </ion-item>
+  </ion-card-title>
+       
     </ion-card-header>
     <ion-card-content>
-   
+       <!--contenedor de agregar-->
+   <div *ngIf="enableNewPropiedad">
+    <ion-item >
+     
+      <ion-button shape="round" slot="end" (click)="enableNewPropiedad = false " >
+     <ion-icon name="close"></ion-icon>
+  
+  </ion-button>
+  </ion-item>
             <ion-item>
                 <ion-label position="floating">Nombre Propiedad</ion-label>
                 <ion-input [(ngModel)]="newPropiedad.nombre"  placeholder="casa_ejemplo" type="text" inputmode="text"></ion-input>
@@ -43,16 +63,19 @@
               </ion-item>
    
         <ion-button (click)="guardarPropiedad()" color="secondary" expand="block" shape="round" >Guardar</ion-button>
-    <ion-item *ngFor="let P of Propiedades">
+      </div>
+
+     <!--listas de propiedades-->
+        <ion-item *ngFor="let P of Propiedades">
     
       <ion-label>{{P.nombre}}</ion-label>
       <ion-label>{{P.direccion}}</ion-label>
       <ion-label>{{P.numero}}</ion-label>
-      <ion-button color="warning" size="small"><ion-icon name="create-outline"></ion-icon>
+      <ion-button  (click)="newPropiedad = P; enableNewPropiedad = true" color="warning" size="small"><ion-icon name="create-outline"></ion-icon>
       </ion-button>
-      <ion-button color="danger" size="small"><ion-icon name="trash-outline"></ion-icon></ion-button>
-    
+      <ion-button (click)="deletePropiedad(P)" color="danger" size="small"><ion-icon name="trash-outline"></ion-icon></ion-button>
     </ion-item>
+  
     </ion-card-content>
   </ion-card>
 </ion-content>
