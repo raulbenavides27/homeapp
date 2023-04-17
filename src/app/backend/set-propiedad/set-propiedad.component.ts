@@ -40,7 +40,7 @@ this.loading.dismiss();
 this.presentToast('Guardado con exito');
 }).catch(error => {
 this.presentToast('Error intente mas tarde');
-})
+});
 }
 getPropiedad(){
   this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
@@ -48,7 +48,33 @@ getPropiedad(){
   });
 }
 async deletePropiedad(P: Propiedad){
-  this.FirestoService.deletDoc(this.path,P.id)
+  const alert = await this.alertController.create({
+    cssClass: '',
+    header: 'Advertencia',
+    message: 'Seguro desea <strong>eliminar</strong> esta propiedad',
+    buttons:[{
+      text: 'Cancelar',
+      role: 'Cancel',
+      cssClass: '',
+      handler:(blah) =>{
+        console.log('confirm Cancel: blah');
+      }
+    },{
+      text:'ok',
+      handler:() =>{
+        console.log('Confirm Okay');
+        this.FirestoService.deletDoc(this.path,P.id).then(res =>{
+          this.presentToast('Eliminado con exito');
+          this.alertController.dismiss(); 
+          }).catch(error => {
+          this.presentToast('Error intente mas tarde');
+          });
+      }
+    }
+  ]
+  });
+await alert.present();
+  
 }
 
 bntNuevo(){
