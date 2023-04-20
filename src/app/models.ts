@@ -7,6 +7,8 @@ export interface Propiedad{
     telefono: Number;
     id: string;
     fecha: Date;
+    tipo: string;
+   // foto: File;
 
 
 }

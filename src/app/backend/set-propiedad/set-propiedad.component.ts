@@ -87,7 +87,9 @@ bntNuevo(){
     contacto: '',
     telefono: 0,
     id:this.FirestoService.getId(),
-    fecha: new Date()
+    fecha: new Date(),
+    tipo: '',
+    //foto: ''
   };
 
 }
