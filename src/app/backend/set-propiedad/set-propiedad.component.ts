@@ -14,7 +14,7 @@ export class SetPropiedadComponent  implements OnInit {
   enableNewPropiedad = false;
   enablelista = true;
   private path = 'Propiedad/';
-  newImage = '';
+  //newImage = '';
   loading: any;
 
   constructor(public menucontroler: MenuController,
@@ -111,7 +111,7 @@ async presentToast(msg: string){
   });
   toast.present();
 }
-async nuevaImagen(event:any){
+async newImage(event:any){
 //  console.log(event);
 //if (event.target.files && event.target.files[0]){
 //    const reader = new FileReader();

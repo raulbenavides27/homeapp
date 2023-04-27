@@ -1,5 +1,6 @@
 {
     "recommendations": [
-      "ionic.ionic"
+      "ionic.ionic",
+      "ms-ceintl.vscode-language-pack-es"
     ]
 }
