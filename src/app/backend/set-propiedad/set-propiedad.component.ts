@@ -14,7 +14,8 @@ export class SetPropiedadComponent  implements OnInit {
   enableNewPropiedad = false;
   enablelista = true;
   private path = 'Propiedad/';
-  //newImage = '';
+  newImage = '';
+  newfile = '';
   loading: any;
 
   constructor(public menucontroler: MenuController,
@@ -34,10 +35,13 @@ export class SetPropiedadComponent  implements OnInit {
   this.menucontroler.toggle('principal');
 }
 
-guardarPropiedad() 
+async guardarPropiedad() 
 { 
-//const id = this.FirestoService.getId();
 this.presentLoading();
+const path = 'Propiedad';
+const name = this.newPropiedad.nombre;
+const res = await this.firestorageService.uploadImage(this.newfile,path,name);
+this.newPropiedad.foto = res;
 this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
 this.loading.dismiss();
 this.presentToast('Guardado con exito');
@@ -93,7 +97,7 @@ bntNuevo(){
     id:this.FirestoService.getId(),
     fecha: new Date(),
     tipo: '',
-    //foto: ''
+    foto: ''
   };
 
 }
@@ -111,20 +115,16 @@ async presentToast(msg: string){
   });
   toast.present();
 }
-async newImage(event:any){
-//  console.log(event);
-//if (event.target.files && event.target.files[0]){
-//    const reader = new FileReader();
-//     reader.onload = ((image: any)=>{
-//     this.newImage = image.target.result as string;
-//     });
- //    reader.readAsDataURL(event.target.files[0]);
-//}
-const path = 'Propiedad';
-const name = 'prueba';
-const file = event.target.files[0];
-const res = await this.firestorageService.uploadImage(file,path,name);
-console.log('recibi res de la promesa ', res);
+async newImageUpload(event:any){ 
+   if (event.target.files && event.target.files[0]){ 
+      this.newfile = event.target.files[0]; 
+      const reader = new FileReader();
+      reader.onload = ((image: any)=>{    
+         this.newPropiedad.foto = image.target.result as string;   
+        
+        });
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
 }
 }

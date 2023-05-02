@@ -8,7 +8,7 @@ export interface Propiedad{
     id: string;
     fecha: Date;
     tipo: string;
-   // foto: File;
+    foto: string;
 
 
 }
