@@ -9,6 +9,14 @@ export interface Propiedad{
     fecha: Date;
     tipo: string;
     foto: string;
+}
 
-
+export interface Cliente{
+    uid: string;
+    email: string;
+    celular: string;
+    nombre: string;
+    foto: string;
+    referencia: string;
+    ubicacion: any;
 }

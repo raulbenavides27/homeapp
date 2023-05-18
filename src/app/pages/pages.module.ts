@@ -1,15 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    PerfilComponent 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule,
+    RouterModule,
+    FormsModule,
+    IonicModule,
+    ReactiveFormsModule,
+    
   ]
 })
 export class PagesModule { }

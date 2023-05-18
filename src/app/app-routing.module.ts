@@ -4,27 +4,14 @@ import { IngresadoGuard } from './ingresado.guard';
 import { NoIngresadoGuard } from './no-ingresado.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { SetPropiedadComponent } from './backend/set-propiedad/set-propiedad.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
+  { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
-  { path: '**',redirectTo: 'home', pathMatch: 'full'},
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-    canActivate: [NoIngresadoGuard]
-  },
-  {
-    path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule),
-    canActivate: [NoIngresadoGuard]
-  },
-  {
-    path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
-    canActivate: [IngresadoGuard]
-  } 
+  { path: '**',redirectTo: 'home', pathMatch: 'full'}, 
 ];
 
 @NgModule({
