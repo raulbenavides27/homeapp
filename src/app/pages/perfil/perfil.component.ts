@@ -4,6 +4,7 @@ import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { Cliente } from 'src/app/models';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -15,15 +16,17 @@ export class PerfilComponent  implements OnInit {
     uid: '',
     email: '',
     nombre: '',
-    celular:'',
+    password:'',
     foto: '',
     referencia: '',
     ubicacion: null,
 
   };
+  newfile: any; 
   formularioRegistro: FormGroup;
     
     constructor(public menucontroler: MenuController, public fb: FormBuilder,
+    public firebaseauthService: FirebaseauthService,
     public alertController: AlertController,
     public navCtrol:NavController) {
     this.formularioRegistro = this.fb.group({
@@ -54,51 +57,31 @@ export class PerfilComponent  implements OnInit {
       await alert.present();
       return;
     }
-    if(f.pass==f.confirmacion){
-
-    var usuario = {
-      nombre: f.nombre,
-      password: f.pass,
-      mail: f.mail,
-      telefono: f.telefono
-    }
-
-   
-    
-    const alert = await this.alertController.create({
-      header: 'Bienvenido',
-      message: 'Registro exitoso',
-      buttons: ['Aceptar']
-      
-      
-    });
-    localStorage.setItem('usuario',JSON.stringify(usuario));
-  //  localStorage.setItem('ingresado','true');
-    this.navCtrol.navigateRoot('menu/home');
-    //tenia la intencio de redirecionar al login pero no funciona porque pasa directo al home
-    this.navCtrol.navigateRoot('login');
-    await alert.present();
-        return;
-        
-        
-  }else{
-  const alert = await this.alertController.create({
-    header: 'Error,No Registrado',
-    message: 'tu contraseña no coinside reintenta por favor',
-    buttons: ['Aceptar'],
-   
-    
-  });
-
-
-  await alert.present();
-      return;
-    
+}
+async newImageUpload(event:any){ 
+  if (event.target.files && event.target.files[0]){ 
+     this.newfile = event.target.files[0]; 
+     const reader = new FileReader();
+     reader.onload = ((image: any)=>{    
+        this.cliente.foto = image.target.result as string;   
+       
+       });
+   reader.readAsDataURL(event.target.files[0]);
+ }
 
 }
+async registrarse() {
+const credenciales = {
+  email: this.cliente.email,
+  password: this.cliente.password
 
+};
+const res = await this.firebaseauthService.registrar(credenciales.email,credenciales.password);
+console.log(res);
 
-
+}
+salir(){
+  this.firebaseauthService.logout(); 
 }
 }
 

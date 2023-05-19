@@ -14,7 +14,7 @@ export interface Propiedad{
 export interface Cliente{
     uid: string;
     email: string;
-    celular: string;
+    password: string;
     nombre: string;
     foto: string;
     referencia: string;
