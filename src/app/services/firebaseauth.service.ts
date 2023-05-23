@@ -17,4 +17,12 @@ export class FirebaseauthService {
   registrar(email:string, password:string){
    return this.auth.createUserWithEmailAndPassword(email,password);
   }
+  async getUid(){
+    const user = await this.auth.currentUser;
+    if (user === undefined){
+      return null;
+    }else {  
+      return user?.uid;
+    }
+  }
 }

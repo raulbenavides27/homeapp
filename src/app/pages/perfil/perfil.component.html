@@ -34,12 +34,12 @@
               </ion-item>
               <ion-item>
                 <ion-label position="floating">Contraseña</ion-label>
-                <ion-input [(ngModel)]="cliente.password"  placeholder="+56 912345678"type="number" inputmode="numeric"> </ion-input>
+                <ion-input [(ngModel)]="cliente.password"  placeholder="********"type="pass" inputmode="numeric"> </ion-input>
               </ion-item>
               
               <ion-item>
-                <ion-label position="floating">Referencia</ion-label>
-                <ion-input [(ngModel)]="cliente.referencia"  placeholder="referencia" type="text" inputmode="text"> </ion-input>
+                <ion-label position="floating">Confirmacion</ion-label>
+                <ion-input [(ngModel)]="cliente.confirmacion"  placeholder="********" type="pass" inputmode="text"> </ion-input>
               </ion-item>
              
               <ion-item>
@@ -61,6 +61,13 @@
 
         <ion-button (click)="registrarse()" color="secondary" expand="block" shape="round" >registrar</ion-button>
       </div>  
+      <ion-item>
+    
+        <ion-button slot="end" (click)="salir()">
+       <ion-icon name="close"></ion-icon>
+    </ion-button>
+  
+  </ion-item>
     </ion-card-content>
   </ion-card>
 

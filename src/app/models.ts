@@ -17,6 +17,6 @@ export interface Cliente{
     password: string;
     nombre: string;
     foto: string;
-    referencia: string;
+    confirmacion: string;
     ubicacion: any;
 }
