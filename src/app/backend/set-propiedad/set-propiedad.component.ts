@@ -40,8 +40,10 @@ async guardarPropiedad()
 this.presentLoading();
 const path = 'Propiedad';
 const name = this.newPropiedad.nombre;
+if (this.newfile !== undefined){
 const res = await this.firestorageService.uploadImage(this.newfile,path,name);
 this.newPropiedad.foto = res;
+}
 this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
 this.loading.dismiss();
 this.presentToast('Guardado con exito');

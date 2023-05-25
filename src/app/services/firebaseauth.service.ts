@@ -19,10 +19,10 @@ export class FirebaseauthService {
   }
   async getUid(){
     const user = await this.auth.currentUser;
-    if (user === undefined){
-      return null;
+    if (user === null ){
+      return null as any ;
     }else {  
-      return user?.uid;
+      return user.uid;
     }
   }
-}
+} 
