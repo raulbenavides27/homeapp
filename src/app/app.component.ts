@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { FirebaseauthService } from './services/firebaseauth.service';
 
 
 
@@ -9,5 +10,7 @@ import { Component, inject } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() {}
+  constructor(
+    private firebaseauthservice: FirebaseauthService
+  ) {}
 }

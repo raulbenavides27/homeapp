@@ -33,6 +33,9 @@ export class PerfilComponent  implements OnInit {
     public firestoreService: FirestoreService,
     public firestorageService: FirestorageService){
 
+       this.firebaseauthService.stateAuth().subscribe( res =>{
+        console.log(res?.uid);
+       })
     }
 
   async ngOnInit() {
@@ -96,3 +99,4 @@ async salir() {
 }
 
 
+ 
