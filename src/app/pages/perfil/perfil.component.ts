@@ -7,6 +7,7 @@ import { Cliente } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { FirestorageService } from 'src/app/services/firestorage.service';
+import { Subscriber } from 'rxjs';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -25,7 +26,7 @@ export class PerfilComponent  implements OnInit {
 
   };
   newfile: any; 
-
+  uid = '';
     
     constructor(public menucontroler: MenuController, public fb: FormBuilder,
     public firebaseauthService: FirebaseauthService,
@@ -34,7 +35,12 @@ export class PerfilComponent  implements OnInit {
     public firestorageService: FirestorageService){
 
        this.firebaseauthService.stateAuth().subscribe( res =>{
-        console.log(res?.uid);
+        if (res !== null){
+          this.uid = res.uid;
+          this.getUserInfo(this.uid);
+        }else {
+          this.initCliente();
+        }
        })
     }
 
@@ -43,6 +49,18 @@ export class PerfilComponent  implements OnInit {
    const uid = await this.firebaseauthService.getUid();
    console.log(uid);
 
+  }
+  initCliente(){
+      this.uid ='';
+      this.cliente = {
+      uid: '',
+      email: '',
+      nombre: '',
+      password:'',
+      foto: '',
+      confirmacion: '',
+      ubicacion: null,
+    };
   }
   openMenu(){
 
@@ -91,12 +109,24 @@ console.log('guardado con exito')
 });
 }
 async salir() {
-  // const uid = await this.firebaseauthService.getUid();
-  // console.log(uid);
  this.firebaseauthService.logout(); 
 }
+getUserInfo(uid: string){
+  const path = 'Clientes';
+  this.firestoreService.getDoc<Cliente>(path, uid).subscribe(res =>{
+    this.cliente = res as Cliente;
+  });
+}
+ingresar(){
+  const credenciales = {
+    email: this.cliente.email,
+    password: this.cliente.password
+  };
+  this.firebaseauthService.login(credenciales.email, credenciales.password).then(res => {
+    console.log('ingresado')
+  });
 
 }
 
 
- 
+}
