@@ -1,20 +1,20 @@
 import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Propiedad } from 'src/app/models';
+import { Cuentas } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service'
+
 @Component({
-  selector: 'app-set-propiedad',
-  templateUrl:'./set-propiedad.component.html',
-  styleUrls: ['./set-propiedad.component.scss'],
+  selector: 'app-cuentas',
+  templateUrl: './cuentas.component.html',
+  styleUrls: ['./cuentas.component.scss'],
 })
-export class SetPropiedadComponent  implements OnInit {
-  Propiedades: Propiedad[] = []
-  newPropiedad!: Propiedad;
-  enableNewPropiedad = false;
+export class CuentasComponent implements OnInit {
+  Cuentas: Cuentas[] = []
+  newCuentas!: Cuentas;
+  enableNewCuentas = false;
   enablelista = true;
-  private path = 'Propiedad/';
-  newImage = '';
+  private path = 'Cuentas/';
   newfile = '';
   loading: any;
 
@@ -26,8 +26,11 @@ export class SetPropiedadComponent  implements OnInit {
               public firestorageService: FirestorageService) { }
               
   ngOnInit(){
-    this.getPropiedad();
+    this.getCuentas();
   }
+  //getCuentas() {
+    //throw new Error('Method not implemented.');
+  //}
 
   openMenu(){
 
@@ -35,32 +38,32 @@ export class SetPropiedadComponent  implements OnInit {
   this.menucontroler.toggle('principal');
 }
 
-async guardarPropiedad() 
+async guardarCuentas() 
 { 
 this.presentLoading();
-const path = 'Propiedad';
-const name = this.newPropiedad.nombre;
+const path = 'Cuentas';
+const name = this.newCuentas.tipoCuenta;
 if (this.newfile !== undefined){
 const res = await this.firestorageService.uploadImage(this.newfile,path,name);
-this.newPropiedad.foto = res;
+//this.newCuentas.foto = res;
 }
-this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
+this.FirestoService.creatDoc(this.newCuentas,this.path,this.newCuentas.idCuentas).then(res =>{
 this.loading.dismiss();
 this.presentToast('Guardado con exito');
 }).catch(error => {
 this.presentToast('Error intente mas tarde');
 });
 }
-getPropiedad(){
-  this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
-    this.Propiedades = res;
+getCuentas(){
+  this.FirestoService.getColletion<Cuentas>(this.path).subscribe( res =>{
+    this.Cuentas = res;
   });
 }
-async deletePropiedad(P: Propiedad){
+async deleteCuentas(P: Cuentas){
   const alert = await this.alertController.create({
     cssClass: '',
     header: 'Advertencia',
-    message: '¿Seguro desea <strong>eliminar</strong> esta propiedad?',
+    message: '¿Seguro desea <strong>eliminar</strong> esta Cuentas?',
     buttons:[{
       text: 'Cancelar',
       role: 'Cancel',
@@ -72,7 +75,7 @@ async deletePropiedad(P: Propiedad){
       text:'ok',
       handler:() =>{
         console.log('Confirm Okay');
-        this.FirestoService.deletDoc(this.path,P.id).then(res =>{
+        this.FirestoService.deletDoc(this.path,P.idCuentas).then(res =>{
           this.presentToast('Eliminado con exito');
           this.alertController.dismiss(); 
           }).catch(error => {
@@ -87,19 +90,13 @@ await alert.present();
 }
 
 bntNuevo(){
-  this.enableNewPropiedad = true;
+  this.enableNewCuentas = true;
   this.enablelista = false;
-  this.newPropiedad = {
-    nombre: '',
-    direccion: '',
-    numero: 0,
-    comuna: '',
-    contacto: '',
-    telefono: 0,
-    id:this.FirestoService.getId(),
-    fecha: new Date(),
-    tipo: '',
-    foto: ''
+  this.newCuentas = {
+    tipoCuenta: '',
+    valor: '',
+    idCuentas:this.FirestoService.getId(),
+    estado: ''
   };
 
 }
@@ -117,16 +114,7 @@ async presentToast(msg: string){
   });
   toast.present();
 }
-async newImageUpload(event:any){ 
-   if (event.target.files && event.target.files[0]){ 
-      this.newfile = event.target.files[0]; 
-      const reader = new FileReader();
-      reader.onload = ((image: any)=>{    
-         this.newPropiedad.foto = image.target.result as string;   
-        
-        });
-    reader.readAsDataURL(event.target.files[0]);
-  }
 
 }
-}
+
+

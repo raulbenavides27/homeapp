@@ -11,7 +11,12 @@ const routes: Routes = [
   { path: 'set-propiedad',component: SetPropiedadComponent},
   { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
-  { path: '**',redirectTo: 'home', pathMatch: 'full'}, 
+  { path: '**',redirectTo: 'home', pathMatch: 'full'},  
+   //{
+    //path: 'cuentas',
+    //loadChildren: () => import('./backend/cuentas/cuentas.module').then( m => m.CuentasPageModule)
+  //},
+
 ];
 
 @NgModule({

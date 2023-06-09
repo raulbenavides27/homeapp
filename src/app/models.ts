@@ -20,3 +20,10 @@ export interface Cliente{
     confirmacion: string;
     ubicacion: any;
 }
+
+export interface Cuentas{
+    idCuentas: string,
+    tipoCuenta: string,
+    valor: string,
+    estado: string
+}
