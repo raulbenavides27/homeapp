@@ -25,5 +25,6 @@ export interface Cuentas{
     idCuentas: string,
     tipoCuenta: string,
     valor: string,
-    estado: string
+    estado: string,
+    idPropiedad: string
 }

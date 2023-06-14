@@ -43,10 +43,6 @@ async guardarCuentas()
 this.presentLoading();
 const path = 'Cuentas';
 const name = this.newCuentas.tipoCuenta;
-if (this.newfile !== undefined){
-const res = await this.firestorageService.uploadImage(this.newfile,path,name);
-//this.newCuentas.foto = res;
-}
 this.FirestoService.creatDoc(this.newCuentas,this.path,this.newCuentas.idCuentas).then(res =>{
 this.loading.dismiss();
 this.presentToast('Guardado con exito');
@@ -57,7 +53,10 @@ this.presentToast('Error intente mas tarde');
 getCuentas(){
   this.FirestoService.getColletion<Cuentas>(this.path).subscribe( res =>{
     this.Cuentas = res;
-  });
+    console.log(res);
+  }, (error) => { 
+    console.log(error);
+    });
 }
 async deleteCuentas(P: Cuentas){
   const alert = await this.alertController.create({
@@ -96,7 +95,8 @@ bntNuevo(){
     tipoCuenta: '',
     valor: '',
     idCuentas:this.FirestoService.getId(),
-    estado: ''
+    estado: '',
+    idPropiedad: ''
   };
 
 }
