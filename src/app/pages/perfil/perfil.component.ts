@@ -7,7 +7,7 @@ import { Cliente } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { FirestorageService } from 'src/app/services/firestorage.service';
-import { Subscriber } from 'rxjs';
+import { Subscriber, Subscription } from 'rxjs';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -27,7 +27,9 @@ export class PerfilComponent  implements OnInit {
   };
   newfile: any; 
   uid = '';
-    
+  subcriberUserInfo: Subscription | undefined;
+  ingresarEnable = false;
+
     constructor(public menucontroler: MenuController, public fb: FormBuilder,
     public firebaseauthService: FirebaseauthService,
     public alertController: AlertController,
@@ -35,11 +37,12 @@ export class PerfilComponent  implements OnInit {
     public firestorageService: FirestorageService){
 
        this.firebaseauthService.stateAuth().subscribe( res =>{
+        console.log(res);
         if (res !== null){
-          this.uid = res.uid;
-          this.getUserInfo(this.uid);
-        }else {
-          this.initCliente();
+           this.uid = res.uid;
+           this.getUserInfo(this.uid);
+        } else {
+            this.initCliente();
         }
        })
     }
@@ -81,13 +84,11 @@ async newImageUpload(event:any){
 
 }
 async registrarse() {
-const credenciales = {
-  email: this.cliente.email,
-  password: this.cliente.password
-
-};
-const res = await this.firebaseauthService.registrar(credenciales.email,credenciales.password).catch(
-  err => {
+    const credenciales = {
+      email: this.cliente.email,
+      password: this.cliente.password
+    };
+const res = await this.firebaseauthService.registrar(credenciales.email,credenciales.password).catch(err => {
     console.log('error ->', err)
   });
   const uid = await this.firebaseauthService.getUid();
@@ -95,6 +96,7 @@ const res = await this.firebaseauthService.registrar(credenciales.email,credenci
   this.guardarUser();
   console.log(uid);
 }
+
 
 async guardarUser(){
 const path = 'Clientes';
@@ -109,12 +111,14 @@ console.log('guardado con exito')
 });
 }
 async salir() {
- this.firebaseauthService.logout(); 
-}
+  this.firebaseauthService.logout(); 
+  this.subcriberUserInfo?.unsubscribe();
+ }
+
 getUserInfo(uid: string){
   const path = 'Clientes';
-  this.firestoreService.getDoc<Cliente>(path, uid).subscribe(res =>{
-    this.cliente = res as Cliente;
+  this.subcriberUserInfo = this.firestoreService.getDoc(path, uid).subscribe(res =>{
+  this.cliente = res as Cliente;
   });
 }
 ingresar(){
@@ -123,7 +127,7 @@ ingresar(){
     password: this.cliente.password
   };
   this.firebaseauthService.login(credenciales.email, credenciales.password).then(res => {
-    console.log('ingresado')
+       console.log('ingresado')
   });
 
 }

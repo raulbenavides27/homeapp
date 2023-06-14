@@ -5,72 +5,77 @@
         <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Registro</ion-title>
+    <ion-title>Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
- 
-
-
-  <ion-card>
-    <ion-card-header>
-      <ion-button slot="end"  (click)="salir()"  >
-        <ion-icon name="close"></ion-icon>
-     </ion-button>
+  <!--FORMULARIO DE PERFIL-->
+ <div *ngIf="!uid.length">
+       <div> 
+              <ion-item *ngIf="!ingresarEnable">
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input [(ngModel)]="cliente.nombre"  placeholder="Nombre" type="text" inputmode="text"></ion-input>
+                </ion-item>    
+                <ion-item>
+                  <ion-label position="floating">Correo</ion-label>
+                  <ion-input [(ngModel)]="cliente.email"  placeholder="ejemplo@mail.cl" type="text"> </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Contraseña</ion-label>
+                  <ion-input [(ngModel)]="cliente.password"  placeholder="********" type="pass" > </ion-input>
+                </ion-item>
+                
+                <ion-item *ngIf="!ingresarEnable">
+                  <ion-label position="floating">Confirmacion</ion-label>
+                  <ion-input [(ngModel)]="cliente.confirmacion"  placeholder="********" type="pass"> </ion-input>
+                </ion-item>
+               
+          <ion-button  *ngIf="!ingresarEnable" (click)="registrarse()" color="secondary" expand="block" shape="round" >registrar</ion-button>   
+          <ion-button  *ngIf="!ingresarEnable" (click)="ingresarEnable = true" color="secondary" expand="block" shape="round" >Iniciar</ion-button>
+          <ion-button  *ngIf="ingresarEnable" (click)="ingresar()" color="secondary" expand="block" shape="round" >Iniciar</ion-button>
+          <ion-button  *ngIf="ingresarEnable" (click)="ingresarEnable = false" color="secondary" expand="block" shape="round" >o registrar</ion-button>
+          
   
-    
-    </ion-card-header>
-    <ion-card-content>
-       <!--FORMULARIO DE PERFIL-->
-   <div >
-            <ion-item>
-                <ion-label position="floating">Nombre</ion-label>
-                <ion-input [(ngModel)]="cliente.nombre"  placeholder="Nombre" type="text" inputmode="text"></ion-input>
-              </ion-item>    
-              <ion-item>
-                <ion-label position="floating">Correo</ion-label>
-                <ion-input [(ngModel)]="cliente.email"  placeholder="ejemplo@mail.cl" type="text"> </ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="floating">Contraseña</ion-label>
-                <ion-input [(ngModel)]="cliente.password"  placeholder="********" type="pass" > </ion-input>
-              </ion-item>
-              
-              <ion-item>
-                <ion-label position="floating">Confirmacion</ion-label>
-                <ion-input [(ngModel)]="cliente.confirmacion"  placeholder="********" type="pass"> </ion-input>
-              </ion-item>
-             
-              <ion-item>
-                <ion-label >
-                  Foto
-                </ion-label>
-                <ion-buttons slot="end">
-                  <ion-button>
-                    <label for="file-upload">
-                    <ion-icon slot="icon-only" name="images-outline"></ion-icon>
-                  </label>
-                  <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"  accept="image/*">
-                </ion-button>
-               </ion-buttons>
-             </ion-item>
-             <ion-item>
-              <img [src]="cliente.foto">
-             </ion-item>
-
-        <ion-button (click)="registrarse()" color="secondary" expand="block" shape="round" >registrar</ion-button>
-        <ion-button (click)="ingresar()" color="secondary" expand="block" shape="round" >Iniciar</ion-button>
-      </div>  
+        
       
-      <ion-item>
     
-        <ion-button slot="end" (click)="salir()">
-       <ion-icon name="close"></ion-icon>
-    </ion-button>
-  
-  </ion-item>
-    </ion-card-content>
-  </ion-card>
+  </div>
 
+ </div>
+  <div *ngIf="uid.length">
+    <div> 
+      <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="cliente.nombre"  placeholder="Nombre" type="text" inputmode="text"></ion-input>
+        </ion-item>    
+        <ion-item>
+          <ion-label position="floating">Correo: {{cliente.email}}</ion-label>
+          <ion-input [(ngModel)]="cliente.email"  placeholder="ejemplo@mail.cl" type="text"> </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label >
+            Foto
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button>
+              <label for="file-upload">
+              <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+            </label>
+            <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"  accept="image/*">
+          </ion-button>
+         </ion-buttons>
+       </ion-item>
+       <ion-item>
+        <img [src]="cliente.foto">
+       </ion-item>
+
+  <ion-button (click)="guardarUser()" color="secondary" expand="block" shape="round" >guardar</ion-button>
+    <ion-item>
+      <ion-button slot="end" (click)="salir()">
+     <ion-icon name="close"></ion-icon>
+  </ion-button>
+</ion-item>
+  </div>
+</div>
 </ion-content>
