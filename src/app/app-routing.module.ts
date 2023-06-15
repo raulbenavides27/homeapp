@@ -13,7 +13,11 @@ const routes: Routes = [
   { path: 'cuentas',component: CuentasComponent},
   { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
-  { path: '**',redirectTo: 'home', pathMatch: 'full'},  
+  { path: '**',redirectTo: 'home', pathMatch: 'full'},   {
+    path: 'serviciospage',
+    loadChildren: () => import('./serviciospage/serviciospage.module').then( m => m.ServiciospagePageModule)
+  },
+ 
    //{
     //path: 'cuentas',
     //loadChildren: () => import('./backend/cuentas/cuentas.module').then( m => m.CuentasPageModule)
