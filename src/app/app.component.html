@@ -10,6 +10,12 @@
       </ion-header>
       <ion-content>
         <ion-menu-toggle autoHide="false"> 
+          <ion-item button="true" detail="true" [routerLink]="['/']">
+          <ion-label>Inicio</ion-label>
+          <ion-icon slot="start"  name="home"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle autoHide="false"> 
         <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
         <ion-label>Editar propiedad</ion-label>
         <ion-icon slot="start"  name="create"></ion-icon>

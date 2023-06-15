@@ -1,12 +1,19 @@
 <ion-header>
   <ion-toolbar color="secondary">
+    <ion-title>HomeApp</ion-title>
+
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>Propiedad</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['perfil']">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-card>
     <ion-card-header>

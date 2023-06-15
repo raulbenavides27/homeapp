@@ -4,7 +4,6 @@ import { SetPropiedadComponent } from './set-propiedad/set-propiedad.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     SetPropiedadComponent
