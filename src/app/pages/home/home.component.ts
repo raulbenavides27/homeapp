@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,8 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomeComponent  implements OnInit {
 
-  constructor(public menucontroler: MenuController) { }
+  constructor(public menucontroler: MenuController,
+              private router:Router) { }
 
   ngOnInit() {}
 
@@ -17,5 +19,14 @@ export class HomeComponent  implements OnInit {
     console.log('open menu');
     this.menucontroler.toggle('principal');
   }
+
+  gocuentas (){ 
+    this.router.navigate(['cuentas']);
+  }
+  
+  gopropiedades (){ 
+    this.router.navigate(['set-propiedad']);
+  }
+  
 
 }
