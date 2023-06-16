@@ -7,11 +7,15 @@ import { SetPropiedadComponent } from './backend/set-propiedad/set-propiedad.com
 import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
+ 
+  { path: '',loadChildren: () => import('./pages/bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)},
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
   { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
-  { path: '**',redirectTo: 'home', pathMatch: 'full'}, 
+  { path: '**',redirectTo: 'home', pathMatch: 'full'},
+
+
 ];
 
 @NgModule({
