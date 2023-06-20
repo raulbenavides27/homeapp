@@ -8,6 +8,7 @@ import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { FirestorageService } from 'src/app/services/firestorage.service';
 import { Subscriber, Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -34,6 +35,7 @@ export class PerfilComponent  implements OnInit {
     public firebaseauthService: FirebaseauthService,
     public alertController: AlertController,
     public firestoreService: FirestoreService,
+    private navCrtl: NavController,
     public firestorageService: FirestorageService){
 
        this.firebaseauthService.stateAuth().subscribe( res =>{
@@ -132,5 +134,8 @@ ingresar(){
 
 }
 
+goToBack () {
+  this.navCrtl.back();
+}
 
 }

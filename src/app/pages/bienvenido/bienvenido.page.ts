@@ -15,4 +15,5 @@ export class BienvenidoPage implements OnInit {
   goToLogin() {
     this.route.navigate(['/perfil']);
 }
+
 }
