@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { CuentasComponent } from './cuentas.component';
 
-describe('CuentasComponent', () => {
-  let component: CuentasComponent;
-  let fixture: ComponentFixture<CuentasComponent>;
+import { EstadoComponent } from './estado.component';
+
+describe('EstadoComponent', () => {
+  let component: EstadoComponent;
+  let fixture: ComponentFixture<EstadoComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CuentasComponent ],
+      declarations: [ EstadoComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CuentasComponent);
+    fixture = TestBed.createComponent(EstadoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
@@ -21,4 +22,3 @@ describe('CuentasComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

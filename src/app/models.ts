@@ -28,3 +28,15 @@ export interface Cuentas{
     estado: string,
     idPropiedad: string
 }
+
+export interface Estado{
+    id: string,
+    idEstado: string,
+    ventanas: string,
+    paredes: string,
+    suelo: string,
+    muebles: string,
+    wc: string,
+    cocina: string    
+}
+  

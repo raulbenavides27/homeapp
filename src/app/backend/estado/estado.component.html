@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Estado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-button (click)="bntNuevo()" color="secondary">
+        <ion-label>Nuevo</ion-label>
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+
+    </ion-card-header>
+    <ion-card-content>
+      <!--contenedor de agregar-->
+      <div *ngIf="enableNewEstado">
+        <ion-item>
+          <ion-button slot="end" (click)="enableNewEstado = false " (click)="enablelista = true ">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">ventanas</ion-label>
+          <ion-select [(ngModel)]="newEstado.ventanas" label="Popover" interface="popover" placeholder="Ventanas">
+            <ion-select-option value="Buen">Buen estado</ion-select-option>
+            <ion-select-option value="mal">Mal estado</ion-select-option>
+            <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Paredes</ion-label>
+          <ion-select [(ngModel)]="newEstado.paredes" label="Popover" interface="popover" placeholder="Paredes">
+            <ion-select-option value="Buen">Buen estado</ion-select-option>
+            <ion-select-option value="mal">Mal estado</ion-select-option>
+            <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Suelo</ion-label>
+          <ion-select [(ngModel)]="newEstado.suelo" label="Popover" interface="popover" placeholder="Suelo">
+            <ion-select-option value="Buen">Buen estado</ion-select-option>
+            <ion-select-option value="mal">Mal estado</ion-select-option>
+            <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Muebles</ion-label>
+          <ion-select [(ngModel)]="newEstado.muebles" label="Popover" interface="popover" placeholder="Muebles">
+            <ion-select-option value="Buen">Buen estado</ion-select-option>
+            <ion-select-option value="mal">Mal estado</ion-select-option>
+            <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Wc</ion-label>
+          <ion-select [(ngModel)]="newEstado.wc" label="Popover" interface="popover" placeholder="Wc">
+            <ion-select-option value="Buen">Buen estado</ion-select-option>
+            <ion-select-option value="mal">Mal estado</ion-select-option>
+            <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Cocina</ion-label>
+          <ion-select [(ngModel)]="newEstado.cocina" label="Popover" interface="popover" placeholder="Cocina">
+            <ion-select-option value="Buen">Buen estado</ion-select-option>
+            <ion-select-option value="mal">Mal estado</ion-select-option>
+            <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-button (click)="guardarEstado()" (click)="enableNewEstado = false" (click)="enablelista = true "
+            color="secondary" expand="block" shape="round">Guardar</ion-button>
+        </ion-item>
+      </div>
+      <!--listas de Estadoes Cascada-->
+
+      <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none">
+        <ion-accordion *ngFor="let P of Estado">
+          <ion-item slot="header" color="secondary">
+            <ion-col>
+              <ion-label>{{P.ventanas}}</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label>
+                <ion-label>{{P.paredes}}</ion-label>
+              </ion-label>
+            </ion-col>
+          </ion-item>
+
+
+          <ion-item class="ion-padding" slot="content">
+            <ion-col>
+              <ion-label>Ventanas:</ion-label>
+              <ion-label>Paredes:</ion-label>
+              <ion-label>Suelo:</ion-label>
+              <ion-label>Muebles:</ion-label>
+              <ion-label>Wc:</ion-label>
+              <ion-label>Cocina:</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label>{{P.ventanas}}</ion-label>
+              <ion-label>{{P.paredes}}</ion-label>
+              <ion-label>{{P.suelo}}</ion-label>
+              <ion-label>{{P.muebles}}</ion-label>
+              <ion-label>{{P.wc}}</ion-label>
+              <ion-label>{{P.cocina}}</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="newEstado = P; enableNewEstado = true; enablelista = false " color="warning"
+                size="small">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button (click)="deleteEstado(P)" color="danger" size="small">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-item>
+
+
+        </ion-accordion>
+      </ion-accordion-group>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
