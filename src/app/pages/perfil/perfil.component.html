@@ -12,16 +12,23 @@
   <!--por revisar hacia abajo-->
   <div *ngIf="!uid.length" class="main_content_div">
 
-   
+    <ion-label class="bold_lbl">Bienvenido</ion-label>
+    <ion-label class="small_lbl">Ingresa tus datos</ion-label> 
+
       <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.nombre"  placeholder="Nombre" type="text"><ion-icon name="person-circle"></ion-icon></ion-input>
       <ion-input [(ngModel)]="cliente.email" placeholder="mail" type="text"> <ion-icon name="mail"></ion-icon></ion-input>
       <ion-input [(ngModel)]="cliente.password" placeholder="Contraseña" type="text" ><ion-icon name="key"></ion-icon> </ion-input>
       <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.confirmacion" placeholder="Confirmar Contraseña" type="text" ><ion-icon name="key"></ion-icon></ion-input>
-
-    <ion-button  *ngIf="ingresarEnable"  (click)="ingresarEnable = false" expand="block" >Iniciar</ion-button>
-    <ion-button  *ngIf="ingresarEnable"  (click)="registrarse()"  expand="block" >registrar</ion-button> 
+     
+     
+      <ion-button  *ngIf="ingresarEnable"  (click)="registrarse()"  expand="block" >registrar</ion-button> 
+      <ion-label  *ngIf="ingresarEnable" class="small_lbl">¿Ya tienes una cuenta?</ion-label> 
+      <ion-button  *ngIf="ingresarEnable"  (click)="ingresarEnable = false" expand="block" >Iniciar</ion-button>
+   
+   
     <ion-button  *ngIf="!ingresarEnable" (click)="ingresar()"  expand="block" >Iniciar</ion-button>
-    <ion-button  *ngIf="!ingresarEnable" (click)="ingresarEnable = true" expand="block" >o registrar</ion-button>
+    <ion-label  *ngIf="!ingresarEnable" class="small_lbl">¿no tienes una cuenta aun?</ion-label> 
+    <ion-button  *ngIf="!ingresarEnable" (click)="ingresarEnable = true" expand="block" >Registrate</ion-button>
     
 
 
@@ -30,11 +37,11 @@
   <div *ngIf="uid.length">
     <div> 
       <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
+          <ion-label>Nombre:</ion-label>
           <ion-input [(ngModel)]="cliente.nombre"  placeholder="Nombre" type="text" inputmode="text"></ion-input>
         </ion-item>    
         <ion-item>
-          <ion-label position="floating">Correo: {{cliente.email}}</ion-label>
+          <ion-label >Correo: {{cliente.email}}</ion-label>
           <ion-input [(ngModel)]="cliente.email"  placeholder="ejemplo@mail.cl" type="text"> </ion-input>
         </ion-item>
         <ion-item>
