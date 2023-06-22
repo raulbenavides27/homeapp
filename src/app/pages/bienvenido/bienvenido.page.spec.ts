@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BienvenidoPage } from './bienvenido.page';
 
+
 describe('BienvenidoPage', () => {
   let component: BienvenidoPage;
   let fixture: ComponentFixture<BienvenidoPage>;

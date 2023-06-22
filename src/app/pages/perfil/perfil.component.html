@@ -25,7 +25,6 @@
       <ion-label  *ngIf="ingresarEnable" class="small_lbl">¿Ya tienes una cuenta?</ion-label> 
       <ion-button  *ngIf="ingresarEnable"  (click)="ingresarEnable = false" expand="block" >Iniciar</ion-button>
    
-   
     <ion-button  *ngIf="!ingresarEnable" (click)="ingresar()"  expand="block" >Iniciar</ion-button>
     <ion-label  *ngIf="!ingresarEnable" class="small_lbl">¿no tienes una cuenta aun?</ion-label> 
     <ion-button  *ngIf="!ingresarEnable" (click)="ingresarEnable = true" expand="block" >Registrate</ion-button>
