@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cuentas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+
+      <ion-button (click)="bntNuevo()" color="secondary">
+        <ion-label>Nuevo</ion-label>
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+
+    </ion-card-header>
+    <ion-card-content>
+      <!--contenedor de agregar-->
+      <div *ngIf="enableNewCuentas">
+        <ion-item>
+
+          <ion-button slot="end" (click)="enableNewCuentas = false " (click)="enablelista = true ">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">tipoCuenta</ion-label>
+          <ion-select [(ngModel)]="newCuentas.tipoCuenta" label="Popover" interface="popover" placeholder="Cuentas">
+            <ion-select-option value="Agua">Agua</ion-select-option>
+            <ion-select-option value="Luz">Luz</ion-select-option>
+            <ion-select-option value="Internet">Internet</ion-select-option>
+            <ion-select-option value="Gastos Comunes">Gastos Comunes</ion-select-option>
+            <ion-select-option value="Gas">Gas</ion-select-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Estado</ion-label>
+          <ion-select [(ngModel)]="newCuentas.estado" label="Popover" interface="popover" placeholder="Estado">
+            <ion-select-option value="pagado">Pagado</ion-select-option>
+            <ion-select-option value="nopago">No Pagado</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">valor</ion-label>
+          <ion-input [(ngModel)]="newCuentas.valor" placeholder="1233" type="number" inputmode="numeric"> </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">idPropiedad</ion-label>
+          <ion-input [(ngModel)]="newCuentas.idPropiedad" placeholder="id propiedad" type="text" inputmode="text">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+
+          <ion-button (click)="guardarCuentas()" (click)="enableNewCuentas = false" (click)="enablelista = true "
+            color="secondary" expand="block" shape="round">Guardar</ion-button>
+        </ion-item>
+      </div>
+      <!--listas de Cuentases Cascada-->
+
+      <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none">
+        <ion-accordion *ngFor="let P of Cuentas">
+          <ion-item slot="header" color="secondary">
+            <ion-col>
+              <ion-label>{{P.tipoCuenta}}</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label>
+                <ion-label>{{P.estado}}</ion-label>
+              </ion-label>
+            </ion-col>
+          </ion-item>
+
+
+          <ion-item class="ion-padding" slot="content">
+            <ion-col>
+
+              <ion-label>TipoCuenta:</ion-label>
+              <ion-label>Valor:</ion-label>
+              <ion-label>Estado:</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label>{{P.tipoCuenta}}</ion-label>
+              <ion-label>{{P.valor}}</ion-label>
+              <ion-label>{{P.estado}}</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="newCuentas = P; enableNewCuentas = true; enablelista = false " color="warning"
+                size="small">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button (click)="deleteCuentas(P)" color="danger" size="small">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-item>
+
+
+        </ion-accordion>
+      </ion-accordion-group>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -10,8 +10,12 @@
 </ion-header>
 
 <ion-content >
+<<<<<<< HEAD
  
   <div class="main_content_div">
+=======
+
+>>>>>>> origin/aye
 
   <ion-card>
     <ion-card-header>
@@ -95,8 +99,9 @@
               <img [src]="newPropiedad.foto">
              </ion-item>
 
-        <ion-button (click)="guardarPropiedad()"  (click)="enableNewPropiedad = false " (click)="enablelista = true " color="secondary" expand="block" shape="round" >Guardar</ion-button>
-      </div>
+             <ion-button (click)="guardarPropiedad()"  (click)="enableNewPropiedad = false " (click)="enablelista = true " color="secondary" expand="block" shape="round" >Guardar</ion-button>
+             <ion-button (click)="go()"  color="secondary" expand="block" shape="round" >Cuentas</ion-button>
+          </div>
     <!--listas de propiedades Cascada-->
      
       <ion-accordion-group  *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none" >
@@ -131,6 +136,9 @@
                   <ion-col>
               <ion-button  (click)="newPropiedad = P; enableNewPropiedad = true; enablelista = false " color="warning" size="small">
                 <ion-icon  name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button    (click)="go()" color="secondary" size="small">
+                <ion-icon name="cash-outline"></ion-icon>
               </ion-button>
               <ion-button    (click)="deletePropiedad(P)" color="danger" size="small">
                 <ion-icon  name="trash-outline"></ion-icon>

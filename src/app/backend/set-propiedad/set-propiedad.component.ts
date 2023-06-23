@@ -2,10 +2,12 @@ import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Propiedad } from 'src/app/models';
-import {FirestorageService} from 'src/app/services/firestorage.service'
+import {FirestorageService} from 'src/app/services/firestorage.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-set-propiedad',
-  templateUrl: './set-propiedad.component.html',
+  templateUrl:'./set-propiedad.component.html',
   styleUrls: ['./set-propiedad.component.scss'],
 })
 export class SetPropiedadComponent  implements OnInit {
@@ -23,12 +25,13 @@ export class SetPropiedadComponent  implements OnInit {
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
-              public firestorageService: FirestorageService) { }
+              public firestorageService: FirestorageService,
+              private router:Router) { }
               
   ngOnInit(){
     this.getPropiedad();
   }
-
+  
   openMenu(){
 
   console.log('open menu');
@@ -129,4 +132,9 @@ async newImageUpload(event:any){
   }
 
 }
+
+go (){ 
+  this.router.navigate(['cuentas']);
+}
+
 }

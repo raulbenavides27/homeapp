@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { FirebaseauthService } from './services/firebaseauth.service';
 
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

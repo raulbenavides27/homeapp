@@ -20,3 +20,23 @@ export interface Cliente{
     confirmacion: string;
     ubicacion: any;
 }
+
+export interface Cuentas{
+    idCuentas: string,
+    tipoCuenta: string,
+    valor: string,
+    estado: string,
+    idPropiedad: string
+}
+
+export interface Estado{
+    id: string,
+    idEstado: string,
+    ventanas: string,
+    paredes: string,
+    suelo: string,
+    muebles: string,
+    wc: string,
+    cocina: string    
+}
+  
