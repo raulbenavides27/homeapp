@@ -33,39 +33,27 @@
 
 </div>
 <!--por revisar hacia arriba-->
-  <div *ngIf="uid.length">
+  <div *ngIf="uid.length" class="main_content_div">
     <div> 
-      <ion-item>
-          <ion-label>Nombre:</ion-label>
-          <ion-input [(ngModel)]="cliente.nombre"  placeholder="Nombre" type="text" inputmode="text"></ion-input>
-        </ion-item>    
-        <ion-item>
-          <ion-label >Correo: {{cliente.email}}</ion-label>
-          <ion-input [(ngModel)]="cliente.email"  placeholder="ejemplo@mail.cl" type="text"> </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label >
-            Foto
-          </ion-label>
-          <ion-buttons slot="end">
-            <ion-button>
-              <label for="file-upload">
-              <ion-icon slot="icon-only" name="images-outline"></ion-icon>
-            </label>
-            <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"  accept="image/*">
-          </ion-button>
-         </ion-buttons>
-       </ion-item>
-       <ion-item>
-        <img [src]="cliente.foto">
-       </ion-item>
+          <div class="imgUser"> <img [src]="cliente.foto"></div>
+          <ion-label class="small_lbl">Nombre: {{cliente.nombre}}</ion-label>
+          <ion-label class="small_lbl">Correo: {{cliente.email}}</ion-label>
+          <ion-label class="small_lbl" >Editar Foto</ion-label>
+               <ion-buttons>
+               <ion-button >
+                 <label for="file-upload"><ion-icon slot="icon-only" name="images-outline"></ion-icon></label>
+                 <input (change)="newImageUpload($event)" id="file-upload"  type="file"  accept="image/*">
+              </ion-button>
+            </ion-buttons>
+ 
 
-  <ion-button (click)="guardarUser()" color="secondary" expand="block" shape="round" >guardar</ion-button>
-    <ion-item>
-      <ion-button slot="end" (click)="salir()">
-     <ion-icon name="close"></ion-icon>
-  </ion-button>
-</ion-item>
+        
+       
+     
+       <ion-button (click)="guardarUser()" expand="block">guardar</ion-button>
+   
+       <ion-button  (click)="salir()" expand="block">Cerrar cesion</ion-button>
+
   </div>
 </div>
 </ion-content>

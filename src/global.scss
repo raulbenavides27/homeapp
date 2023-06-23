@@ -26,15 +26,15 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content {
-    --background:  #8e8e94;
+    width: 100%;
+    --background:  #a6a6a8;
 }
-ion-header {
-    background:   #58585e;
- }
 
 
-ion-footer{
-    background:   #58585e;
+
+ion-toolbar{
+     --background:  #b6b6b9;
+      padding: 10px;
 }
 
 
@@ -47,19 +47,33 @@ ion-footer{
     }
 
     ion-button {
-        --background:#8e8e94;
-        margin: 0px;
-        --border-radius: 5px;
+        margin: auto;
+        max-width: 300px;
+        --background: #b6b6b9;
+       border-radius: 5px;
         height: 50px;
-      margin-bottom: 10px;
-      color: #b6b6c0;
-    }  
+        margin-bottom: 10px;
+        color: rgb(255, 249, 249);
+    }
+    ion-buttons{
+        margin: auto;
+        max-width: 50px;
+        
+
+    
+    }   
  
 
 .main_content_div {
     width: 100%;
     padding: 16px;
 
+
+    .logo{
+        margin: auto;
+        max-width: 300px;
+        align-items: center;
+    }
     .bold_lbl {
         font-family: 'medium';
         text-align: center;
@@ -69,7 +83,7 @@ ion-footer{
 
     .simple_lbl {
         font-size: 15px;
-        color:  #d2d2d6;
+        color: white;
         text-align: center;
     }
  
@@ -79,6 +93,8 @@ ion-footer{
     }
 
     ion-input {
+        margin: auto;
+        max-width: 350px;
         background: rgba(70, 65, 69, 0.3);
         border-radius: 5px;
         margin-bottom: 20px;
@@ -92,14 +108,7 @@ ion-footer{
         }
     }
 
-    ion-button {
-        --background:#8e8e94;
-        margin: 0px;
-        --border-radius: 5px;
-        height: 50px;
-      margin-bottom: 10px;
-      color: #b6b6c0;
-    }
+
  
     .bold_lbl {
         font-family: 'semi-bold';

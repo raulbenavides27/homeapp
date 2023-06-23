@@ -11,7 +11,7 @@
 
 <ion-content >
  
-
+  <div class="main_content_div">
 
   <ion-card>
     <ion-card-header>
@@ -23,7 +23,7 @@
     </ion-card-header>
     <ion-card-content>
        <!--contenedor de agregar-->
-   <div *ngIf="enableNewPropiedad">
+   <div *ngIf="enableNewPropiedad" >
   <ion-item>
     
       <ion-button slot="end" (click)="enableNewPropiedad = false " (click)="enablelista = true "  >
@@ -98,8 +98,8 @@
         <ion-button (click)="guardarPropiedad()"  (click)="enableNewPropiedad = false " (click)="enablelista = true " color="secondary" expand="block" shape="round" >Guardar</ion-button>
       </div>
     <!--listas de propiedades Cascada-->
-      
-      <ion-accordion-group  *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none">
+     
+      <ion-accordion-group  *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none" >
         <ion-accordion *ngFor="let P of Propiedades">
           <ion-item slot="header"  color="secondary">
             <ion-col>
@@ -141,8 +141,8 @@
          
         </ion-accordion>
       </ion-accordion-group>
-  
+    
     </ion-card-content>
   </ion-card>
-
+</div>
 </ion-content>

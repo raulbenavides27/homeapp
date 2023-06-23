@@ -30,6 +30,7 @@ export class PerfilComponent  implements OnInit {
   uid = '';
   subcriberUserInfo: Subscription | undefined;
   ingresarEnable = false;
+  route: any;
 
     constructor(public menucontroler: MenuController, public fb: FormBuilder,
     public firebaseauthService: FirebaseauthService,
@@ -129,9 +130,11 @@ ingresar(){
     password: this.cliente.password
   };
   this.firebaseauthService.login(credenciales.email, credenciales.password).then(res => {
-       console.log('ingresado')
-  });
+       console.log('ingresado');
+      
 
+  });
+  this.route.navigate(['/home']);
 }
 
 goToBack () {
