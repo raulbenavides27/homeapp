@@ -1,25 +1,16 @@
-<<<<<<< HEAD
-<ion-header>
-  <ion-toolbar color="secondary">
-    <ion-title>HomeApp</ion-title>
-
-    <ion-buttons slot="start">
-      <ion-button (click)="openMenu()">
-        <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/perfil']">
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-=======
 <ion-header class="ion-no-border" mode="md">
   <ion-toolbar>
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
->>>>>>> origin/aye
+      <ion-input type="text" placeholder="Buscar propiedades">
+        <ion-icon name="search"></ion-icon>
+    </ion-input>
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['/perfil']">
+          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -40,9 +31,7 @@
                   
               </div>
           </div>
-          <ion-input type="text" placeholder="Buscar propiedades">
-              <ion-icon name="search"></ion-icon>
-          </ion-input>
+        
       </div>
 
       <div class="content_div">
