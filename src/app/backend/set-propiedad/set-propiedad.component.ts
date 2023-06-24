@@ -137,4 +137,8 @@ go (){
   this.router.navigate(['cuentas']);
 }
 
+goto (){ 
+  this.router.navigate(['estado']);
+}  
+  
 }

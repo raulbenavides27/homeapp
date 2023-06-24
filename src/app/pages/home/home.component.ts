@@ -23,6 +23,9 @@ export class HomeComponent  implements OnInit {
   gocuentas (){ 
     this.router.navigate(['cuentas']);
   }
+  goestado (){ 
+    this.router.navigate(['estado']);
+  }  
   
   gopropiedades (){ 
     this.router.navigate(['set-propiedad']);
