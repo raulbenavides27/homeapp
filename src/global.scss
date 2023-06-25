@@ -37,6 +37,16 @@ ion-toolbar{
       padding: 10px;
 }
 
+ion-item{
+    --background:  #b6b6b9;
+   
+}
+ion-card{
+    --background:  #b6b6b9;
+   
+}
+
+
 
     ion-label {
         display: block;
@@ -53,7 +63,7 @@ ion-toolbar{
        border-radius: 5px;
         height: 50px;
         margin-bottom: 10px;
-        color: rgb(255, 249, 249);
+        color: black;
     }
     ion-buttons{
         margin: auto;
@@ -94,7 +104,7 @@ ion-toolbar{
 
     ion-input {
         margin: auto;
-        max-width: 350px;
+       
         background: rgba(70, 65, 69, 0.3);
         border-radius: 5px;
         margin-bottom: 20px;
