@@ -11,9 +11,8 @@
 
 <ion-content>
   <div class="main_content_div">
-    <ion-card>
+   
       <ion-card-header *ngIf="enablelista">
-
         <ion-button (click)="bntNuevo()" >
           <ion-label>Nuevo</ion-label>
           <ion-icon name="add"></ion-icon>
@@ -94,10 +93,7 @@
           </ion-item>
           <ion-item class="ion-padding">
           <ion-col>
-          <ion-button (click)="guardarPropiedad()" (click)="enableNewPropiedad = false " (click)="enablelista = true "
-             expand="block" >Guardar</ion-button>
-          <ion-button (click)="go()"  expand="block" >Cuentas</ion-button>
-          <ion-button (click)="goto()"  expand="block" >Estado</ion-button>
+          <ion-button (click)="guardarPropiedad()"  (click)="enableNewPropiedad = false " (click)="enablelista = true " expand="block" >Guardar</ion-button>
         </ion-col>
         </ion-item>
         
@@ -107,57 +103,41 @@
         
         <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" >
           <ion-accordion *ngFor="let P of Propiedades">
-            <ion-item slot="header" >
-              <ion-col>
-                <ion-label>{{P.nombre}}</ion-label>
+          <ion-item slot="header" >  
+              
 
-              </ion-col>
-              <ion-col>
-                <ion-label>
-                  <ion-label>{{P.contacto}}</ion-label>
-                </ion-label>
-              </ion-col>
+            <ion-grid [fixed]="true">
+              <ion-row>
+                <ion-col><ion-icon name="home"></ion-icon></ion-col>
+                <ion-col><ion-label>{{P.tipo}}</ion-label></ion-col>
+                <ion-col><ion-label>{{P.numero}}</ion-label></ion-col>
+                <ion-col><ion-label>{{P.direccion}}</ion-label></ion-col>
+                <ion-col><ion-label>{{P.comuna}}</ion-label></ion-col>
+                <ion-col><ion-icon name="person-circle" style="margin: 5px;"></ion-icon></ion-col>
+                <ion-col><ion-label>{{P.contacto}}</ion-label></ion-col>
+                <ion-col><ion-icon name="call-outline"></ion-icon></ion-col>
+                <ion-col><ion-label>{{P.telefono}}</ion-label></ion-col>
+              </ion-row>
+            </ion-grid>
             </ion-item>
-
-
-            <ion-item class="ion-padding" slot="content">
-              <ion-col>
-
-                <ion-label>Direccion:</ion-label>
-                <ion-label>Numero:</ion-label>
-                <ion-label>Comuna:</ion-label>
-                <ion-label>Tipo:</ion-label>
-                <ion-label>Telefono:</ion-label>
-              </ion-col>
-              <ion-col>
-                <ion-label>{{P.direccion}}</ion-label>
-                <ion-label>{{P.numero}}</ion-label>
-                <ion-label>{{P.comuna}}</ion-label>
-                <ion-label>{{P.tipo}}</ion-label>
-                <ion-label>{{P.telefono}}</ion-label>
-              </ion-col>
-              <ion-col>
-                <ion-button (click)="newPropiedad = P; enableNewPropiedad = true; enablelista = false " color="warning"
-                  size="small">
-                  <ion-icon name="create-outline"></ion-icon>
-                </ion-button>
-                <ion-button (click)="go()" color="primary" size="small">
-                  <ion-icon name="cash-outline"></ion-icon>
-                </ion-button>
-                <ion-button (click)="go()" color="secondary" size="small">
-                  <ion-icon name="archive-outline"></ion-icon>
-                </ion-button>
-                <ion-button (click)="deletePropiedad(P)" color="danger" size="small">
-                  <ion-icon name="trash-outline"></ion-icon>
-                </ion-button>
-              </ion-col>
+            <ion-item  slot="content">
+                 <ion-col >
+                      <ion-button (click)="go()" color="primary" size="small" style="margin: 5px;">
+                      <ion-icon name="cash-outline" style="margin: 5px;"></ion-icon><ion-label>Cuentas</ion-label>
+                      </ion-button>
+                      <ion-button (click)="go()" color="secondary" size="small" style="margin: 5px;">
+                      <ion-icon name="archive-outline" style="margin: 5px;"></ion-icon><ion-label>Tareas</ion-label>
+                      </ion-button>
+                      <ion-button (click)="newPropiedad = P; enableNewPropiedad = true; enablelista = false " color="warning" size="small" style="margin: 5px;">
+                      <ion-icon name="create-outline"></ion-icon>
+                      </ion-button>
+                      <ion-button (click)="deletePropiedad(P)" color="danger" size="small" style="margin: 5px;">
+                      <ion-icon name="trash-outline"></ion-icon>
+                      </ion-button>
+                  </ion-col>
             </ion-item>
-
-
           </ion-accordion>
         </ion-accordion-group>
-
       </ion-card-content>
-    </ion-card>
   </div>
 </ion-content>
