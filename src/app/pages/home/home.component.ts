@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent  implements OnInit {
+ private path = 'Propiedades/'
 
   constructor(public menucontroler: MenuController,
-              private router:Router) { }
+    public firestoreService: FirestoreService,
+              private router:Router) { 
+
+                this.loadProductos();
+              }
 
   ngOnInit() {}
 
@@ -19,6 +25,13 @@ export class HomeComponent  implements OnInit {
     console.log('open menu');
     this.menucontroler.toggle('principal');
   }
+  loadProductos(){
+    this.firestoreService.getColletion(this.path).subscribe( res => {
+    console.log(res);
+    });
+  }
+
+/*
 
   gocuentas (){ 
     this.router.navigate(['cuentas']);
@@ -30,6 +43,6 @@ export class HomeComponent  implements OnInit {
   gopropiedades (){ 
     this.router.navigate(['set-propiedad']);
   }
-  
+*/  
 
 }
