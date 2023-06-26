@@ -16,7 +16,7 @@
     <ion-label class="small_lbl">Ingresa tus datos</ion-label>
 
 
-    <<<<<<< HEAD <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.nombre" placeholder="Nombre" type="text"
+<ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.nombre" placeholder="Nombre" type="text"
       [formControl]="nombreControl">
       <ion-icon name="person-circle"></ion-icon>
       </ion-input>
@@ -62,8 +62,7 @@
             <ng-container *ngIf="passwordControl.hasError('required')">La contraseña es obligatoria</ng-container>
             <ng-container *ngIf="passwordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres
             </ng-container>
-            <ng-container *ngIf="passwordControl.hasError('pattern')">La contraseña debe contener al menos un carácter
-              especial</ng-container>
+            <ng-container *ngIf="passwordControl.hasError('pattern')">La contraseña debe contener al menos un carácter especial</ng-container>
           </ion-label>
         </ion-item>
       </div>
@@ -80,10 +79,8 @@
           <ion-icon name="alert-circle" slot="start"></ion-icon>
           <ion-label class="error-label">
             <ng-container *ngIf="CpasswordControl.hasError('required')">La contraseña es obligatoria</ng-container>
-            <ng-container *ngIf="CpasswordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres
-            </ng-container>
-            <ng-container *ngIf="CpasswordControl.hasError('pattern')">La contraseña debe contener al menos un carácter
-              especial</ng-container>
+            <ng-container *ngIf="CpasswordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres</ng-container>
+            <ng-container *ngIf="CpasswordControl.hasError('pattern')">La contraseña debe contener al menos un carácter especial</ng-container>
           </ion-label>
         </ion-item>
       </div>
@@ -99,7 +96,7 @@
       <ion-label *ngIf="!ingresarEnable" class="small_lbl">¿no tienes una cuenta aun?</ion-label>
       <ion-button *ngIf="!ingresarEnable" (click)="ingresarEnable = true" expand="block">Registrate</ion-button>
 
-      =======
+    
   </div>
   <!--por revisar hacia arriba-->
   <div *ngIf="uid.length" class="main_content_div">
@@ -117,7 +114,7 @@
         </ion-button>
       </ion-buttons>
 
-      >>>>>>> f0e0c051bd6a149a615a27c5c033e30d51f380a9
+      
 
 
     </div>
@@ -144,4 +141,6 @@
 
       </div>
     </div>
-</ion-content>
+
+
+
