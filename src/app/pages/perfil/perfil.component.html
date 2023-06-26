@@ -11,95 +11,93 @@
   <!--FORMULARIO DE PERFIL-->
   <!--por revisar hacia abajo-->
   <div *ngIf="!uid.length" class="main_content_div">
-
     <ion-label class="bold_lbl">Bienvenido</ion-label>
     <ion-label class="small_lbl">Ingresa tus datos</ion-label>
 
-
-    <<<<<<< HEAD <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.nombre" placeholder="Nombre" type="text"
+    <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.nombre" placeholder="Nombre" type="text"
       [formControl]="nombreControl">
       <ion-icon name="person-circle"></ion-icon>
-      </ion-input>
-      <div class="custom-background">
-        <ion-item *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)">
-          <ion-icon name="alert-circle" slot="start"></ion-icon>
-          <ion-label class="error-label">
-            <ng-container *ngIf="nombreControl.hasError('required')">El nombre es obligatorio</ng-container>
-            <ng-container *ngIf="nombreControl.hasError('pattern')">Solo se permiten letras en el nombre</ng-container>
-          </ion-label>
-        </ion-item>
-      </div>
+    </ion-input>
+    <div class="custom-background">
+      <ion-item *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)">
+        <ion-icon name="alert-circle" slot="start"></ion-icon>
+        <ion-label class="error-label">
+          <ng-container *ngIf="nombreControl.hasError('required')">El nombre es obligatorio</ng-container>
+          <ng-container *ngIf="nombreControl.hasError('pattern')">Solo se permiten letras en el nombre</ng-container>
+        </ion-label>
+      </ion-item>
+    </div>
 
-      <p></p>
-
-
-      <ion-input [(ngModel)]="cliente.email" placeholder="email" type="email" [formControl]="emailControl">
-        <ion-icon name="mail"></ion-icon>
-      </ion-input>
-
-      <div class="custom-background">
-        <ion-item *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
-          <ion-icon name="alert-circle" slot="start"></ion-icon>
-          <ion-label class="error-label">
-            <ng-container *ngIf="emailControl.hasError('required')">El correo electrónico es obligatorio</ng-container>
-            <ng-container *ngIf="emailControl.hasError('email')">Ingrese un correo electrónico válido</ng-container>
-          </ion-label>
-        </ion-item>
-      </div>
+    <p></p>
 
 
-      <p></p>
+    <ion-input [(ngModel)]="cliente.email" placeholder="email" type="email" [formControl]="emailControl">
+      <ion-icon name="mail"></ion-icon>
+    </ion-input>
+
+    <div class="custom-background">
+      <ion-item *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
+        <ion-icon name="alert-circle" slot="start"></ion-icon>
+        <ion-label class="error-label">
+          <ng-container *ngIf="emailControl.hasError('required')">El correo electrónico es obligatorio</ng-container>
+          <ng-container *ngIf="emailControl.hasError('email')">Ingrese un correo electrónico válido</ng-container>
+        </ion-label>
+      </ion-item>
+    </div>
 
 
-      <ion-input [(ngModel)]="cliente.password" placeholder="Contraseña" type="password" value="password" id="password"
-        [formControl]="passwordControl">
-        <ion-icon name="key"></ion-icon>
-      </ion-input>
-      <div class="custom-background">
-        <ion-item *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)">
-          <ion-icon name="alert-circle" slot="start"></ion-icon>
-          <ion-label class="error-label">
-            <ng-container *ngIf="passwordControl.hasError('required')">La contraseña es obligatoria</ng-container>
-            <ng-container *ngIf="passwordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres
-            </ng-container>
-            <ng-container *ngIf="passwordControl.hasError('pattern')">La contraseña debe contener al menos un carácter
-              especial</ng-container>
-          </ion-label>
-        </ion-item>
-      </div>
-
-      <p></p>
+    <p></p>
 
 
-      <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.confirmacion" placeholder="Confirmar Contraseña"
-        type="text">
-        <ion-icon name="key"></ion-icon>
-      </ion-input>
-      <div class="custom-background">
-        <ion-item *ngIf="CpasswordControl.invalid && (CpasswordControl.dirty || CpasswordControl.touched)">
-          <ion-icon name="alert-circle" slot="start"></ion-icon>
-          <ion-label class="error-label">
-            <ng-container *ngIf="CpasswordControl.hasError('required')">La contraseña es obligatoria</ng-container>
-            <ng-container *ngIf="CpasswordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres
-            </ng-container>
-            <ng-container *ngIf="CpasswordControl.hasError('pattern')">La contraseña debe contener al menos un carácter
-              especial</ng-container>
-          </ion-label>
-        </ion-item>
-      </div>
+    <ion-input [(ngModel)]="cliente.password" placeholder="Contraseña" type="password" value="password" id="password"
+      [formControl]="passwordControl">
+      <ion-icon name="key"></ion-icon>
+    </ion-input>
+    <div class="custom-background">
+      <ion-item *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)">
+        <ion-icon name="alert-circle" slot="start"></ion-icon>
+        <ion-label class="error-label">
+          <ng-container *ngIf="passwordControl.hasError('required')">La contraseña es obligatoria</ng-container>
+          <ng-container *ngIf="passwordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres
+          </ng-container>
+          <ng-container *ngIf="passwordControl.hasError('pattern')">La contraseña debe contener al menos un carácter
+            especial</ng-container>
+        </ion-label>
+      </ion-item>
+    </div>
 
-      <p></p>
+    <p></p>
 
 
-      <ion-button *ngIf="ingresarEnable" (click)="registrarse()" expand="block">registrar</ion-button>
-      <ion-label *ngIf="ingresarEnable" class="small_lbl">¿Ya tienes una cuenta?</ion-label>
-      <ion-button *ngIf="ingresarEnable" (click)="ingresarEnable = false" expand="block">Iniciar</ion-button>
+    <ion-input *ngIf="ingresarEnable" [(ngModel)]="cliente.confirmacion" placeholder="Confirmar Contraseña"
+      [formControl]="passwordControl" type="password" value="password" id="password">
+      <ion-icon name="key"></ion-icon>
+    </ion-input>
+    <div class="custom-background">
+      <ion-item *ngIf="CpasswordControl.invalid && (CpasswordControl.dirty || CpasswordControl.touched)">
+        <ion-icon name="alert-circle" slot="start"></ion-icon>
+        <ion-label class="error-label">
+          <ng-container *ngIf="CpasswordControl.hasError('required')">La contraseña es obligatoria</ng-container>
+          <ng-container *ngIf="CpasswordControl.hasError('minlength')">La contraseña debe tener al menos 6 caracteres
+          </ng-container>
+          <ng-container *ngIf="CpasswordControl.hasError('pattern')">La contraseña debe contener al menos un carácter
+            especial</ng-container>
+        </ion-label>
+      </ion-item>
+    </div>
 
-      <ion-button *ngIf="!ingresarEnable" (click)="ingresar()" expand="block">Iniciar</ion-button>
-      <ion-label *ngIf="!ingresarEnable" class="small_lbl">¿no tienes una cuenta aun?</ion-label>
-      <ion-button *ngIf="!ingresarEnable" (click)="ingresarEnable = true" expand="block">Registrate</ion-button>
+    <p></p>
 
-      =======
+
+    <ion-button *ngIf="ingresarEnable" (click)="registrarse()" expand="block">registrar</ion-button>
+    <ion-label *ngIf="ingresarEnable" class="small_lbl">¿Ya tienes una cuenta?</ion-label>
+    <ion-button *ngIf="ingresarEnable" (click)="ingresarEnable = false" expand="block">Iniciar</ion-button>
+
+    <ion-button *ngIf="!ingresarEnable" (click)="ingresar()" expand="block">Iniciar</ion-button>
+    <ion-label *ngIf="!ingresarEnable" class="small_lbl">¿no tienes una cuenta aun?</ion-label>
+    <ion-button *ngIf="!ingresarEnable" (click)="ingresarEnable = true" expand="block">Registrate</ion-button>
+
+
   </div>
   <!--por revisar hacia arriba-->
   <div *ngIf="uid.length" class="main_content_div">
@@ -116,8 +114,6 @@
           <input (change)="newImageUpload($event)" id="file-upload" type="file" accept="image/*">
         </ion-button>
       </ion-buttons>
-
-      >>>>>>> f0e0c051bd6a149a615a27c5c033e30d51f380a9
 
 
     </div>
@@ -144,4 +140,5 @@
 
       </div>
     </div>
+  </div>
 </ion-content>
