@@ -1,9 +1,22 @@
+.error-label {
+  color: red;
+  font-size: 12px;
+  margin-left: 5px;
+}
 
-
+.error-label ion-icon {
+  color: red; /* Cambia este color según tus preferencias */
+  font-size: 16px;
+  margin-right: 5px;
+}
 
 .imgUser{
     margin: auto;
     max-width: 150px;
     align-items: center;
     padding: 10PX;
+}
+
+.custom-background {
+  background-color: #f2f2f2; /* Cambia este color por el gris deseado */
 }

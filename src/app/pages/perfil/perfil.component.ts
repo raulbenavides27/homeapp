@@ -9,6 +9,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { FirestorageService } from 'src/app/services/firestorage.service';
 import { Subscriber, Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -141,4 +142,10 @@ goToBack () {
   this.navCrtl.back();
 }
 
+  nombreControl = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);  
+  emailControl = new FormControl('', [Validators.required, Validators.email]);
+  passwordControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/)]);
+  CpasswordControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/)]);
+
+  
 }
