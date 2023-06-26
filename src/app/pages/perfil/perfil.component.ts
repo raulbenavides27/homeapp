@@ -132,10 +132,10 @@ ingresar(){
   };
   this.firebaseauthService.login(credenciales.email, credenciales.password).then(res => {
        console.log('ingresado');
-      
+       this.route.navigate(['/home']);
 
   });
-  this.route.navigate(['/home']);
+ 
 }
 
 goToBack () {

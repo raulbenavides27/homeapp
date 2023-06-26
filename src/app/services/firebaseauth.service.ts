@@ -5,13 +5,15 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root'
 })
 export class FirebaseauthService {
+  [x: string]: any;
 
   constructor(public auth: AngularFireAuth) { 
-    this.getUid();
+
   }
   
   login(email:string, password:string){
    return  this.auth.signInWithEmailAndPassword(email,password);
+ 
   }
   logout(){
     return this.auth.signOut();
