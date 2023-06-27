@@ -15,6 +15,7 @@ export class SetPropiedadComponent  implements OnInit {
   newPropiedad!: Propiedad;
   enableNewPropiedad = false;
   enablelista = true;
+  btnClose = false;
   private path = 'Propiedad/';
   newImage = '';
   newfile = '';
@@ -92,6 +93,7 @@ await alert.present();
 bntNuevo(){
   this.enableNewPropiedad = true;
   this.enablelista = false;
+  this.btnClose = true;
   this.newPropiedad = {
     nombre: '',
     direccion: '',
