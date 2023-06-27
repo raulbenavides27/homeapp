@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="openMenu()">
         <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
@@ -11,18 +11,17 @@
 
 <ion-content>
 
-  <ion-card>
+ 
     <ion-card-header>
 
-      <ion-button (click)="bntNuevo()" color="secondary">
+      <ion-button (click)="bntNuevo()">
         <ion-label>Nuevo</ion-label>
         <ion-icon name="add"></ion-icon>
       </ion-button>
-
     </ion-card-header>
-    <ion-card-content>
+  
       <!--contenedor de agregar-->
-      <div *ngIf="enableNewCuentas">
+      <div *ngIf="enableNewCuentas" class="main_content_div">
         <ion-item>
 
           <ion-button slot="end" (click)="enableNewCuentas = false " (click)="enablelista = true ">
@@ -60,53 +59,33 @@
         <ion-item>
 
           <ion-button (click)="guardarCuentas()" (click)="enableNewCuentas = false" (click)="enablelista = true "
-            color="secondary" expand="block" shape="round">Guardar</ion-button>
+             expand="block" shape="round">Guardar</ion-button>
         </ion-item>
       </div>
-      <!--listas de Cuentases Cascada-->
-
-      <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none">
-        <ion-accordion *ngFor="let P of Cuentas">
-          <ion-item slot="header" color="secondary">
-            <ion-col>
-              <ion-label>{{P.tipoCuenta}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>
-                <ion-label>{{P.estado}}</ion-label>
-              </ion-label>
-            </ion-col>
-          </ion-item>
-
-
-          <ion-item class="ion-padding" slot="content">
-            <ion-col>
-
-              <ion-label>TipoCuenta:</ion-label>
-              <ion-label>Valor:</ion-label>
-              <ion-label>Estado:</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>{{P.tipoCuenta}}</ion-label>
-              <ion-label>{{P.valor}}</ion-label>
-              <ion-label>{{P.estado}}</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-button (click)="newCuentas = P; enableNewCuentas = true; enablelista = false " color="warning"
-                size="small">
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-button>
-              <ion-button (click)="deleteCuentas(P)" color="danger" size="small">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-item>
-
-
-        </ion-accordion>
-      </ion-accordion-group>
-
-    </ion-card-content>
-  </ion-card>
+      <!--listas de Cuentas-->
+<ion-card *ngIf="enablelista">
+  
+      <div  *ngFor="let P of Cuentas">
+        
+      <ion-grid  [fixed]="true">
+        <ion-row>
+          <ion-col><ion-label>TipoCuenta: {{P.tipoCuenta}}</ion-label></ion-col>
+          <ion-col><ion-label>Empresa: {{P.valor}}</ion-label></ion-col>
+          <ion-col><ion-label>Estado: {{P.estado}}</ion-label></ion-col>
+          <ion-col>
+            <ion-button (click)="newCuentas = P; enableNewCuentas = true; enablelista = false " color="warning"  style="margin: 5px;"
+              size="small">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="deleteCuentas(P)" color="danger"  style="margin: 5px;" size="small">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+          
+          
+        </div>
+    </ion-card>
 
 </ion-content>
