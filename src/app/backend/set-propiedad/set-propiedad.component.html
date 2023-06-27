@@ -13,7 +13,7 @@
 <!--este div contiene todo -->
   <div class="main_content_div"> 
         <!--contenedor de agregar-->
-        <ion-card-header slot="end" *ngIf="!enablelista">     
+        <ion-card-header *ngIf="!enablelista">     
           <ion-button  (click)="enableNewPropiedad = false " (click)="enablelista = true">
             <ion-label>cancelar</ion-label>
             <ion-icon name="close"></ion-icon>
