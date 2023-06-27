@@ -16,8 +16,12 @@
 
 <ion-content>
   <div class="main_content_div">
-    <ion-item *ngFor="let p of propiedad">
-      {{p.nombre}}
-    </ion-item>
+ 
+<div *ngFor="let propiedad of propiedad">
+
+  <app-propiedad [propiedad]=propiedad></app-propiedad>
+
+</div>
+  
   </div>
 </ion-content>
