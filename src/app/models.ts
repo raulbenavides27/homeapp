@@ -1,5 +1,5 @@
 export interface Propiedad{
-    nombre: string;
+    referencia: string;
     direccion:string;
     numero: Number;
     comuna: string;
@@ -8,7 +8,10 @@ export interface Propiedad{
     id: string;
     fecha: Date;
     tipo: string;
-    foto: string;
+    estado: String;
+    condicion: String;
+    ubicacion: any;
+    
 }
 
 export interface Cliente{

@@ -43,10 +43,10 @@ async guardarPropiedad()
 { 
 this.presentLoading();
 const path = 'Propiedad';
-const name = this.newPropiedad.nombre;
+const name = this.newPropiedad.referencia;
 if (this.newfile !== undefined){
 const res = await this.firestorageService.uploadImage(this.newfile,path,name);
-this.newPropiedad.foto = res;
+
 }
 this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
 this.loading.dismiss();
@@ -95,16 +95,20 @@ bntNuevo(){
   this.enablelista = false;
   this.btnClose = true;
   this.newPropiedad = {
-    nombre: '',
+    
     direccion: '',
     numero: 0,
     comuna: '',
+    referencia: '',
     contacto: '',
     telefono: 0,
     id:this.FirestoService.getId(),
     fecha: new Date(),
     tipo: '',
-    foto: ''
+    estado:'',
+    condicion:'',
+    ubicacion:'',
+
   };
 
 }
@@ -125,12 +129,6 @@ async presentToast(msg: string){
 async newImageUpload(event:any){ 
    if (event.target.files && event.target.files[0]){ 
       this.newfile = event.target.files[0]; 
-      const reader = new FileReader();
-      reader.onload = ((image: any)=>{    
-         this.newPropiedad.foto = image.target.result as string;   
-        
-        });
-    reader.readAsDataURL(event.target.files[0]);
   }
 
 }
