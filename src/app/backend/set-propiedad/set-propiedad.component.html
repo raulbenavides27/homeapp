@@ -12,22 +12,16 @@
 <ion-content> 
 <!--este div contiene todo -->
   <div class="main_content_div"> 
+    <ion-card style="--background:  #808081; max-width: 800px; margin: auto;" >
         <!--contenedor de agregar-->
-        <ion-card-header *ngIf="!enablelista">     
+    <ion-card-header  *ngIf="!enablelista">    
           <ion-button  (click)="enableNewPropiedad = false " (click)="enablelista = true">
             <ion-label>cancelar</ion-label>
             <ion-icon name="close"></ion-icon>
           </ion-button>
-        </ion-card-header>
-                    
-        <ion-card *ngIf="enableNewPropiedad"> 
-            
-             <ion-item>
-             <ion-col size="auto"><ion-label  >Nombre Propiedad</ion-label></ion-col>
-              <ion-col>
-                 <ion-input [(ngModel)]="newPropiedad.nombre"  placeholder="Nombre" name="Nombre" type="text" inputmode="text"></ion-input>
-              </ion-col>  
-          </ion-item>
+    </ion-card-header>    
+        <ion-card-content> 
+      <div *ngIf="enableNewPropiedad">
           <ion-item>
             <ion-label >comuna</ion-label>
             <ion-select  [(ngModel)]="newPropiedad.comuna" label="Popover" interface="popover">
@@ -47,46 +41,51 @@
             </ion-select>
          
           </ion-item>
-          <ion-item><ion-col size="auto">
-            <ion-label>Direccion</ion-label></ion-col><ion-col >
-            <ion-input [(ngModel)]="newPropiedad.direccion" placeholder="av. ejemplo" type="text" inputmode="text">
-            </ion-input></ion-col>
-          </ion-item>
           <ion-item>
+            <ion-col size="auto"><ion-label>Direccion</ion-label></ion-col>
+            <ion-col >
+            <ion-input [(ngModel)]="newPropiedad.direccion" placeholder="av. ejemplo" type="text" inputmode="text"></ion-input>
+          </ion-col>
+          </ion-item>
+          <ion-item>       
             <ion-label >Tipo</ion-label>
-            <ion-select [(ngModel)]="newPropiedad.tipo" label="Popover" interface="popover" placeholder="Casa/depto">
+            <ion-select   [(ngModel)]="newPropiedad.tipo"  aria-label="Fruit" interface="popover" placeholder="Casa/Departamento">
               <ion-select-option value="casa">Casa</ion-select-option>
               <ion-select-option value="depto">Departamento</ion-select-option>
             </ion-select>
-          </ion-item>
-          <ion-item>  <ion-col size="auto">
-            <ion-label>numero</ion-label></ion-col><ion-col size="auto"></ion-col>
+         </ion-item>
+         <ion-item>
+            <ion-col size="auto" ><ion-label>numero</ion-label></ion-col>
             <ion-col >
-            <ion-input [(ngModel)]="newPropiedad.numero" type="number" >
-            </ion-input></ion-col>
-          </ion-item>
-
-          <ion-item> 
-            <ion-col size="auto">
-            <ion-label >contacto</ion-label>
+            <ion-input [(ngModel)]="newPropiedad.numero" type="number" ></ion-input>
             </ion-col>
+         </ion-item>
+          <ion-item>
+            <ion-col size="auto"><ion-label  >Referencia</ion-label></ion-col>
+             <ion-col>
+                <ion-input [(ngModel)]="newPropiedad.nombre"  placeholder="Nombre" name="Nombre" type="text" inputmode="text"></ion-input>
+             </ion-col> 
+             </ion-item> 
+             <!--  espero agregar contacto con el detalle de propietario o arendatario
+          <ion-item> 
+            <ion-col size="auto"><ion-label >contacto</ion-label></ion-col>
             <ion-col>
             <ion-input [(ngModel)]="newPropiedad.contacto" placeholder="persona ejemplo" type="text" inputmode="text"></ion-input>
             </ion-col>
           </ion-item>
           <ion-item>
-            <ion-col size="auto">
-            <ion-label >Telefono</ion-label></ion-col>
+            <ion-col size="auto"><ion-label >Telefono</ion-label></ion-col>
             <ion-col>
             <ion-input [(ngModel)]="newPropiedad.telefono" placeholder="+569 000 000" type="phone"></ion-input>
           </ion-col>
           </ion-item>
-        
+        -->
           <ion-col>
           <ion-button (click)="guardarPropiedad()"  (click)="enableNewPropiedad = false " (click)="enablelista = true " expand="block" >Guardar</ion-button>
         </ion-col>
-            
-        </ion-card>
+         
+          </div>  
+        </ion-card-content>
         <!--listas de propiedades Cascada-->
         <ion-card-header *ngIf="enablelista">
           <ion-button (click)="bntNuevo()" >
@@ -94,7 +93,7 @@
             <ion-icon name="add"></ion-icon>
           </ion-button>
         </ion-card-header>
-        <ion-card *ngFor="let P of Propiedades">
+        <ion-card-content *ngFor="let P of Propiedades">
         <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" >
         
           <ion-accordion >
@@ -154,7 +153,7 @@
             </ion-item>
           </ion-accordion>
         </ion-accordion-group>
-        </ion-card>
-      
+        </ion-card-content>
+      </ion-card>
   </div>
 </ion-content>
