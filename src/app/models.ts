@@ -1,3 +1,5 @@
+import { Interface } from "readline";
+
 export interface Propiedad{
     referencia: string;
     direccion:string;
@@ -30,6 +32,20 @@ export interface Cuentas{
     valor: string,
     estado: string,
     idPropiedad: string
+}  
+export interface Tarea{
+    id_tarea: string;
+    tipo_tarEa: string,
+    fecha: Date,
+}
+export interface entidad_comercial{
+    id_entidad: string;
+    rut: string;
+    tipo_entidad: string; //persona natural / empresa 
+    giro: string; //solo para empresas 
+    email: string;
+    direcion: string;
+    telefono: string;
 }
 
 export interface Estado{
@@ -42,4 +58,3 @@ export interface Estado{
     wc: string,
     cocina: string    
 }
-  

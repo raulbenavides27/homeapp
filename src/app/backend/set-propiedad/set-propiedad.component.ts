@@ -4,7 +4,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-set-propiedad',
   templateUrl:'./set-propiedad.component.html',
@@ -30,6 +31,7 @@ export class SetPropiedadComponent  implements OnInit {
               private router:Router) { }
               
   ngOnInit(){
+    
     this.getPropiedad();
   }
   
@@ -137,8 +139,11 @@ go (){
   this.router.navigate(['cuentas']);
 }
 
-goto (){ 
-  this.router.navigate(['estado']);
+gotarea (){ 
+  this.router.navigate(['tareas']);
 }  
   
+goPerfil(){ 
+  this.router.navigate(['perfil']);
+}  
 }

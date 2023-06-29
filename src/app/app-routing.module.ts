@@ -6,12 +6,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { SetPropiedadComponent } from './backend/set-propiedad/set-propiedad.component';
 import { CuentasComponent } from './backend/cuentas/cuentas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { TareasComponent } from './pages/tareas/tareas.component';
 
 const routes: Routes = [
  
   { path: '',loadChildren: () => import('./pages/bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)},
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
+  { path: 'tareas',component: TareasComponent},
   { path: 'cuentas',component: CuentasComponent},
   { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
