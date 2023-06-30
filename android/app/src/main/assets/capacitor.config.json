@@ -1,0 +1,6 @@
+{
+	"appId": "com.homeapp.homeapp",
+	"appName": "homeapp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
