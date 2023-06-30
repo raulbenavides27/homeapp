@@ -60,11 +60,9 @@ ion-card{
         margin: auto;
         max-width: 300px;
         --background: #b6b6b9;
-       border-radius: 5px;
-        height: 50px;
-        margin-bottom: 10px;
+
         color: black;
-    }
+    } 
     ion-buttons{
         margin: auto;
         max-width: 50px;
@@ -107,9 +105,8 @@ ion-card{
        
         background: rgba(70, 65, 69, 0.3);
         border-radius: 5px;
-        margin-bottom: 20px;
-        height: 50px;
-        --padding-start: 8px;
+     //   margin-bottom: 20px;
+     //   --padding-start: 8px;
         color: white;
 
         ion-icon {

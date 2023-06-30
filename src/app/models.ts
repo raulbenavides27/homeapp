@@ -35,9 +35,10 @@ export interface Cuentas{
 }  
 export interface Tarea{
     id_tarea: string;
-    tipo_tarEa: string,
-    fecha: Date,
-    responsable: string,
+    tipo_tarea: string;
+    fecha: Date;
+    responsable: string;
+    propiedad: string; 
     
 }
 export interface entidad_comercial{

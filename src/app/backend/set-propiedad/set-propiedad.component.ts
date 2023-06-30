@@ -14,7 +14,9 @@ import { CommonModule } from '@angular/common';
 export class SetPropiedadComponent  implements OnInit {
   Propiedades: Propiedad[] = []
   newPropiedad!: Propiedad;
+  newContacto!: Propiedad;
   enableNewPropiedad = false;
+  enableNewContacto = false;
   enablelista = true;
   btnClose = false;
   private path = 'Propiedad/';
@@ -97,6 +99,22 @@ bntNuevo(){
   this.enablelista = false;
   this.btnClose = true;
   this.newPropiedad = {
+    
+    direccion: '',
+    numero: 0,
+    comuna: '',
+    referencia: '',
+    contacto: '',
+    telefono: 0,
+    id:this.FirestoService.getId(),
+    fecha: new Date(),
+    tipo: '',
+    estado:'',
+    condicion:'',
+    ubicacion:'',
+
+  };
+  this.newContacto = {
     
     direccion: '',
     numero: 0,
