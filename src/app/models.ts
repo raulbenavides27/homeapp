@@ -37,6 +37,8 @@ export interface Tarea{
     id_tarea: string;
     tipo_tarEa: string,
     fecha: Date,
+    responsable: string,
+    
 }
 export interface entidad_comercial{
     id_entidad: string;
