@@ -22,6 +22,7 @@ export class SetPropiedadComponent  implements OnInit {
   newImage = '';
   newfile = '';
   loading: any;
+  id_seleccion: any;
 
   constructor(public menucontroler: MenuController,
               public FirestoService: FirestoreService,
@@ -32,8 +33,7 @@ export class SetPropiedadComponent  implements OnInit {
               private router:Router) { }
               
   ngOnInit(){
-    
-    this.getPropiedad();
+       this.getPropiedad();
   }
   
   openMenu(){
@@ -115,6 +115,8 @@ bntNuevo(){
 
   };
 
+  
+
 }
 async presentLoading(){
     this.loading = await this.loadingController.create({
@@ -139,11 +141,10 @@ go (){
   this.router.navigate(['cuentas']);
 }
 
-gotarea (){ 
-  this.router.navigate(['tareas']);
-}  
+  
   
 goPerfil(){ 
   this.router.navigate(['perfil']);
-}  
+} 
+
 }
