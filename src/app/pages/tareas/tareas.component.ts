@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { publicDecrypt } from 'crypto';
 import { Propiedad } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -10,15 +11,20 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./tareas.component.scss'],
 })
 export class TareasComponent  implements OnInit {
+  id: any;
   private path = 'Propiedad/';
   propiedad: Propiedad[] = [];
   constructor(public menucontroler: MenuController,
+    public activatedRoute: ActivatedRoute,
     public firestoreService: FirestoreService,
-              private router:Router) { 
+    public routerLink: RouterLink,
+    private router:Router) { 
                 this.loadProductos();
               }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id")
+  }
   openMenu(){
     console.log('open menu');
     this.menucontroler.toggle('principal');

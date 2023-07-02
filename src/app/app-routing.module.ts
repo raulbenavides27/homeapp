@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
   { path: 'tareas',component: TareasComponent},
-  { path: 'cuentas',component: CuentasComponent},
+  { path: 'cuentas/:id',component: CuentasComponent},
   { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
   { path: '**',redirectTo: 'home', pathMatch: 'full'}, 

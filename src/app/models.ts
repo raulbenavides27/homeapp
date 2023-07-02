@@ -1,13 +1,14 @@
 import { Interface } from "readline";
 
 export interface Propiedad{
+    id: string;
+    id_propiedad: string;
     referencia: string;
     direccion:string;
     numero: Number;
     comuna: string;
     contacto: string;
     telefono: Number;
-    id: string;
     fecha: Date;
     tipo: string;
     estado: String;

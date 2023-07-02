@@ -1,11 +1,10 @@
-import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-set-propiedad',
   templateUrl:'./set-propiedad.component.html',
@@ -99,30 +98,15 @@ bntNuevo(){
   this.enablelista = false;
   this.btnClose = true;
   this.newPropiedad = {
-    
+   
+    id:this.FirestoService.getId(),
+    id_propiedad: '',
     direccion: '',
     numero: 0,
     comuna: '',
     referencia: '',
     contacto: '',
     telefono: 0,
-    id:this.FirestoService.getId(),
-    fecha: new Date(),
-    tipo: '',
-    estado:'',
-    condicion:'',
-    ubicacion:'',
-
-  };
-  this.newContacto = {
-    
-    direccion: '',
-    numero: 0,
-    comuna: '',
-    referencia: '',
-    contacto: '',
-    telefono: 0,
-    id:this.FirestoService.getId(),
     fecha: new Date(),
     tipo: '',
     estado:'',
@@ -150,9 +134,7 @@ async newImageUpload(event:any){
    if (event.target.files && event.target.files[0]){ 
       this.newfile = event.target.files[0]; 
   }
-
 }
-
 go (){ 
   this.router.navigate(['cuentas']);
 }
