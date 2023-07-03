@@ -16,6 +16,17 @@ export interface Propiedad{
     ubicacion: any;
     
 }
+export interface Historial{
+    id_historial: string;
+    id_responsable:string;
+    id_propiedad: string;
+    fecha: Date;
+    tipo: string;
+    estado: String;
+    condicion: String;
+    ubicacion: any;
+    
+}
 
 export interface Cliente{
     uid: string;

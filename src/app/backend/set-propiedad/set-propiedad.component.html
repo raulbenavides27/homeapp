@@ -148,7 +148,7 @@
                   <ion-button (click)="deletePropiedad(P)" color="danger" size="small" style="margin: 5px;">
                   <ion-icon name="trash-outline"></ion-icon>
                   </ion-button>
-                  <ion-button  [routerLink]="['/tareas',P.id]" size="small" style="margin: 5px;">
+                  <ion-button  (click)="guardarContacto(P)" size="small" style="margin: 5px;">
                     <ion-icon name="create-outline"></ion-icon><ion-label>contacto</ion-label>
                     </ion-button>
                   

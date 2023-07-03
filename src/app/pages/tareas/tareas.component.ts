@@ -22,13 +22,13 @@ export class TareasComponent  implements OnInit {
               public router: Router) {
                
                }
-
-  ngOnInit() {
+async ngOnInit() {
     //aqui se adquiere la id de la propiedad por opcion de router
    this.id = this.activatedRoute.snapshot.paramMap.get("id")
    console.log('la id recibida es:',this.id)
    this.getPropiedad()
   }
+
 getPropiedad(){
 
    const path = 'Propiedad';

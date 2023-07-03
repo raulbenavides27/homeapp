@@ -1,9 +1,11 @@
 import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Propiedad } from 'src/app/models';
+import { Cliente, Entidad, Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
+import { TareasService } from 'src/app/services/tareas.service';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
 @Component({
   selector: 'app-set-propiedad',
@@ -23,31 +25,48 @@ export class SetPropiedadComponent  implements OnInit {
   newfile = '';
   loading: any;
   id_seleccion: any;
-
-  constructor(public menucontroler: MenuController,
+  propiedad!: Propiedad;
+  uid: any;
+  cliente!: Cliente;
+  newEntidad!: Entidad;
+  constructor(
+              public tareasService: TareasService,
+              public menucontroler: MenuController,
               public FirestoService: FirestoreService,
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
               public firestorageService: FirestorageService,
-              private router:Router) { }
-              
-     ngOnInit()
-              {
-         this.getPropiedad();
+              public firebaseauthService: FirebaseauthService,
+              private router:Router) {
+               //lo primero hay que tener presente que el usuario este ingresado asi tener un responsable de historial 
+                this.firebaseauthService.stateAuth().subscribe( res =>{
+                  console.log(res);
+                  if (res !== null){
+                     this.uid = res.uid;
+                     this.getUserInfo(this.uid);
+                  }else {
+                   
+                }
+               })
                }
-
-  openMenu(){
-
-  console.log('open menu');
-  this.menucontroler.toggle('principal');
-}
-
+               getUserInfo(uid: string){
+                const path = 'Clientes';
+                this.FirestoService.getDoc(path, uid).subscribe(res =>{
+                this.cliente = res as Cliente;
+                });   
+              
+              }          
+     async ngOnInit()
+              {
+                const uid = await this.firebaseauthService.getUid();
+                this.getPropiedad();
+               }
    async guardarPropiedad() 
   { 
      this.presentLoading();
      const path = 'Propiedad';
-     const name = this.newPropiedad.referencia;
+     const name = this.newPropiedad.id_propiedad;
      if (this.newfile !== undefined)
       {
       const res = await this.firestorageService.uploadImage(this.newfile,path,name);
@@ -145,5 +164,40 @@ go (){
 goPerfil(){ 
   this.router.navigate(['perfil']);
 } 
+nuevoContacto(P: Propiedad){
+  this.newEntidad = {
+    id_entidad: this.FirestoService.getId(),
+    id_propiedad: P.id,
+    id_responsable: '',
+    rut: '',
+    tipo_entidad: '', //persona natural / empresa 
+    giro:  '', //solo para empresas 
+    email: '',
+    direcion:'',
+    telefono: '',
+  //  whatsapp: string
+  }
+}
+async guardarContacto(P: Propiedad) 
+{ 
+  this.newEntidad = {
+    id_entidad: this.FirestoService.getId(),
+    id_propiedad: P.id,
+    id_responsable: '',
+    rut: '',
+    tipo_entidad: '', //persona natural / empresa 
+    giro:  '', //solo para empresas 
+    email: '',
+    direcion:'',
+    telefono: '',
+  //  whatsapp: string
+  }
+     const path = 'Entidad';
+     const name = this.newEntidad.id_entidad;
+     this.FirestoService.creatDoc(this.newEntidad,this.path,this.newEntidad.id_entidad).then(res =>{
+    }).catch(error => {
+    this.presentToast('Error intente mas tarde');
+    });
+}
 
 }
