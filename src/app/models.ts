@@ -42,14 +42,17 @@ export interface Tarea{
     propiedad: string; 
     
 }
-export interface entidad_comercial{
+export interface Entidad{
     id_entidad: string;
+    id_propiedad: string;
+    id_responsable: string;
     rut: string;
     tipo_entidad: string; //persona natural / empresa 
     giro: string; //solo para empresas 
     email: string;
     direcion: string;
     telefono: string;
+  //  whatsapp: string;
 }
 
 export interface Estado{

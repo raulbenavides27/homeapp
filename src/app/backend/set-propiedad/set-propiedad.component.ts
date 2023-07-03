@@ -32,37 +32,37 @@ export class SetPropiedadComponent  implements OnInit {
               public firestorageService: FirestorageService,
               private router:Router) { }
               
-  ngOnInit(){
-       this.getPropiedad();
-  }
-  
+     ngOnInit()
+              {
+         this.getPropiedad();
+               }
+
   openMenu(){
 
   console.log('open menu');
   this.menucontroler.toggle('principal');
 }
 
-async guardarPropiedad() 
-{ 
-this.presentLoading();
-const path = 'Propiedad';
-const name = this.newPropiedad.referencia;
-if (this.newfile !== undefined){
-const res = await this.firestorageService.uploadImage(this.newfile,path,name);
-
-}
-this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
-this.loading.dismiss();
-this.presentToast('Guardado con exito');
-}).catch(error => {
-this.presentToast('Error intente mas tarde');
-});
-}
-getPropiedad(){
-  this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
-    this.Propiedades = res;
-  });
-}
+   async guardarPropiedad() 
+  { 
+     this.presentLoading();
+     const path = 'Propiedad';
+     const name = this.newPropiedad.referencia;
+     if (this.newfile !== undefined)
+      {
+      const res = await this.firestorageService.uploadImage(this.newfile,path,name);
+      }
+      this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
+      this.loading.dismiss();
+      this.presentToast('Guardado con exito');
+      }).catch(error => {
+      this.presentToast('Error intente mas tarde');
+      });
+  }
+getPropiedad()
+    {
+      this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{this.Propiedades = res;});
+     }
 async deletePropiedad(P: Propiedad){
   const alert = await this.alertController.create({
     cssClass: '',
@@ -72,10 +72,9 @@ async deletePropiedad(P: Propiedad){
       text: 'Cancelar',
       role: 'Cancel',
       cssClass: '',
-      handler:(blah) =>{
-        console.log('confirm Cancel: blah');
-      }
-    },{
+      handler:(blah) =>{ console.log('confirm Cancel: blah');}
+            },
+      {
       text:'ok',
       handler:() =>{
         console.log('Confirm Okay');

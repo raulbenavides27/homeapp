@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { publicDecrypt } from 'crypto';
-import { Propiedad } from 'src/app/models';
+import { Cliente, Entidad, Propiedad } from 'src/app/models';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -11,43 +12,30 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./tareas.component.scss'],
 })
 export class TareasComponent  implements OnInit {
- 
-  P!: Propiedad;
-  private path = 'Propiedad/';
-  propiedades: Propiedad[] = [];
+
   id: any;
+  propiedad!: Propiedad;
   constructor(public menucontroler: MenuController,
-    public activatedRoute: ActivatedRoute,
-    public firestoreService: FirestoreService,) { 
-                this.loadProductos();
-              }
+              public activatedRoute: ActivatedRoute,
+              public firestoreService: FirestoreService,
+              public firebaseauthService: FirebaseauthService,
+              public router: Router) {
+               
+               }
 
   ngOnInit() {
+    //aqui se adquiere la id de la propiedad por opcion de router
    this.id = this.activatedRoute.snapshot.paramMap.get("id")
    console.log('la id recibida es:',this.id)
-   this.loadProductos()
+   this.getPropiedad()
   }
-  loadProductos(){
-    this.firestoreService.getColletion<Propiedad>(this.path).subscribe( res => {   
-    this.propiedades = res;
-    this.P = {
-   
-      id: this.propiedades[this.id].id,
-      id_propiedad:this.propiedades[this.id].id_propiedad,
-      direccion:this.propiedades[this.id].direccion,
-      numero:this.propiedades[this.id].numero,
-      comuna: this.propiedades[this.id].comuna,
-      referencia:this.propiedades[this.id].referencia,
-      contacto:this.propiedades[this.id].contacto,
-      telefono: this.propiedades[this.id].telefono,
-      fecha: this.propiedades[this.id].fecha,
-      tipo: this.propiedades[this.id].tipo,
-      estado:this.propiedades[this.id].estado,
-      condicion:this.propiedades[this.id].condicion,
-      ubicacion:this.propiedades[this.id].ubicacion
-  
-    };
-    });
-  
+getPropiedad(){
+
+   const path = 'Propiedad';
+   this.firestoreService.getDoc<Propiedad>(path,this.id).subscribe(res => {
+   this.propiedad = res as Propiedad;
+     console.log('Propiedad buscada', this.propiedad);
+   });
 }
-}
+
+ }
