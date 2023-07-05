@@ -109,7 +109,7 @@
                 <ion-grid [fixed]="true">
                   <ion-row  *ngFor="let c of filtroContacto(P.id)"  >     
                           <ion-col size="auto" ><ion-label>{{c.tipoContacto}}</ion-label></ion-col>
-                          <ion-col size="auto"> <ion-icon name="person-circle" style="margin: 5px;"></ion-icon><ion-label>{{c.nombre}} {{c.apellidop}} {{c.apellidom}}</ion-label></ion-col>
+                          <ion-col size="auto"> <ion-label> <ion-icon name="person-circle"></ion-icon> {{c.nombre}} {{c.apellidop}} {{c.apellidom}}</ion-label></ion-col>
                           <ion-col size="auto" ><ion-label ><ion-icon name="call"></ion-icon> {{c.telefono}}</ion-label></ion-col> 
                           <ion-button href="https://api.whatsapp.com/send?phone=56{{c.telefono}}&text=" color="success" size="small" style="margin: 5px;">
                             <ion-icon name="logo-whatsapp"></ion-icon>
