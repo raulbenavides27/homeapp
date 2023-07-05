@@ -56,12 +56,16 @@ export interface Tarea{
 export interface Entidad{
     id_entidad: string;
     id_propiedad: string;
-    id_responsable: string;
+  //  id_responsable: string; // para cuando exista historial
+    nombre: string;
+    apellidop: string;
+    apellidom: string;
     rut: string;
-    tipo_entidad: string; //persona natural / empresa 
+    tipoContacto: string;
+    tipoEntidad: string; //persona natural / empresa 
     giro: string; //solo para empresas 
     email: string;
-    direcion: string;
+    direccion: string;
     telefono: string;
   //  whatsapp: string;
 }

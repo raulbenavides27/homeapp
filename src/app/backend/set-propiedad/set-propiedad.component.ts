@@ -27,8 +27,10 @@ export class SetPropiedadComponent  implements OnInit {
   id_seleccion: any;
   propiedad!: Propiedad;
   uid: any;
+  id_P: any;
   cliente!: Cliente;
-  newEntidad!: Entidad;
+  contacto!: Entidad;
+  verContacto: any;
   constructor(
               public tareasService: TareasService,
               public menucontroler: MenuController,
@@ -38,29 +40,13 @@ export class SetPropiedadComponent  implements OnInit {
               public alertController: AlertController,
               public firestorageService: FirestorageService,
               public firebaseauthService: FirebaseauthService,
-              private router:Router) {
-               //lo primero hay que tener presente que el usuario este ingresado asi tener un responsable de historial 
-                this.firebaseauthService.stateAuth().subscribe( res =>{
-                  console.log(res);
-                  if (res !== null){
-                     this.uid = res.uid;
-                     this.getUserInfo(this.uid);
-                  }else {
-                   
-                }
-               })
-               }
-               getUserInfo(uid: string){
-                const path = 'Clientes';
-                this.FirestoService.getDoc(path, uid).subscribe(res =>{
-                this.cliente = res as Cliente;
-                });   
-              
-              }          
+              private router:Router){}   
+                      
      async ngOnInit()
               {
-                const uid = await this.firebaseauthService.getUid();
-                this.getPropiedad();
+
+               this.getPropiedad();
+               this.getContacto();
                }
    async guardarPropiedad() 
   { 
@@ -80,8 +66,17 @@ export class SetPropiedadComponent  implements OnInit {
   }
 getPropiedad()
     {
-      this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{this.Propiedades = res;});
+     this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{this.Propiedades = res;});
+      console.log('se esta obteniendo propiedad', this.Propiedades)
      }
+
+getContacto()
+    {
+      const path = 'Entidad/';
+      this.FirestoService.getDoc<Entidad>(this.path,this.id_P).subscribe( res =>{this.contacto = res as Entidad;});
+     console.log('contantos obtenidos:',this.contacto )   }
+
+
 async deletePropiedad(P: Propiedad){
   const alert = await this.alertController.create({
     cssClass: '',
@@ -164,40 +159,14 @@ go (){
 goPerfil(){ 
   this.router.navigate(['perfil']);
 } 
-nuevoContacto(P: Propiedad){
-  this.newEntidad = {
-    id_entidad: this.FirestoService.getId(),
-    id_propiedad: P.id,
-    id_responsable: '',
-    rut: '',
-    tipo_entidad: '', //persona natural / empresa 
-    giro:  '', //solo para empresas 
-    email: '',
-    direcion:'',
-    telefono: '',
-  //  whatsapp: string
-  }
-}
-async guardarContacto(P: Propiedad) 
+
+addContacto(P: Propiedad) 
 { 
-  this.newEntidad = {
-    id_entidad: this.FirestoService.getId(),
-    id_propiedad: P.id,
-    id_responsable: '',
-    rut: '',
-    tipo_entidad: '', //persona natural / empresa 
-    giro:  '', //solo para empresas 
-    email: '',
-    direcion:'',
-    telefono: '',
-  //  whatsapp: string
-  }
-     const path = 'Entidad';
-     const name = this.newEntidad.id_entidad;
-     this.FirestoService.creatDoc(this.newEntidad,this.path,this.newEntidad.id_entidad).then(res =>{
-    }).catch(error => {
-    this.presentToast('Error intente mas tarde');
-    });
+    console.log('Propiedad selecionada: ', P)
+    this.FirestoService.setDoc(P)
+    this.router.navigate(['contacto']);
+ 
 }
 
 }
+
