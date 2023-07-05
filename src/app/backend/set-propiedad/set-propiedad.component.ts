@@ -20,7 +20,7 @@ export class SetPropiedadComponent  implements OnInit {
   enableNewContacto = false;
   enablelista = true;
   btnClose = false;
-  private path = 'Propiedad/';
+ 
   newImage = '';
   newfile = '';
   loading: any;
@@ -29,7 +29,7 @@ export class SetPropiedadComponent  implements OnInit {
   uid: any;
   id_P: any;
   cliente!: Cliente;
-  contacto!: Entidad;
+  contacto: Entidad[] = [];
   verContacto: any;
   constructor(
               public tareasService: TareasService,
@@ -57,7 +57,8 @@ export class SetPropiedadComponent  implements OnInit {
       {
       const res = await this.firestorageService.uploadImage(this.newfile,path,name);
       }
-      this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
+    
+      this.FirestoService.creatDoc(this.newPropiedad,path,this.newPropiedad.id).then(res =>{
       this.loading.dismiss();
       this.presentToast('Guardado con exito');
       }).catch(error => {
@@ -66,16 +67,23 @@ export class SetPropiedadComponent  implements OnInit {
   }
 getPropiedad()
     {
-     this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{this.Propiedades = res;});
+     const path = 'Propiedad/';
+     this.FirestoService.getColletion<Propiedad>(path).subscribe( res =>{this.Propiedades = res;});
       console.log('se esta obteniendo propiedad', this.Propiedades)
      }
 
 getContacto()
     {
       const path = 'Entidad/';
-      this.FirestoService.getDoc<Entidad>(this.path,this.id_P).subscribe( res =>{this.contacto = res as Entidad;});
-     console.log('contantos obtenidos:',this.contacto )   }
-
+      this.verContacto = this.FirestoService.getColletion<Entidad>(path).subscribe( res =>{
+        if(res.length){
+          this.contacto = res;
+        }});
+     console.log('contantos obtenidos:',this.contacto ) 
+      }
+filtroContacto(id_P: string){
+return this.contacto.filter(contacto => contacto.id_propiedad == id_P)
+}
 
 async deletePropiedad(P: Propiedad){
   const alert = await this.alertController.create({
@@ -92,7 +100,8 @@ async deletePropiedad(P: Propiedad){
       text:'ok',
       handler:() =>{
         console.log('Confirm Okay');
-        this.FirestoService.deletDoc(this.path,P.id).then(res =>{
+        const path = 'Propiedad/';
+        this.FirestoService.deletDoc(path,P.id).then(res =>{
           this.presentToast('Eliminado con exito');
           this.alertController.dismiss(); 
           }).catch(error => {

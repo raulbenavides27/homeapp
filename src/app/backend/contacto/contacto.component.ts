@@ -34,6 +34,9 @@ export class ContactoComponent  implements OnInit {
       this.router.navigate(['set-propiedad']);
     }
 
+   
+
+
     this.newContacto = {
     id_entidad: this.FirestoService.getId(),
     id_propiedad: propiedad.id,
@@ -58,7 +61,7 @@ export class ContactoComponent  implements OnInit {
   { 
  
   this.presentLoading();
-  const path = 'Cuentas';
+  const path = 'Entidad/';
   const name = this.newContacto.nombre;
   this.FirestoService.creatDoc(this.newContacto,this.path,this.newContacto.id_entidad).then(res =>{
   this.loading.dismiss();
@@ -73,7 +76,6 @@ export class ContactoComponent  implements OnInit {
     message: 'Guardando...',
   });
   await this.loading.present();
-  this.router.navigate(['set-propiedad']);
 }
 async presentToast(msg: string){
   const toast = await this.toastController.create({
