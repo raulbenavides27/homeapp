@@ -6,10 +6,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { SetPropiedadComponent } from './backend/set-propiedad/set-propiedad.component';
 import { CuentasComponent } from './backend/cuentas/cuentas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { AuthGuard } from './perfil.guard';
 
 const routes: Routes = [
  
-  { path: '',loadChildren: () => import('./pages/bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)},
+  {
+    path: '', loadChildren: () => import('./pages/bienvenido/bienvenido.module').then(m => m.BienvenidoPageModule),
+  canActivate:[AuthGuard] },
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
   { path: 'cuentas',component: CuentasComponent},

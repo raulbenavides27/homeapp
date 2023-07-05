@@ -3,45 +3,45 @@
   <ion-split-pane contentId="main">
 
     <ion-menu contentId="main" menuId="principal">
-      <ion-header >
-        <ion-toolbar >
+      <ion-header>
+        <ion-toolbar>
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-menu-toggle autoHide="false"> 
+        <ion-menu-toggle autoHide="false">
           <ion-item button="true" detail="true" [routerLink]="['/home']">
-          <ion-label>Inicio</ion-label>
-          <ion-icon slot="start"  name="home-outline"></ion-icon>
+            <ion-label>Inicio</ion-label>
+            <ion-icon slot="start" name="home-outline"></ion-icon>
           </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle autoHide="false"> 
-        <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
-        <ion-label>propiedades</ion-label>
-        <ion-icon slot="start"  name="create-outline"></ion-icon>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle autoHide="false"> 
-        <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
-        <ion-label>Cuentas</ion-label>
-        <ion-icon slot="start"  name="cash-outline"></ion-icon>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle autoHide="false"> 
-        <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
-        <ion-label>soporte</ion-label>
-        <ion-icon slot="start"  name="information-circle-outline"></ion-icon>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle autoHide="false"> 
-        <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
-        <ion-label>salir</ion-label>
-        <ion-icon slot="start"  name="exit-outline"></ion-icon>
-        </ion-item>
-      </ion-menu-toggle>
+        <ion-menu-toggle autoHide="false">
+          <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
+            <ion-label>propiedades</ion-label>
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle autoHide="false">
+          <ion-item button="true" detail="true" [routerLink]="['/cuentas']">
+            <ion-label>Cuentas</ion-label>
+            <ion-icon slot="start" name="cash-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle autoHide="false">
+          <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
+            <ion-label>soporte</ion-label>
+            <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle autoHide="false">
+          <ion-item button="true" detail="true" [routerLink]="['/set-propiedad']">
+            <ion-label>salir</ion-label>
+            <ion-icon slot="start" name="exit-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-content>
     </ion-menu>
-  
+
     <ion-router-outlet id="main"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

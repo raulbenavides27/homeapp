@@ -3,7 +3,9 @@ import { AlertController, LoadingController, MenuController, ToastController } f
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Cuentas } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service'
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'; //1
 
+formulario: FormGroup;
 @Component({
   selector: 'app-cuentas',
   templateUrl: './cuentas.component.html',
@@ -17,13 +19,26 @@ export class CuentasComponent implements OnInit {
   private path = 'Cuentas/';
   newfile = '';
   loading: any;
+  formulario: FormGroup = new FormGroup({});
+
+
 
   constructor(public menucontroler: MenuController,
+              public fb: FormBuilder,
               public FirestoService: FirestoreService,
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
-              public firestorageService: FirestorageService) { }
+    public firestorageService: FirestorageService) {
+    
+  this.formulario = this.fb.group({
+  tipoCuenta: ['', Validators.required],
+  estado: ['', Validators.required],
+  valor: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+  idPropiedad: ['', Validators.required]
+});
+
+    }
               
   ngOnInit(){
     this.getCuentas();
@@ -114,7 +129,8 @@ async presentToast(msg: string){
   });
   toast.present();
 }
-
+//2
+  
 }
 
 
