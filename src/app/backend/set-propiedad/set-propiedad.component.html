@@ -40,7 +40,7 @@
              </ion-col> 
              </ion-item>
           <ion-item>
-            <ion-label >comuna</ion-label>
+            <ion-label >Comuna</ion-label>
             <ion-select  [(ngModel)]="newPropiedad.comuna" label="Popover" interface="popover">
               <ion-select-option value="Santiago">Santiago</ion-select-option>
               <ion-select-option value="Huechuraba">Huechuraba</ion-select-option>
@@ -89,7 +89,7 @@
       </ion-card-content>
          <!--listas de propiedades Cascada--> 
          <div  *ngIf="enablelista">
-          <ion-card *ngFor="let P of Propiedades" >
+          <ion-card *ngFor="let P of Propiedades"  >
           <ion-accordion-group  [multiple]="true" [value]="['first', 'third']" >
             <ion-accordion >
               <ion-item slot="header" >      

@@ -34,9 +34,6 @@ export class ContactoComponent  implements OnInit {
       this.router.navigate(['set-propiedad']);
     }
 
-   
-
-
     this.newContacto = {
     id_entidad: this.FirestoService.getId(),
     id_propiedad: propiedad.id,
