@@ -1,10 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Cliente, Entidad, Propiedad } from 'src/app/models';
+import { Cliente, Cuentas, Entidad, Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
-import { TareasService } from 'src/app/services/tareas.service';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
 @Component({
@@ -20,8 +19,6 @@ export class SetPropiedadComponent  implements OnInit {
   enableNewContacto = false;
   enablelista = true;
   btnClose = false;
- 
-  newImage = '';
   newfile = '';
   loading: any;
   id_seleccion: any;
@@ -30,9 +27,8 @@ export class SetPropiedadComponent  implements OnInit {
   id_P: any;
   cliente!: Cliente;
   contacto: Entidad[] = [];
-  verContacto: any;
+  cuentas: Cuentas [] = [];
   constructor(
-              public tareasService: TareasService,
               public menucontroler: MenuController,
               public FirestoService: FirestoreService,
               public loadingController:LoadingController,
@@ -47,6 +43,7 @@ export class SetPropiedadComponent  implements OnInit {
 
                this.getPropiedad();
                this.getContacto();
+               this.getCuenta();
                }
    async guardarPropiedad() 
   { 
@@ -75,15 +72,39 @@ getPropiedad()
 getContacto()
     {
       const path = 'Entidad/';
-      this.verContacto = this.FirestoService.getColletion<Entidad>(path).subscribe( res =>{
+      this.FirestoService.getColletion<Entidad>(path).subscribe( res =>{
         if(res.length){
           this.contacto = res;
         }});
-     console.log('contantos obtenidos:',this.contacto ) 
+    
       }
 filtroContacto(id_P: string){
-return this.contacto.filter(contacto => contacto.id_propiedad == id_P)
+return this.contacto.filter(contacto => contacto.id_propiedad == id_P )
 }
+getCuenta()
+    {
+      const path = 'Cuentas/';
+      this.FirestoService.getColletion<Cuentas>(path).subscribe( res =>{
+        if(res.length){
+          this.cuentas = res;
+        }});
+    
+      }
+filtroCuentaAgua(id_P: string){
+return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Agua')
+}
+filtroCuentaLuz(id_P: string){
+  return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Luz')
+  }
+filtroCuentaGas(id_P: string){
+    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Gas')
+    }
+filtroCuentaInternet(id_P: string){
+      return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Internet/cable')
+      }
+filtroCuentaArriendo(id_P: string){
+        return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Arriendo')
+        }
 
 async deletePropiedad(P: Propiedad){
   const alert = await this.alertController.create({
@@ -114,7 +135,7 @@ async deletePropiedad(P: Propiedad){
 await alert.present();
   
 }
-
+// btn para aggregar nueva propiedad 
 bntNuevo(){
   this.enableNewPropiedad = true;
   this.enablelista = false;

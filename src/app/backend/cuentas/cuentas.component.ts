@@ -40,7 +40,7 @@ export class CuentasComponent implements OnInit {
     this.newCuentas = {
   
       idCuentas:this.FirestoService.getId(),
-      idPropiedad: propiedad.id, 
+      id_propiedad: propiedad.id, 
       tipoCuenta: '',
       empresa: '',
       numCliente: ''
@@ -101,6 +101,7 @@ async presentLoading(){
     message: 'Guardando...',
   });
   await this.loading.present();
+  this.router.navigate(['set-propiedad']);
 }
 async presentToast(msg: string){
   const toast = await this.toastController.create({
