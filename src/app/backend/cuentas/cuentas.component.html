@@ -32,7 +32,7 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">tipoCuenta</ion-label>
-          <ion-select [(ngModel)]="newCuentas.tipoCuenta" label="Popover" interface="popover" placeholder="Cuentas">
+          <ion-select required [(ngModel)]="newCuentas.tipoCuenta" label="Popover" placeholder="Cuentas">
             <ion-select-option value="Agua">Agua</ion-select-option>
             <ion-select-option value="Luz">Luz</ion-select-option>
             <ion-select-option value="Internet">Internet</ion-select-option>
@@ -40,19 +40,6 @@
             <ion-select-option value="Gas">Gas</ion-select-option>
           </ion-select>
         </ion-item>
-
-        <div class="custom-background"
-          *ngIf="formulario.controls.tipoCuenta.invalid && (formulario.controls.tipoCuenta.dirty || formulario.controls.tipoCuenta.touched)">
-          <ion-item>
-            <ion-icon name="alert-circle" slot="start"></ion-icon>
-            <ion-label class="error-label">
-              <ng-container *ngIf="formulario.controls.tipoCuenta.hasError('required')">El tipo de cuenta es obligatorio
-              </ng-container>
-            </ion-label>
-          </ion-item>
-        </div>
-
-        <p></p>
 
 
         <ion-item>
@@ -63,35 +50,11 @@
           </ion-select>
         </ion-item>
 
-        <div class="custom-background">
-          <ion-item *ngIf="estado.invalid && (estado.dirty || estado.touched)">
-            <ion-icon name="alert-circle" slot="start"></ion-icon>
-            <ion-label class="error-label">
-              <ng-container *ngIf="estado.hasError('required')">El estado de cuenta es obligatorio
-              </ng-container>
-            </ion-label>
-          </ion-item>
-        </div>
-
-        <p></p>
 
         <ion-item>
           <ion-label position="floating">valor</ion-label>
           <ion-input [(ngModel)]="newCuentas.valor" placeholder="1233" type="number" inputmode="numeric"> </ion-input>
         </ion-item>
-        <div class="custom-background">
-          <ion-item *ngIf="valor.invalid && (valor.dirty || valor.touched)">
-            <ion-icon name="alert-circle" slot="start"></ion-icon>
-            <ion-label class="error-label">
-              <ng-container *ngIf="valor.hasError('required')">El valor de cuenta es obligatorio
-              </ng-container>
-              <ng-container *ngIf="valor.hasError('pattern')">La contraseña debe contener al menos un carácter
-                especial</ng-container>
-            </ion-label>
-          </ion-item>
-        </div>
-
-        <p></p>
 
         <ion-item>
           <ion-label position="floating">idPropiedad</ion-label>

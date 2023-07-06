@@ -64,6 +64,32 @@ async deletePropiedad(P: Propiedad){
     cssClass: '',
     header: 'Advertencia',
     message: '¿Seguro desea <strong>eliminar</strong> esta propiedad?',
+    inputs: [
+      {
+        name: 'cambio',
+        type: 'radio',
+        label: 'cambio de arrendatario',
+        value: 'cambio de arrendatario'
+      },
+      {
+        name: 'impago',
+        type: 'radio',
+        label: 'Cuentas impagas',
+        value: 'Cuentas impagas'
+      },
+      {
+        name: 'fin',
+        type: 'radio',
+        label: 'Finalizacion de contrato',
+        value: 'Finalizacion de contrato'
+      },
+      {
+        name: 'dano',
+        type: 'radio',
+        label: 'Daño a la propiedad',
+        value: 'Daño a la propiedad'
+      },
+    ],
     buttons:[{
       text: 'Cancelar',
       role: 'Cancel',
@@ -73,7 +99,9 @@ async deletePropiedad(P: Propiedad){
       }
     },{
       text:'ok',
-      handler:() =>{
+      handler: (data) => {
+        const motivo = data.motivo;
+        console.log('Motivo de eliminación:', motivo);
         console.log('Confirm Okay');
         this.FirestoService.deletDoc(this.path,P.id).then(res =>{
           this.presentToast('Eliminado con exito');

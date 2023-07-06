@@ -3,9 +3,7 @@ import { AlertController, LoadingController, MenuController, ToastController } f
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Cuentas } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service'
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'; //1
-
-formulario: FormGroup;
+import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms'; //1
 @Component({
   selector: 'app-cuentas',
   templateUrl: './cuentas.component.html',
@@ -19,9 +17,6 @@ export class CuentasComponent implements OnInit {
   private path = 'Cuentas/';
   newfile = '';
   loading: any;
-  formulario: FormGroup = new FormGroup({});
-
-
 
   constructor(public menucontroler: MenuController,
               public fb: FormBuilder,
@@ -29,16 +24,9 @@ export class CuentasComponent implements OnInit {
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
-    public firestorageService: FirestorageService) {
-    
-  this.formulario = this.fb.group({
-  tipoCuenta: ['', Validators.required],
-  estado: ['', Validators.required],
-  valor: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-  idPropiedad: ['', Validators.required]
-});
-
-    }
+              public firestorageService: FirestorageService) {
+                
+               }
               
   ngOnInit(){
     this.getCuentas();
@@ -128,9 +116,12 @@ async presentToast(msg: string){
     duration: 2000
   });
   toast.present();
-}
+  }
 //2
-  
+  tipoCuenta = new FormControl('', [Validators.required]);
+  estado  = new FormControl('', [Validators.required]);
+  valor = new FormControl('', [Validators.required, Validators.pattern('[0-9]')]);
+  idPropiedad = new FormControl('', [Validators.required]);
 }
 
 
