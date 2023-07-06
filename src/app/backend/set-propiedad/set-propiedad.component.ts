@@ -162,8 +162,6 @@ async newImageUpload(event:any){
 go (){ 
   this.router.navigate(['cuentas']);
 }
-
-  
   
 goPerfil(){ 
   this.router.navigate(['perfil']);
@@ -173,7 +171,7 @@ addContacto(P: Propiedad)
 { 
     console.log('Propiedad selecionada: ', P)
     this.FirestoService.setDoc(P)
-    this.router.navigate(['contacto']);
+    
  
 }
 

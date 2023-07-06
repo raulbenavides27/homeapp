@@ -76,6 +76,7 @@ export class ContactoComponent  implements OnInit {
     message: 'Guardando...',
   });
   await this.loading.present();
+  this.router.navigate(['set-propiedad']);
 }
 async presentToast(msg: string){
   const toast = await this.toastController.create({

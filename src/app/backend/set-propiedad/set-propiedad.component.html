@@ -134,10 +134,10 @@
           </ion-row>
           <ion-row>
             <ion-col >
-            <ion-button (click)="go()" color="primary" size="small" style="margin: 5px;">
+            <ion-button [routerLink]="['/cuentas']" (click)="addContacto(P)" color="primary" size="small" style="margin: 5px;">
             <ion-icon name="cash-outline" ></ion-icon><ion-label>Cuentas</ion-label>
             </ion-button>
-            <ion-button  (click)="addContacto(P)" color="secondary" size="small" style="margin: 5px;">
+            <ion-button [routerLink]="['/contacto']" (click)="addContacto(P)" color="secondary" size="small" style="margin: 5px;">
             <ion-icon name="person-add"></ion-icon><ion-label>contacto</ion-label>
             </ion-button>
             <ion-button (click)="newPropiedad = P; enableNewPropiedad = true; enablelista = false " color="warning" size="small" style="margin: 5px;">

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Cuentas</ion-title>
   </ion-toolbar>
@@ -9,89 +9,60 @@
 
 <ion-content>
   <div class="main_content_div">
-      <!--contenedor de agregar-->
-      <ion-card-header  *ngIf="enableNewCuentas">     
-        <ion-button  (click)="enableNewCuentas = false " (click)="enablelista = true ">
-          <ion-label>cancelar</ion-label>
-          <ion-icon name="close"></ion-icon>
-        </ion-button>
-      </ion-card-header>
-
-      <ion-card *ngIf="enableNewCuentas">
-        <ion-item>
-          <ion-label >tipoCuenta</ion-label>
-          <ion-select [(ngModel)]="newCuentas.tipoCuenta" label="Popover" interface="popover" placeholder="Cuentas">
-            <ion-select-option value="Agua">Agua</ion-select-option>
-            <ion-select-option value="Luz">Luz</ion-select-option>
-            <ion-select-option value="Internet">Internet</ion-select-option>
-            <ion-select-option value="Gastos Comunes">Gastos Comunes</ion-select-option>
-            <ion-select-option value="Gas">Gas</ion-select-option>
+    <ion-card *ngIf="P" style="--background:  #808081; max-width: 800px; margin: auto;" > 
+    <ion-card-content style="   max-width: 650px; margin: auto;" >
+    
+        <ion-col size="auto"><ion-icon name="cash-outline" style="margin: 5px;"></ion-icon></ion-col>
+        <ion-col size="auto"><ion-label class="bold_lbl">Agregar nueva Cuentas</ion-label></ion-col>
+     
+      <ion-item >
+        <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
+         </ion-item>
+         <ion-item slot="header" >      
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
+              <ion-col size="auto"><ion-label>{{P.tipo}}</ion-label></ion-col>
+              <ion-col size="auto"><ion-label>{{P.numero}},</ion-label></ion-col>
+              <ion-col size="auto"><ion-label>{{P.direccion}},</ion-label></ion-col>
+              <ion-col size="auto"><ion-label>{{P.comuna}}</ion-label></ion-col>
+            </ion-row>
+           
+          </ion-grid>
+          </ion-item>
+          <ion-item>  
+            <ion-label >Tipo Cuenta </ion-label>
+            <ion-select  interface="popover">
+              <ion-select-option  value="Agua">Agua</ion-select-option>
+              <ion-select-option  value="Luz">Luz</ion-select-option>
+              <ion-select-option  value="Gas">Gas</ion-select-option>
+              <ion-select-option  value="Internet">Internet</ion-select-option>
+              <ion-select-option  value="Arriendo">Arriendo</ion-select-option>
+            </ion-select>
+         </ion-item><ion-item>  
+          <ion-label >Empresa </ion-label>
+          <ion-select  interface="popover">
+            <ion-select-option  value="Lipigas">Lipigas</ion-select-option>
+            <ion-select-option  value="Gasco">Gasco</ion-select-option>
+            <ion-select-option  value="Gas">Aguas Andina</ion-select-option>
+            <ion-select-option  value="Internet/Cable">VTR</ion-select-option>
+            <ion-select-option  value="Arriendo">Movistar</ion-select-option>
+            <ion-select-option  value="Arriendo">Enel</ion-select-option>
+            <ion-select-option  value="Arriendo">Abastible</ion-select-option>
+            <ion-select-option  value="Arriendo">Otro</ion-select-option>
           </ion-select>
-        </ion-item>
+       </ion-item>
         
-        <ion-item>
-          <ion-label >Estado</ion-label>
-          <ion-select [(ngModel)]="newCuentas.estado" label="Popover" interface="popover" placeholder="Estado">
-            <ion-select-option value="pagado">Pagado</ion-select-option>
-            <ion-select-option value="nopago">No Pagado</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label >valor</ion-label>
-          <ion-input [(ngModel)]="newCuentas.valor" placeholder="1233" type="number" inputmode="numeric"> </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label >idPropiedad</ion-label>
-          <ion-input [(ngModel)]="newCuentas.idPropiedad" placeholder="id propiedad" type="text" inputmode="text">
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-button (click)="guardarCuentas()" (click)="enableNewCuentas = false" (click)="enablelista = true "
-             expand="block" >Guardar</ion-button>
-        </ion-item>
-      </ion-card>
-      <!--listas de Cuentas-->
-      <ion-card-header *ngIf="enablelista">
-        <ion-button (click)="bntNuevo()">
-          <ion-label>Nuevo</ion-label>
-          <ion-icon name="add"></ion-icon>
-        </ion-button>
-      </ion-card-header>
-      <ion-card *ngFor="let P of Cuentas">
-        <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" >
-          <ion-accordion >
-            <ion-item slot="header" >
-        
-        <ion-grid  [fixed]="true" >
-          <ion-row>
-           <ion-col size="auto"><ion-label>TipoCuenta: {{P.tipoCuenta}}</ion-label></ion-col>
-           <ion-col size="auto"><ion-label>Empresa: {{P.valor}}</ion-label></ion-col>
-           <ion-col size="auto"><ion-label>Estado: {{P.estado}}</ion-label></ion-col>
-         </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item  slot="content">
-      <ion-grid [fixed]="true">
-        <ion-row >
-          <ion-col  size="auto">
-            <ion-button (click)="newCuentas = P; enableNewCuentas = true; enablelista = false " color="warning"  style="margin: 5px;"
-              size="small">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-button>
-          </ion-col>
-          <ion-col size="auto">
-            <ion-button (click)="deleteCuentas(P)" color="danger"  style="margin: 5px;" size="small">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-
-      </ion-grid>
-    </ion-item>  
-  
-  </ion-accordion>
-  </ion-accordion-group>     
-    </ion-card>
-
+           <ion-item>
+            <ion-col size="auto"><ion-label  >Numero de Cliente</ion-label></ion-col>
+             <ion-col>
+                <ion-input   placeholder="N° cliente" name="numero de cliente" type="text" inputmode="text"></ion-input>
+             </ion-col> 
+             </ion-item>
+      <ion-col>
+      <ion-button  expand="block" >Guardar</ion-button>
+    </ion-col>  
+  </ion-card-content>
+  </ion-card>
   </div>
 </ion-content>
