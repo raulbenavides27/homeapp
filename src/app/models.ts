@@ -41,14 +41,12 @@ export interface Cliente{
 export interface Cuentas{
     idCuentas: string,
     tipoCuenta: string,
-    valor: string,
-    estado: string,
-    idPropiedad: string
+    idPropiedad: string 
 }  
 export interface Tarea{
     id_tarea: string;
     tipo_tarea: string;
-    fecha: Date;
+     fecha: Date;
     responsable: string;
     propiedad: string; 
     
