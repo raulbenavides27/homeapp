@@ -100,24 +100,7 @@
 
   </div>
   <!--por revisar hacia arriba-->
-  <div *ngIf="uid.length" class="main_content_div">
-    <div>
-      <div class="imgUser"> <img [src]="cliente.foto"></div>
-      <ion-label class="small_lbl">Nombre: {{cliente.nombre}}</ion-label>
-      <ion-label class="small_lbl">Correo: {{cliente.email}}</ion-label>
-      <ion-label class="small_lbl">Editar Foto</ion-label>
-      <ion-buttons>
-        <ion-button>
-          <label for="file-upload">
-            <ion-icon slot="icon-only" name="images-outline"></ion-icon>
-          </label>
-          <input (change)="newImageUpload($event)" id="file-upload" type="file" accept="image/*">
-        </ion-button>
-      </ion-buttons>
-
-
-    </div>
-    <!--por revisar hacia arriba-->
+  
     <div *ngIf="uid.length" class="main_content_div">
       <div>
         <div class="imgUser"> <img [src]="cliente.foto"></div>
@@ -138,7 +121,7 @@
 
         <ion-button (click)="salir()" expand="block">Cerrar cesion</ion-button>
 
-      </div>
+      
     </div>
   </div>
 </ion-content>

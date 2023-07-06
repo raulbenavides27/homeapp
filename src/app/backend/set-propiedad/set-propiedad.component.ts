@@ -1,9 +1,10 @@
-import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Propiedad } from 'src/app/models';
+import { Cliente, Cuentas, Entidad, Gastos, Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
 @Component({
   selector: 'app-set-propiedad',
@@ -11,54 +12,115 @@ import { Router } from '@angular/router';
   styleUrls: ['./set-propiedad.component.scss'],
 })
 export class SetPropiedadComponent  implements OnInit {
-  Propiedades: Propiedad[] = []
-  newPropiedad!: Propiedad;
+  Propiedades: Propiedad[] = [] //propiedades 
+  contacto: Entidad[] = []; // contactos 
+  cuentas: Cuentas [] = []; // cuentas 
+  gastos: Gastos [] = []; // facturas 
+  newPropiedad!: Propiedad; 
+  newContacto!: Propiedad;
   enableNewPropiedad = false;
+  enableNewContacto = false;
   enablelista = true;
-  private path = 'Propiedad/';
-  newImage = '';
+  btnClose = false;
   newfile = '';
   loading: any;
-
-  constructor(public menucontroler: MenuController,
+  id_seleccion: any;
+  propiedad!: Propiedad;
+  uid: any;
+  id_P: any;
+  cliente!: Cliente;
+  
+  constructor(
+              public menucontroler: MenuController,
               public FirestoService: FirestoreService,
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
               public firestorageService: FirestorageService,
-              private router:Router) { }
-              
-  ngOnInit(){
-    this.getPropiedad();
+              public firebaseauthService: FirebaseauthService,
+              private router:Router){}   
+                      
+     async ngOnInit()
+              {
+
+               this.getPropiedad();
+               this.getContacto();
+               this.getCuenta();
+               this.getGasto();
+               }
+   async guardarPropiedad() 
+  { 
+     this.presentLoading();
+     const path = 'Propiedad';
+     const name = this.newPropiedad.id_propiedad;
+     if (this.newfile !== undefined)
+      {
+      const res = await this.firestorageService.uploadImage(this.newfile,path,name);
+      }
+    
+      this.FirestoService.creatDoc(this.newPropiedad,path,this.newPropiedad.id).then(res =>{
+      this.loading.dismiss();
+      this.presentToast('Guardado con exito');
+      }).catch(error => {
+      this.presentToast('Error intente mas tarde');
+      });
   }
-  
-  openMenu(){
+getPropiedad()
+    {
+     const path = 'Propiedad/';
+     this.FirestoService.getColletion<Propiedad>(path).subscribe( res =>{this.Propiedades = res;});
+      console.log('se esta obteniendo propiedad', this.Propiedades)
+     }
 
-  console.log('open menu');
-  this.menucontroler.toggle('principal');
+getContacto()
+    {
+      const path = 'Entidad/';
+      this.FirestoService.getColletion<Entidad>(path).subscribe( res =>{
+        if(res.length){
+          this.contacto = res;
+        }});
+    
+      }
+      // filtrando cuenta por propiedad 
+filtroContacto(id_P: string){
+return this.contacto.filter(contacto => contacto.id_propiedad == id_P )
 }
-
-async guardarPropiedad() 
-{ 
-this.presentLoading();
-const path = 'Propiedad';
-const name = this.newPropiedad.nombre;
-if (this.newfile !== undefined){
-const res = await this.firestorageService.uploadImage(this.newfile,path,name);
-this.newPropiedad.foto = res;
+// detalles para cuenta 
+getCuenta()
+    {
+      const path = 'Cuentas/';
+      this.FirestoService.getColletion<Cuentas>(path).subscribe( res =>{
+        if(res.length){
+          this.cuentas = res;
+        }});
+    
+      }
+filtroCuentaAgua(id_P: string){
+return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Agua')
 }
-this.FirestoService.creatDoc(this.newPropiedad,this.path,this.newPropiedad.id).then(res =>{
-this.loading.dismiss();
-this.presentToast('Guardado con exito');
-}).catch(error => {
-this.presentToast('Error intente mas tarde');
-});
-}
-getPropiedad(){
-  this.FirestoService.getColletion<Propiedad>(this.path).subscribe( res =>{
-    this.Propiedades = res;
-  });
-}
+filtroCuentaLuz(id_P: string){
+  return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Luz')
+  }
+filtroCuentaGas(id_P: string){
+    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Gas')
+    }
+filtroCuentaInternet(id_P: string){
+      return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Internet/cable')
+      }
+filtroCuentaArriendo(id_P: string){
+        return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Arriendo')
+        }
+        // obtener boletas para consultar cuenta en relacion con gasto  
+getGasto()
+        {
+          const path = 'Gastos/';
+          this.FirestoService.getColletion<Gastos>(path).subscribe( res =>{
+            if(res.length){
+              this.gastos = res;
+              console.log('gasto es: ',this.gastos)
+            }});
+          }
+// eliminar propiedad 
 async deletePropiedad(P: Propiedad){
   const alert = await this.alertController.create({
     cssClass: '',
@@ -94,16 +156,16 @@ async deletePropiedad(P: Propiedad){
       text: 'Cancelar',
       role: 'Cancel',
       cssClass: '',
-      handler:(blah) =>{
-        console.log('confirm Cancel: blah');
-      }
-    },{
+      handler:(blah) =>{ console.log('confirm Cancel: blah');}
+            },
+      {
       text:'ok',
       handler: (data) => {
         const motivo = data.motivo;
         console.log('Motivo de eliminación:', motivo);
         console.log('Confirm Okay');
-        this.FirestoService.deletDoc(this.path,P.id).then(res =>{
+        const path = 'Propiedad/';
+        this.FirestoService.deletDoc(path,P.id).then(res =>{
           this.presentToast('Eliminado con exito');
           this.alertController.dismiss(); 
           }).catch(error => {
@@ -116,22 +178,30 @@ async deletePropiedad(P: Propiedad){
 await alert.present();
   
 }
-
+// btn para aggregar nueva propiedad 
 bntNuevo(){
   this.enableNewPropiedad = true;
   this.enablelista = false;
+  this.btnClose = true;
   this.newPropiedad = {
-    nombre: '',
+   
+    id:this.FirestoService.getId(),
+    id_propiedad: '',
     direccion: '',
     numero: 0,
     comuna: '',
+    referencia: '',
     contacto: '',
     telefono: 0,
-    id:this.FirestoService.getId(),
     fecha: new Date(),
     tipo: '',
-    foto: ''
+    estado:'',
+    condicion:'',
+    ubicacion:'',
+
   };
+
+  
 
 }
 async presentLoading(){
@@ -151,22 +221,23 @@ async presentToast(msg: string){
 async newImageUpload(event:any){ 
    if (event.target.files && event.target.files[0]){ 
       this.newfile = event.target.files[0]; 
-      const reader = new FileReader();
-      reader.onload = ((image: any)=>{    
-         this.newPropiedad.foto = image.target.result as string;   
-        
-        });
-    reader.readAsDataURL(event.target.files[0]);
   }
-
 }
-
 go (){ 
   this.router.navigate(['cuentas']);
 }
-
-goto (){ 
-  this.router.navigate(['estado']);
-}  
   
+goPerfil(){ 
+  this.router.navigate(['perfil']);
+} 
+
+addContacto(P: Propiedad) 
+{ 
+    console.log('Propiedad selecionada: ', P)
+    this.FirestoService.setDoc(P)
+    
+ 
 }
+
+}
+

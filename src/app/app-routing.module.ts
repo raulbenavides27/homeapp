@@ -6,7 +6,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { SetPropiedadComponent } from './backend/set-propiedad/set-propiedad.component';
 import { CuentasComponent } from './backend/cuentas/cuentas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+<<<<<<< HEAD
 import { AuthGuard } from './perfil.guard';
+=======
+import { TareasComponent } from './pages/tareas/tareas.component';
+import { ContactoComponent } from './backend/contacto/contacto.component';
+>>>>>>> fase_3
 
 const routes: Routes = [
  
@@ -15,10 +20,13 @@ const routes: Routes = [
   canActivate:[AuthGuard] },
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
+  { path: 'contacto',component: ContactoComponent},
+  { path: 'tareas',component: TareasComponent},
   { path: 'cuentas',component: CuentasComponent},
   { path: 'perfil',component: PerfilComponent},
   { path: '',component: HomeComponent},
   { path: '**',redirectTo: 'home', pathMatch: 'full'}, 
+
 ];
 
 @NgModule({

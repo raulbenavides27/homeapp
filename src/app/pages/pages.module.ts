@@ -5,13 +5,16 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentesModule } from '../componentes/componentes.module';
+import { TareasComponent } from './tareas/tareas.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    PerfilComponent 
+    PerfilComponent,
+    TareasComponent 
   ],
   imports: [
     CommonModule,
@@ -20,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    ComponentesModule
     
   ]
 })
