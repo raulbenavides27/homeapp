@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Cliente, Cuentas, Entidad, Propiedad } from 'src/app/models';
+import { Cliente, Cuentas, Entidad, Gastos, Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
@@ -12,8 +12,11 @@ import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
   styleUrls: ['./set-propiedad.component.scss'],
 })
 export class SetPropiedadComponent  implements OnInit {
-  Propiedades: Propiedad[] = []
-  newPropiedad!: Propiedad;
+  Propiedades: Propiedad[] = [] //propiedades 
+  contacto: Entidad[] = []; // contactos 
+  cuentas: Cuentas [] = []; // cuentas 
+  gastos: Gastos [] = []; // facturas 
+  newPropiedad!: Propiedad; 
   newContacto!: Propiedad;
   enableNewPropiedad = false;
   enableNewContacto = false;
@@ -26,8 +29,7 @@ export class SetPropiedadComponent  implements OnInit {
   uid: any;
   id_P: any;
   cliente!: Cliente;
-  contacto: Entidad[] = [];
-  cuentas: Cuentas [] = [];
+  
   constructor(
               public menucontroler: MenuController,
               public FirestoService: FirestoreService,
@@ -44,6 +46,7 @@ export class SetPropiedadComponent  implements OnInit {
                this.getPropiedad();
                this.getContacto();
                this.getCuenta();
+               this.getGasto();
                }
    async guardarPropiedad() 
   { 
@@ -78,9 +81,11 @@ getContacto()
         }});
     
       }
+      // filtrando cuenta por propiedad 
 filtroContacto(id_P: string){
 return this.contacto.filter(contacto => contacto.id_propiedad == id_P )
 }
+// detalles para cuenta 
 getCuenta()
     {
       const path = 'Cuentas/';
@@ -105,7 +110,17 @@ filtroCuentaInternet(id_P: string){
 filtroCuentaArriendo(id_P: string){
         return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P &&  cuentas.tipoCuenta == 'Arriendo')
         }
-
+        // obtener boletas para consultar cuenta en relacion con gasto  
+getGasto()
+        {
+          const path = 'Gastos/';
+          this.FirestoService.getColletion<Gastos>(path).subscribe( res =>{
+            if(res.length){
+              this.gastos = res;
+              console.log('gasto es: ',this.gastos)
+            }});
+          }
+// eliminar propiedad 
 async deletePropiedad(P: Propiedad){
   const alert = await this.alertController.create({
     cssClass: '',

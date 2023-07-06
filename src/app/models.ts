@@ -1,5 +1,5 @@
 import { Interface } from "readline";
-
+// nuestro principal es la propiedad 
 export interface Propiedad{
     id: string;
     id_propiedad: string;
@@ -16,18 +16,7 @@ export interface Propiedad{
     ubicacion: any;
     
 }
-export interface Historial{
-    id_historial: string;
-    id_responsable:string;
-    id_propiedad: string;
-    fecha: Date;
-    tipo: string;
-    estado: String;
-    condicion: String;
-    ubicacion: any;
-    
-}
-
+// cliente es el usuario de la inmobiliaria
 export interface Cliente{
     uid: string;
     email: string;
@@ -37,15 +26,7 @@ export interface Cliente{
     confirmacion: string;
     ubicacion: any;
 }
-
-export interface Cuentas{
-    idCuentas: string,
-    id_propiedad: string 
-    tipoCuenta: string,
-    empresa: string,
-    numCliente: string
-}  
-  
+// entidad es contacto el cual arrienda o es dueño de la propiedad 
 export interface Entidad{
     id_entidad: string;
     id_propiedad: string;
@@ -62,7 +43,26 @@ export interface Entidad{
     telefono: string;
   //  whatsapp: string;
 }
+export interface Cuentas{
+    idCuentas: string,
+    id_propiedad: string 
+    tipoCuenta: string,
+    empresa: string,
+    numCliente: string
+}
 
+export interface Gastos{
+    id_documento: string,
+    Nombre_emisor: string,
+    Num_documento: number,
+    Num_cliente: string,
+    fecha_emision: Date,
+    fecha_vencimiento: Date,
+    rut_emisor: string, 
+    neto: string,
+    iva: string,
+    Total: string,
+}  
 export interface Estado{
     id: string,
     idEstado: string,
@@ -72,4 +72,15 @@ export interface Estado{
     muebles: string,
     wc: string,
     cocina: string    
+}
+export interface Historial{
+    id_historial: string;
+    id_responsable:string;
+    id_propiedad: string;
+    fecha: Date;
+    tipo: string;
+    estado: String;
+    condicion: String;
+    ubicacion: any;
+    
 }
