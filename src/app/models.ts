@@ -40,3 +40,8 @@ export interface Estado{
     cocina: string    
 }
   
+export interface Soporte{
+    name: string,
+    email: string,
+    mensaje: string
+}

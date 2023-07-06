@@ -23,8 +23,16 @@ const routes: Routes = [
         ,
         {
           path: 'ajuste',
-          loadChildren: () => import('../ajuste/ajuste.module').then( m => m.AjustePageModule)
-         }
+          loadChildren: () => import('../ajuste/ajuste.module').then(m => m.AjustePageModule)
+        },
+        {
+          path: 'cuentas',
+          loadChildren: () => import('../cuentas/cuentas.module').then(m => m.CuentasPageModule)
+        },
+        {
+          path: 'soporte',
+          loadChildren: () => import('../soporte/soporte.module').then(m => m.SoportePageModule)
+        }
   ]
   }
 ];

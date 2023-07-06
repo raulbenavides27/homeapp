@@ -5,12 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CuentasComponent } from './cuentas/cuentas.component';
 import { EstadoComponent } from './estado/estado.component';
-
+import { SoporteComponent } from './soporte/soporte.component';
 @NgModule({
   declarations: [
     SetPropiedadComponent,
     CuentasComponent,
     EstadoComponent,
+    SoporteComponent,
+    
   ],
   imports: [
     CommonModule,
