@@ -37,7 +37,14 @@ export class CuentasComponent implements OnInit {
     }else{
       this.router.navigate(['set-propiedad']);
     }
+    this.newCuentas = {
   
+      idCuentas:this.FirestoService.getId(),
+      idPropiedad: propiedad.id, 
+      tipoCuenta: '',
+      empresa: '',
+      numCliente: ''
+    };
   }
 
 async guardarCuentas() 
@@ -87,20 +94,6 @@ async deleteCuentas(P: Cuentas){
   ]
   });
 await alert.present();
-  
-}
-
-bntNuevo(){
-  this.enableNewCuentas = true;
-  this.enablelista = false;
-  this.newCuentas = {
-    tipoCuenta: '',
-    valor: '',
-    idCuentas:this.FirestoService.getId(),
-    estado: '',
-    idPropiedad: ''
-  };
-
 }
 async presentLoading(){
     this.loading = await this.loadingController.create({

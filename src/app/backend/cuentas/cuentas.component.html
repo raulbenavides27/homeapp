@@ -32,35 +32,35 @@
           </ion-item>
           <ion-item>  
             <ion-label >Tipo Cuenta </ion-label>
-            <ion-select  interface="popover">
+            <ion-select  [(ngModel)]="newCuentas.tipoCuenta" interface="popover">
               <ion-select-option  value="Agua">Agua</ion-select-option>
               <ion-select-option  value="Luz">Luz</ion-select-option>
               <ion-select-option  value="Gas">Gas</ion-select-option>
-              <ion-select-option  value="Internet">Internet</ion-select-option>
+              <ion-select-option  value="Internet/Cable">Internet</ion-select-option>
               <ion-select-option  value="Arriendo">Arriendo</ion-select-option>
             </ion-select>
          </ion-item><ion-item>  
           <ion-label >Empresa </ion-label>
-          <ion-select  interface="popover">
+          <ion-select [(ngModel)]="newCuentas.empresa" interface="popover">
             <ion-select-option  value="Lipigas">Lipigas</ion-select-option>
             <ion-select-option  value="Gasco">Gasco</ion-select-option>
-            <ion-select-option  value="Gas">Aguas Andina</ion-select-option>
+            <ion-select-option  value="Gas">Aguas Andinas</ion-select-option>
             <ion-select-option  value="Internet/Cable">VTR</ion-select-option>
-            <ion-select-option  value="Arriendo">Movistar</ion-select-option>
-            <ion-select-option  value="Arriendo">Enel</ion-select-option>
+            <ion-select-option  value="Movistar">Movistar</ion-select-option>
+            <ion-select-option  value="Enel">Enel</ion-select-option>
             <ion-select-option  value="Arriendo">Abastible</ion-select-option>
-            <ion-select-option  value="Arriendo">Otro</ion-select-option>
+            <ion-select-option  value="Otro">Otro</ion-select-option>
           </ion-select>
        </ion-item>
         
            <ion-item>
             <ion-col size="auto"><ion-label  >Numero de Cliente</ion-label></ion-col>
              <ion-col>
-                <ion-input   placeholder="N° cliente" name="numero de cliente" type="text" inputmode="text"></ion-input>
+                <ion-input   [(ngModel)]="newCuentas.numCliente" placeholder="N° cliente" name="numero de cliente" type="text" inputmode="text"></ion-input>
              </ion-col> 
              </ion-item>
       <ion-col>
-      <ion-button  expand="block" >Guardar</ion-button>
+      <ion-button (click)="guardarCuentas()" expand="block" >Guardar</ion-button>
     </ion-col>  
   </ion-card-content>
   </ion-card>
