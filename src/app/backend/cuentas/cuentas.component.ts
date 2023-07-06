@@ -3,12 +3,8 @@ import { AlertController, LoadingController, MenuController, ToastController } f
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Cuentas, Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service'
-<<<<<<< HEAD
 import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms'; //1
-=======
 import { Router } from '@angular/router';
-
->>>>>>> fase_3
 @Component({
   selector: 'app-cuentas',
   templateUrl: './cuentas.component.html',
@@ -30,14 +26,9 @@ export class CuentasComponent implements OnInit {
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
-<<<<<<< HEAD
-              public firestorageService: FirestorageService) {
-                
-               }
-=======
               public firestorageService: FirestorageService,
-              private router:Router) { }
->>>>>>> fase_3
+              public router:Router) { }
+
               
   ngOnInit(){
 

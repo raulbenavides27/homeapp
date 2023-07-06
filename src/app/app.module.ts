@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { BackendModule } from './backend/backend.module';
-
 import { FormsModule } from '@angular/forms';      // 1Modulo de angular para los formularios.
 import { CustomFormsModule } from 'ng2-validation' // ng2-validation
 

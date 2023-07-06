@@ -73,13 +73,16 @@ export interface Estado{
     wc: string,
     cocina: string    
 }
-<<<<<<< HEAD
-  
+
+
+
+
 export interface Soporte{
     name: string,
     email: string,
     mensaje: string
-=======
+}
+
 export interface Historial{
     id_historial: string;
     id_responsable:string;
@@ -90,5 +93,5 @@ export interface Historial{
     condicion: String;
     ubicacion: any;
     
->>>>>>> fase_3
+
 }
