@@ -1,10 +1,10 @@
 import { Interface } from "readline";
 // nuestro principal es la propiedad 
-export interface Propiedad{
+export interface Propiedad {
     id: string;
     id_propiedad: string;
     referencia: string;
-    direccion:string;
+    direccion: string;
     numero: Number;
     comuna: string;
     contacto: string;
@@ -14,10 +14,10 @@ export interface Propiedad{
     estado: String;
     condicion: String;
     ubicacion: any;
-    
+
 }
 // cliente es el usuario de la inmobiliaria
-export interface Cliente{
+export interface Cliente {
     uid: string;
     email: string;
     password: string;
@@ -27,10 +27,10 @@ export interface Cliente{
     ubicacion: any;
 }
 // entidad es contacto el cual arrienda o es dueño de la propiedad 
-export interface Entidad{
+export interface Entidad {
     id_entidad: string;
     id_propiedad: string;
-  //  id_responsable: string; // para cuando exista historial
+    //  id_responsable: string; // para cuando exista historial
     nombre: string;
     apellidop: string;
     apellidom: string;
@@ -41,30 +41,30 @@ export interface Entidad{
     email: string;
     direccion: string;
     telefono: string;
-  //  whatsapp: string;
+    //  whatsapp: string;
 }
-export interface Cuentas{
+export interface Cuentas {
     idCuentas: string,
-    id_propiedad: string 
+    id_propiedad: string
     tipoCuenta: string,
     empresa: string,
     numCliente: string
 }
 
-export interface Gastos{
+export interface Gastos {
     id_documento: string,
     Nombre_emisor: string,
     Num_documento: number,
     Numero_cliente: string,
     fecha_emision: Date,
     fecha_vencimiento: Date,
-    rut_emisor: string, 
+    rut_emisor: string,
     neto: string,
     iva: string,
     Total: string,
     Estado: string,
-}  
-export interface Estado{
+}
+export interface Estado {
     id: string,
     idEstado: string,
     ventanas: string,
@@ -72,16 +72,16 @@ export interface Estado{
     suelo: string,
     muebles: string,
     wc: string,
-    cocina: string    
+    cocina: string
 }
-export interface Historial{
+export interface Historial {
     id_historial: string;
-    id_responsable:string;
+    id_responsable: string;
     id_propiedad: string;
     fecha: Date;
     tipo: string;
     estado: String;
     condicion: String;
     ubicacion: any;
-    
+
 }
