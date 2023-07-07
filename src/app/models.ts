@@ -55,13 +55,14 @@ export interface Gastos{
     id_documento: string,
     Nombre_emisor: string,
     Num_documento: number,
-    Num_cliente: string,
+    Numero_cliente: string,
     fecha_emision: Date,
     fecha_vencimiento: Date,
     rut_emisor: string, 
     neto: string,
     iva: string,
     Total: string,
+    Estado: string,
 }  
 export interface Estado{
     id: string,
