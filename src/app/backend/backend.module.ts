@@ -7,13 +7,15 @@ import { CuentasComponent } from './cuentas/cuentas.component';
 import {ContactoComponent} from './contacto/contacto.component';
 import { EstadoComponent } from './estado/estado.component';
 import { RouterModule } from '@angular/router';
+import { AddGastosComponent } from './add-gastos/add-gastos.component';
 
 @NgModule({
   declarations: [
     SetPropiedadComponent,
     CuentasComponent,
     EstadoComponent,
-    ContactoComponent
+    ContactoComponent,
+    AddGastosComponent
   ],
   imports: [
     CommonModule,

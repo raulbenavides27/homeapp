@@ -8,6 +8,7 @@ import { CuentasComponent } from './backend/cuentas/cuentas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { TareasComponent } from './pages/tareas/tareas.component';
 import { ContactoComponent } from './backend/contacto/contacto.component';
+import { AddGastosComponent } from './backend/add-gastos/add-gastos.component';
 
 const routes: Routes = [
  
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home',component: HomeComponent},
   { path: 'set-propiedad',component: SetPropiedadComponent},
   { path: 'contacto',component: ContactoComponent},
+  { path: 'gastos',component: AddGastosComponent},
   { path: 'tareas',component: TareasComponent},
   { path: 'cuentas',component: CuentasComponent},
   { path: 'perfil',component: PerfilComponent},
