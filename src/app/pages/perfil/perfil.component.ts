@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { Cliente } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
@@ -38,13 +38,15 @@ export class PerfilComponent  implements OnInit {
     public alertController: AlertController,
     public firestoreService: FirestoreService,
     private navCrtl: NavController,
-    public firestorageService: FirestorageService){
+    public firestorageService: FirestorageService,
+    private router: Router){
 
        this.firebaseauthService.stateAuth().subscribe( res =>{
         console.log(res);
         if (res !== null){
            this.uid = res.uid;
            this.getUserInfo(this.uid);
+          
         } else {
             this.initCliente();
         }
@@ -69,12 +71,6 @@ export class PerfilComponent  implements OnInit {
       ubicacion: null,
     };
   }
-  openMenu(){
-
-    console.log('open menu');
-    this.menucontroler.toggle('principal');
-  }
-  
 async newImageUpload(event:any){ 
   if (event.target.files && event.target.files[0]){ 
      this.newfile = event.target.files[0]; 
@@ -123,6 +119,7 @@ getUserInfo(uid: string){
   const path = 'Clientes';
   this.subcriberUserInfo = this.firestoreService.getDoc(path, uid).subscribe(res =>{
   this.cliente = res as Cliente;
+  
   });
 }
 ingresar(){
@@ -131,11 +128,10 @@ ingresar(){
     password: this.cliente.password
   };
   this.firebaseauthService.login(credenciales.email, credenciales.password).then(res => {
-       console.log('ingresado');
-       this.route.navigate(['/home']);
-
+       console.log('ingresado');  
+       this.router.navigate(['home']); 
   });
- 
+  
 }
 
 goToBack () {

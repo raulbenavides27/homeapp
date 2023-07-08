@@ -1,15 +1,23 @@
 import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
+<<<<<<< HEAD
 import { Cuentas } from 'src/app/models';
 import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms'; //1
 import { FirestorageService } from 'src/app/services/firestorage.service';
+=======
+import { Cuentas, Entidad, Propiedad } from 'src/app/models';
+import {FirestorageService} from 'src/app/services/firestorage.service'
+import { Router } from '@angular/router';
+
+>>>>>>> fase_3
 @Component({
   selector: 'app-cuentas',
   templateUrl: './cuentas.component.html',
   styleUrls: ['./cuentas.component.scss'],
 })
 export class CuentasComponent implements OnInit {
+  tipoCuenta!: string;
   Cuentas: Cuentas[] = []
   newCuentas!: Cuentas;
   enableNewCuentas = false;
@@ -17,6 +25,12 @@ export class CuentasComponent implements OnInit {
   private path = 'Cuentas/';
   newfile = '';
   loading: any;
+<<<<<<< HEAD
+=======
+  newContacto!: Cuentas;
+  P!: Propiedad;
+  Empresas: Entidad[] = []; // Empresas
+>>>>>>> fase_3
 
   constructor(public menucontroler: MenuController,
               public fb: FormBuilder,
@@ -29,7 +43,29 @@ export class CuentasComponent implements OnInit {
                }
               
   ngOnInit(){
+<<<<<<< HEAD
     this.getCuentas();
+=======
+     this.tipoCuenta
+     this.handleChange(this.tipoCuenta)
+     this.getEmpresa()
+     this.filtroEmpresa();
+    const propiedad = this.FirestoService.getProp()
+    console.log('la propiedad es la:', propiedad)
+    if (propiedad !== undefined){
+      this.P = propiedad
+    }else{
+      this.router.navigate(['set-propiedad']);
+    }
+    this.newCuentas = {
+  
+      idCuentas:this.FirestoService.getId(),
+      id_propiedad: propiedad.id, 
+      tipoCuenta: '',
+      empresa: '',
+      numCliente: ''
+    };
+>>>>>>> fase_3
   }
   //getCuentas() {
     //throw new Error('Method not implemented.');
@@ -40,6 +76,7 @@ export class CuentasComponent implements OnInit {
   console.log('open menu');
   this.menucontroler.toggle('principal');
 }
+
 
 async guardarCuentas() 
 { 
@@ -61,6 +98,27 @@ getCuentas(){
     console.log(error);
     });
 }
+handleChange(value: any) {
+  return this.tipoCuenta = value;
+}
+getEmpresa() {
+  const path = 'Entidad/';
+  this.FirestoService.getColletion<Entidad>(path).subscribe(res => {
+    if (res.length) {
+      this.Empresas = res;
+      console.log('entidades llamadas', this.Empresas)
+    }
+  });
+}
+filtroEmpresa() {
+  return this.Empresas.filter(Empresas => Empresas.tipoEntidad == 'empresa' )
+  
+}
+filtroEmpresatipo() {
+  return this.Empresas.filter(Empresas => Empresas.tipoServicio == this.tipoCuenta)
+  
+}
+
 async deleteCuentas(P: Cuentas){
   const alert = await this.alertController.create({
     cssClass: '',

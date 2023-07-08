@@ -16,7 +16,20 @@
 
 <ion-content>
   <div class="main_content_div">
- 
+    <ion-header>
+      <ion-toolbar>
+        <ion-segment color="dark" value="Propiedad" >
+          <ion-segment-button value="Propiedad">
+            <ion-label>Propiedad</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Cuentas">
+            <ion-label>Cuentas</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-header>
+
+
 <div *ngFor="let propiedad of propiedad">
 
   <app-propiedad [propiedad]=propiedad></app-propiedad>
@@ -24,4 +37,5 @@
 </div>
   
   </div>
-</ion-content>
+
+

@@ -8,14 +8,20 @@ import {ContactoComponent} from './contacto/contacto.component';
 import { EstadoComponent } from './estado/estado.component';
 import { SoporteComponent } from './soporte/soporte.component';
 import { RouterModule } from '@angular/router';
+import { AddGastosComponent } from './add-gastos/add-gastos.component';
 
 @NgModule({
   declarations: [
     SetPropiedadComponent,
     CuentasComponent,
     EstadoComponent,
+<<<<<<< HEAD
     SoporteComponent,
     ContactoComponent
+=======
+    ContactoComponent,
+    AddGastosComponent
+>>>>>>> fase_3
   ],
   imports: [
     CommonModule,
