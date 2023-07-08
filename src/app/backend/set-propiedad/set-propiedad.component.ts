@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Cliente, Cuentas, Entidad, Gastos, Propiedad } from 'src/app/models';
-import {FirestorageService} from 'src/app/services/firestorage.service';
+import { FirestorageService } from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 

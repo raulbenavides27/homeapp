@@ -80,6 +80,7 @@ export interface Estado{
 export interface Soporte{
     name: string,
     email: string,
+    idSoporte: string,
     mensaje: string
 }
 

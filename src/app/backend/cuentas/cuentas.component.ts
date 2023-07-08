@@ -1,10 +1,9 @@
 import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Cuentas, Propiedad } from 'src/app/models';
-import {FirestorageService} from 'src/app/services/firestorage.service'
+import { Cuentas } from 'src/app/models';
 import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms'; //1
-import { Router } from '@angular/router';
+import { FirestorageService } from 'src/app/services/firestorage.service';
 @Component({
   selector: 'app-cuentas',
   templateUrl: './cuentas.component.html',
@@ -18,36 +17,29 @@ export class CuentasComponent implements OnInit {
   private path = 'Cuentas/';
   newfile = '';
   loading: any;
-  newContacto!: Cuentas;
-  P!: Propiedad;
+
   constructor(public menucontroler: MenuController,
               public fb: FormBuilder,
               public FirestoService: FirestoreService,
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
-              public firestorageService: FirestorageService,
-              public router:Router) { }
-
+              public firestorageService: FirestorageService) {
+                
+               }
               
   ngOnInit(){
-
-    const propiedad = this.FirestoService.getProp()
-    console.log('la propiedad es la:', propiedad)
-    if (propiedad !== undefined){
-      this.P = propiedad
-    }else{
-      this.router.navigate(['set-propiedad']);
-    }
-    this.newCuentas = {
-  
-      idCuentas:this.FirestoService.getId(),
-      id_propiedad: propiedad.id, 
-      tipoCuenta: '',
-      empresa: '',
-      numCliente: ''
-    };
+    this.getCuentas();
   }
+  //getCuentas() {
+    //throw new Error('Method not implemented.');
+  //}
+
+  openMenu(){
+
+  console.log('open menu');
+  this.menucontroler.toggle('principal');
+}
 
 async guardarCuentas() 
 { 
@@ -96,6 +88,20 @@ async deleteCuentas(P: Cuentas){
   ]
   });
 await alert.present();
+  
+}
+
+bntNuevo(){
+  this.enableNewCuentas = true;
+  this.enablelista = false;
+  this.newCuentas = {
+    tipoCuenta: '',
+    valor: '',
+    idCuentas:this.FirestoService.getId(),
+    estado: '',
+    idPropiedad: ''
+  };
+
 }
 async presentLoading(){
     this.loading = await this.loadingController.create({
@@ -103,7 +109,6 @@ async presentLoading(){
     message: 'Guardando...',
   });
   await this.loading.present();
-  this.router.navigate(['set-propiedad']);
 }
 async presentToast(msg: string){
   const toast = await this.toastController.create({
