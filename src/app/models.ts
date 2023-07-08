@@ -77,10 +77,6 @@ export interface Estado {
     wc: string,
     cocina: string
 }
-<<<<<<< HEAD
-
-
-
 
 export interface Soporte{
     name: string,
@@ -89,10 +85,10 @@ export interface Soporte{
     mensaje: string
 }
 
-export interface Historial{
-=======
+
+
 export interface Historial {
->>>>>>> fase_3
+
     id_historial: string;
     id_responsable: string;
     id_propiedad: string;
@@ -101,9 +97,4 @@ export interface Historial {
     estado: String;
     condicion: String;
     ubicacion: any;
-<<<<<<< HEAD
-    
-=======
->>>>>>> fase_3
-
 }
