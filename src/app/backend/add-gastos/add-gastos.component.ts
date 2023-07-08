@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
-import { Entidad, Propiedad } from 'src/app/models';
+import { Cuentas, Entidad, Gastos, Propiedad } from 'src/app/models';
 import { FirestorageService } from 'src/app/services/firestorage.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 @Component({
@@ -9,8 +9,11 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   templateUrl: './add-gastos.component.html',
   styleUrls: ['./add-gastos.component.scss'],
 })
-export class AddGastosComponent  implements OnInit {
-
+export class AddGastosComponent implements OnInit {
+  Propiedades: Propiedad[] = [] //propiedades 
+  cuentas: Cuentas[] = [];// cuentas 
+  gastos: Gastos[] = []; // facturas 
+  Empresas: Entidad[] = []; // Empresas
   tiporazon!: string;
   newGastos!: Entidad;
   private path = 'Entidad/';
@@ -29,37 +32,56 @@ export class AddGastosComponent  implements OnInit {
   }
 
   ngOnInit() {
-  /*  this.tiporazon
-    const propiedad = this.FirestoService.getProp()
-    console.log('la propiedad es la:', propiedad)
-    if (propiedad !== undefined) {
-      this.P = propiedad
-    } else {
-      this.router.navigate(['set-propiedad']);
-    }
-    this.newGastos = {
-      id_entidad: this.FirestoService.getId(),
-      id_propiedad: propiedad.id,
-      /// id_responsable: '',// para cuando exista historial
-      nombre: '',
-      apellidop: '',
-      apellidom: '',
-      rut: '',
-      tipoContacto: '',// Arrendataio/Propietario
-      tipoEntidad: '', //persona natural / empresa 
-      giro: '', //solo para empresas 
-      email: '',
-      direccion: '',
-      telefono: '',
-
-    };
-*/
+    this.getCuentas();
+    this.getPropiedad();
+    this.getGasto();
+    this.getEmpresa()
   }
 
+  getCuentas() {
+    const path = 'Cuentas/';
+    this.FirestoService.getColletion<Cuentas>(path).subscribe(res => { this.cuentas = res; });
+    console.log('se esta obteniendo propiedad', this.cuentas)
+  }
+  getPropiedad() {
+    const path = 'Propiedad/';
+    this.FirestoService.getColletion<Propiedad>(path).subscribe(res => { this.Propiedades = res; });
+    console.log('se esta obteniendo propiedad', this.Propiedades)
+  }
+  filtroPropiedad(id_P: string) {
+    return this.Propiedades.filter(Propiedades => Propiedades.id == id_P)
+  }
+  getCuenta() {
+    const path = 'Cuentas/';
+    this.FirestoService.getColletion<Cuentas>(path).subscribe(res => {
+      if (res.length) {
+        this.cuentas = res;
+      }
+    });
+  }
+  getGasto() {
+    const path = 'Gastos/';
+    this.FirestoService.getColletion<Gastos>(path).subscribe(res => {
+      if (res.length) {
+        this.gastos = res;
+      }
+    });
+  }
+  getEmpresa() {
+    const path = 'Entidad/';
+    this.FirestoService.getColletion<Entidad>(path).subscribe(res => {
+      if (res.length) {
+        this.Empresas = res;
+      }
+    });
+  }
+  filtroEmpresa() {
+    return this.Empresas.filter(Empresas => Empresas.tipoEntidad == 'empresa')
+  }
 
   handleChange(value: any) {
     return this.tiporazon = value;
-    console.log('tipo selecionado:', value)
+
   }
   async guardarContacto() {
 

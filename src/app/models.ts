@@ -52,17 +52,19 @@ export interface Cuentas {
 }
 
 export interface Gastos {
-    id_documento: string,
+    Estado: string,
     Nombre_emisor: string,
     Num_documento: number,
     Numero_cliente: string,
+    Total: string,
     fecha_emision: Date,
     fecha_vencimiento: Date,
     rut_emisor: string,
     neto: string,
+    id_documento: string,
     iva: string,
-    Total: string,
-    Estado: string,
+    giro: string,
+    
 }
 export interface Estado {
     id: string,

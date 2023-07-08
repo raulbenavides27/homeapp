@@ -8,93 +8,129 @@
 </ion-header>
 <ion-content>
   <div class="main_content_div">
-    <ion-card style="--background:  #808081; max-width: 800px; margin: auto;">
+    <ion-card style="--background:  #c6c6da; max-width: 800px; margin: auto;">
+      <!--empresas-->
+      <ion-card-content style="   max-width: 800px; margin: auto;">
+        <ion-label class="bold_lbl">EMPRESAS</ion-label>
+        <ion-item>
+          <ion-col><ion-label>Rut</ion-label></ion-col>
+          <ion-col><ion-label color="light">Nombre</ion-label></ion-col>
+          <ion-col><ion-label color="danger">Giro</ion-label></ion-col>
+          <ion-col><ion-label color="tertiary">Contacto</ion-label></ion-col>
+          <ion-col><ion-label>Direccion</ion-label></ion-col>
+        </ion-item>
+        <ion-item *ngFor="let E of filtroEmpresa()">
+          <ion-col size="auto"><ion-label>{{E.rut}}</ion-label></ion-col>
+          <ion-col size="auto"><ion-label color="light">{{E.nombre}}</ion-label></ion-col>
+          <ion-col size="auto"> <ion-label color="danger">{{E.giro}}</ion-label></ion-col>
+          <ion-col size="auto"><ion-label color="tertiary">{{E.telefono}}</ion-label></ion-col>
+          <ion-col size="auto"><ion-label>{{E.direccion}}</ion-label></ion-col>
+        </ion-item>
+      </ion-card-content>
+      <!--agregar gasto-->
       <ion-card-content style="   max-width: 650px; margin: auto;">
-        <ion-label class="bold_lbl">Agregar nuevo Contacto</ion-label>
-        <ion-item>
-          <ion-col size="auto"><ion-label></ion-label></ion-col>
-        </ion-item>
-        <ion-item slot="header">
-          <ion-grid [fixed]="true">
-            <ion-row>
-              <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
-              <ion-col size="auto"><ion-label></ion-label></ion-col>
-              <ion-col size="auto"><ion-label></ion-label></ion-col>
-              <ion-col size="auto"><ion-label></ion-label></ion-col>
-              <ion-col size="auto"><ion-label></ion-label></ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-        <ion-item>
-          <ion-col size="auto"><ion-label>Nombre</ion-label></ion-col>
+        <ion-label class="bold_lbl">Agregar Gastos</ion-label>
+        <ion-item><ion-col size="auto"><ion-label>Rut Emisor:</ion-label></ion-col>
           <ion-col>
-            <ion-input placeholder="Nombre" name="name" type="text" inputmode="text"></ion-input>
+            <ion-input type="number" inputmode="number"></ion-input>
           </ion-col>
         </ion-item>
         <ion-item>
-          <ion-col size="auto"><ion-label>Apellido Paterno</ion-label></ion-col>
+          <ion-col size="auto"><ion-label>Nombre:</ion-label></ion-col>
           <ion-col>
-            <ion-input placeholder="Apellido paterno" name="apellido paterno" type="text" inputmode="text"></ion-input>
+            <ion-input name="name" type="text" inputmode="text"></ion-input>
+          </ion-col>
+          <ion-col size="auto"><ion-label>Numero:</ion-label></ion-col>
+          <ion-col>
+            <ion-input type="number" inputmode="number"></ion-input>
           </ion-col>
         </ion-item>
         <ion-item>
-          <ion-col size="auto"><ion-label>Apellido Materno</ion-label></ion-col>
+          <ion-col size="auto"><ion-label>Numero Clientes:</ion-label></ion-col>
           <ion-col>
-            <ion-input placeholder="Apellido materno" name="apelllido materno" type="text" inputmode="text"></ion-input>
+            <ion-input type="text" inputmode="text"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-col size="auto"><ion-label>Fecha emision:</ion-label></ion-col>
+          <ion-col>
+            <ion-input type="date" inputmode="date"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-col size="auto"><ion-label>Fecha vencimiento:</ion-label></ion-col>
+          <ion-col>
+            <ion-input type="date" inputmode="date"></ion-input>
           </ion-col>
         </ion-item>
         <ion-item>
           <ion-col size="auto"><ion-label>Telefono +56</ion-label></ion-col>
           <ion-col>
-            <ion-input placeholder="000000000" type="phone" inputmode="phone"></ion-input>
+            <ion-input type="phone" inputmode="phone"></ion-input>
           </ion-col>
         </ion-item>
         <ion-item>
-          <ion-col size="auto"><ion-label>Rut</ion-label></ion-col>
+          <ion-col size="auto"><ion-label>Neto:</ion-label></ion-col>
           <ion-col>
-            <ion-input placeholder="Rut" name="rut" type="text" inputmode="text"></ion-input>
+            <ion-input name="rut" type="text" inputmode="text"></ion-input>
           </ion-col>
         </ion-item>
         <ion-item>
-          <ion-label>Tipo Contato</ion-label>
-          <ion-select interface="popover" placeholder="Arrendatario/Propietario">
-            <ion-select-option value="Arrendatario">Arrendatario</ion-select-option>
-            <ion-select-option value="Propietario">Propietario</ion-select-option>
-            <ion-select-option value="Otro Contacto">Otro</ion-select-option>
-          </ion-select>
+          <ion-col size="auto"><ion-label>Iva:</ion-label></ion-col>
+          <ion-col>
+            <ion-input name="rut" type="text" inputmode="text"></ion-input>
+          </ion-col>
         </ion-item>
         <ion-item>
-          <ion-label>Tipo razon</ion-label>
-          <ion-select interface="popover" placeholder="Persona Natural/Empresa" #c (ionChange)="handleChange(c.value)">
-            <ion-select-option value="persona">Persona Natural</ion-select-option>
-            <ion-select-option value="empresa">Empresa</ion-select-option>
-          </ion-select>
+          <ion-col size="auto"><ion-label>Total:</ion-label></ion-col>
+          <ion-col>
+            <ion-input name="rut" type="text" inputmode="text"></ion-input>
+          </ion-col>
         </ion-item>
-
-
-        <p *ngIf="tiporazon == 'empresa'">
-          <ion-item>
-            <ion-col size="auto"><ion-label>Giro</ion-label></ion-col>
-            <ion-col>
-              <ion-input placeholder="Giro empresa" name="giro" type="text" inputmode="text"></ion-input>
-            </ion-col>
-          </ion-item>
-          <ion-item>
-            <ion-col size="auto"><ion-label>Correo</ion-label></ion-col>
-            <ion-col>
-              <ion-input placeholder="email" name="mail" type="email" inputmode="text"></ion-input>
-            </ion-col>
-          </ion-item>
-          <ion-item>
-            <ion-col size="auto"><ion-label>Direccion</ion-label></ion-col>
-            <ion-col>
-              <ion-input placeholder="av. ejemplo" type="text" inputmode="text"></ion-input>
-            </ion-col>
-          </ion-item>
-        </p>
         <ion-col>
           <ion-button expand="block">Guardar</ion-button>
         </ion-col>
+      </ion-card-content>
+      <!--cuentas ingresadas-->
+      <ion-card-content style="   max-width: 800px; margin: auto;">
+        <ion-label class="bold_lbl">CUENTAS INGRESADAS</ion-label>
+        <ion-item>
+          <ion-col><ion-label>Id Propiedad</ion-label></ion-col>
+          <ion-col><ion-label color="light">Tipo</ion-label></ion-col>
+          <ion-col> <ion-label color="danger">N° Cliente</ion-label></ion-col>
+          <ion-col><ion-label color="tertiary">Empresa</ion-label></ion-col>
+          <ion-col> <ion-label color="dark">Estado</ion-label></ion-col>
+
+        </ion-item>
+        <ion-item *ngFor="let c of cuentas">
+          <ion-col *ngFor="let p of filtroPropiedad(c.id_propiedad)"><ion-label>{{p.id_propiedad}}</ion-label></ion-col>
+          <ion-col><ion-label color="light">{{c.tipoCuenta}}</ion-label></ion-col>
+          <ion-col> <ion-label color="danger">{{c.numCliente}}</ion-label></ion-col>
+          <ion-col><ion-label color="tertiary">{{c.empresa}}</ion-label></ion-col>
+          <ion-col> <ion-label color="dark">estado</ion-label></ion-col>
+        </ion-item>
+      </ion-card-content>
+      <!--gastos ingresado -->
+      <ion-card-content style="   max-width: 800px; margin: auto;">
+        <ion-label class="bold_lbl">GASTOS INGRESADOS</ion-label>
+        <ion-item>
+          <ion-col><ion-label>Factura</ion-label></ion-col>
+          <ion-col><ion-label color="light">Rut Emisor</ion-label></ion-col>
+          <ion-col> <ion-label color="danger">N° Cliente</ion-label></ion-col>
+          <ion-col><ion-label color="tertiary">Empresa</ion-label></ion-col>
+          <ion-col><ion-label>Emision</ion-label></ion-col>
+          <ion-col> <ion-label>vencimiento</ion-label></ion-col>
+          <ion-col> <ion-label color="tertiary">Total</ion-label></ion-col>
+        </ion-item>
+        <ion-item *ngFor="let g of gastos">
+          <ion-col><ion-label>{{g.Num_documento}}</ion-label></ion-col>
+          <ion-col><ion-label color="light">{{g.rut_emisor}}</ion-label></ion-col>
+          <ion-col> <ion-label color="danger">{{g.Numero_cliente}}</ion-label></ion-col>
+          <ion-col><ion-label color="tertiary">{{g.Nombre_emisor}}</ion-label></ion-col>
+          <ion-col><ion-label>{{g.fecha_emision}}</ion-label></ion-col>
+          <ion-col><ion-label>{{g.fecha_vencimiento}}</ion-label></ion-col>
+          <ion-col> <ion-label color="tertiary">{{g.Total}}</ion-label></ion-col>
+        </ion-item>
       </ion-card-content>
     </ion-card>
   </div>
