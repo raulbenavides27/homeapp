@@ -10,6 +10,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./add-gastos.component.scss'],
 })
 export class AddGastosComponent implements OnInit {
+  tipoCuenta!: string;
   Propiedades: Propiedad[] = [] //propiedades 
   cuentas: Cuentas[] = [];// cuentas 
   gastos: Gastos[] = []; // facturas 
@@ -67,6 +68,10 @@ export class AddGastosComponent implements OnInit {
       }
     });
   }
+  handleChange(value: any) {
+    return this.tiporazon = value;
+
+  }
   getEmpresa() {
     const path = 'Entidad/';
     this.FirestoService.getColletion<Entidad>(path).subscribe(res => {
@@ -78,10 +83,9 @@ export class AddGastosComponent implements OnInit {
   filtroEmpresa() {
     return this.Empresas.filter(Empresas => Empresas.tipoEntidad == 'empresa')
   }
-
-  handleChange(value: any) {
-    return this.tiporazon = value;
-
+  filtroEmpresatipo() {
+    return this.Empresas.filter(Empresas => Empresas.tipoServicio == this.tipoCuenta)
+    
   }
   async guardarContacto() {
 

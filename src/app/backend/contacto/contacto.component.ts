@@ -51,7 +51,7 @@ export class ContactoComponent implements OnInit {
       email: '',
       direccion: '',
       telefono: '',
-
+      tipoServicio: '',
     };
 
   }

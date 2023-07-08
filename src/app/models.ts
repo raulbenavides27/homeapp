@@ -41,6 +41,7 @@ export interface Entidad {
     email: string;
     direccion: string;
     telefono: string;
+    tipoServicio: string;
     //  whatsapp: string;
 }
 export interface Cuentas {

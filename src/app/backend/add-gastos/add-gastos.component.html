@@ -31,9 +31,20 @@
       <ion-card-content style="   max-width: 650px; margin: auto;">
         <ion-label class="bold_lbl">Agregar Gastos</ion-label>
         <ion-item>
+          <ion-label>Tipo Cuenta </ion-label>
+          <ion-select interface="popover" #c (ionChange)="handleChange(c.value)">
+            <ion-select-option value="Agua">Agua</ion-select-option>
+            <ion-select-option value="Luz">Luz</ion-select-option>
+            <ion-select-option value="Gas">Gas</ion-select-option>
+            <ion-select-option value="Internet-cable">Internet-cable</ion-select-option>
+            <ion-select-option value="Arriendo">Arriendo</ion-select-option>
+            <ion-select-option value="Gastos Comunes">Gastos Comunes</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
           <ion-label>Empresa</ion-label>
           <ion-select  interface="popover">
-            <ion-select-option *ngFor="let Empresa of filtroEmpresa()" [value]="Empresa.nombre">{{Empresa.nombre}}</ion-select-option>
+            <ion-select-option *ngFor="let Empresa of filtroEmpresatipo()" [value]="Empresa.nombre">{{Empresa.nombre}}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item><ion-col size="auto"><ion-label>Rut Emisor:</ion-label></ion-col>

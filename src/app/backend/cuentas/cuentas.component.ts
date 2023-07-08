@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cuentas.component.scss'],
 })
 export class CuentasComponent implements OnInit {
+  tipoCuenta!: string;
   Cuentas: Cuentas[] = []
   newCuentas!: Cuentas;
   enableNewCuentas = false;
@@ -31,6 +32,8 @@ export class CuentasComponent implements OnInit {
               private router:Router) { }
               
   ngOnInit(){
+     this.tipoCuenta
+     this.handleChange(this.tipoCuenta)
      this.getEmpresa()
      this.filtroEmpresa();
     const propiedad = this.FirestoService.getProp()
@@ -49,6 +52,7 @@ export class CuentasComponent implements OnInit {
       numCliente: ''
     };
   }
+
 
 async guardarCuentas() 
 { 
@@ -70,6 +74,9 @@ getCuentas(){
     console.log(error);
     });
 }
+handleChange(value: any) {
+  return this.tipoCuenta = value;
+}
 getEmpresa() {
   const path = 'Entidad/';
   this.FirestoService.getColletion<Entidad>(path).subscribe(res => {
@@ -80,7 +87,11 @@ getEmpresa() {
   });
 }
 filtroEmpresa() {
-  return this.Empresas.filter(Empresas => Empresas.tipoEntidad == 'empresa')
+  return this.Empresas.filter(Empresas => Empresas.tipoEntidad == 'empresa' )
+  
+}
+filtroEmpresatipo() {
+  return this.Empresas.filter(Empresas => Empresas.tipoServicio == this.tipoCuenta)
   
 }
 
