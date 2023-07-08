@@ -15,13 +15,9 @@ import { AddGastosComponent } from './add-gastos/add-gastos.component';
     SetPropiedadComponent,
     CuentasComponent,
     EstadoComponent,
-<<<<<<< HEAD
     SoporteComponent,
-    ContactoComponent
-=======
     ContactoComponent,
     AddGastosComponent
->>>>>>> fase_3
   ],
   imports: [
     CommonModule,
