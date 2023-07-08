@@ -1,7 +1,7 @@
 import { Component, Directive, OnInit, importProvidersFrom } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Cuentas, Propiedad } from 'src/app/models';
+import { Cuentas, Entidad, Propiedad } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service'
 import { Router } from '@angular/router';
 
@@ -20,6 +20,8 @@ export class CuentasComponent implements OnInit {
   loading: any;
   newContacto!: Cuentas;
   P!: Propiedad;
+  Empresas: Entidad[] = []; // Empresas
+
   constructor(public menucontroler: MenuController,
               public FirestoService: FirestoreService,
               public loadingController:LoadingController,
@@ -29,7 +31,8 @@ export class CuentasComponent implements OnInit {
               private router:Router) { }
               
   ngOnInit(){
-
+     this.getEmpresa()
+     this.filtroEmpresa();
     const propiedad = this.FirestoService.getProp()
     console.log('la propiedad es la:', propiedad)
     if (propiedad !== undefined){
@@ -67,6 +70,20 @@ getCuentas(){
     console.log(error);
     });
 }
+getEmpresa() {
+  const path = 'Entidad/';
+  this.FirestoService.getColletion<Entidad>(path).subscribe(res => {
+    if (res.length) {
+      this.Empresas = res;
+      console.log('entidades llamadas', this.Empresas)
+    }
+  });
+}
+filtroEmpresa() {
+  return this.Empresas.filter(Empresas => Empresas.tipoEntidad == 'empresa')
+  
+}
+
 async deleteCuentas(P: Cuentas){
   const alert = await this.alertController.create({
     cssClass: '',

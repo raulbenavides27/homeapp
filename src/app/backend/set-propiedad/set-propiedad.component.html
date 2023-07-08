@@ -95,24 +95,32 @@
       <!--listas de propiedades Cascada-->
       <div *ngIf="enablelista">
         <ion-card *ngFor="let P of Propiedades">
-          <ion-accordion-group [multiple]="true" [value]="['first', 'third']">
-            <ion-accordion>
-              <ion-item slot="header">
-                <ion-grid [fixed]="true">
+          <ion-accordion-group [multiple]="true" [value]="['first', 'third']" >
+            <ion-accordion >
+              <ion-item slot="header" >
+                <ion-grid [fixed]="true" >
 
-                  <ion-row>
+                  <ion-row [ngStyle]="{'background-color':P.estado === 'Desactivada' ? 'gray' : '' }">
                     <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
                     <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
                     <ion-col size="auto"><ion-label>{{P.tipo}}</ion-label></ion-col>
                     <ion-col size="auto"><ion-label>{{P.numero}},</ion-label></ion-col>
                     <ion-col size="auto"><ion-label>{{P.direccion}},</ion-label></ion-col>
                     <ion-col size="auto"><ion-label>{{P.comuna}}</ion-label></ion-col>
+
                   </ion-row>
+
                 </ion-grid>
               </ion-item>
               <ion-item slot="content">
                 <ion-grid [fixed]="true">
-
+                  <ion-item size="auto">
+                    <ion-label>Estado:</ion-label>
+                    <ion-select #c (ionChange)="cambiarEstado(P.id, c.value)" [value]="P.estado" okText="ok"
+                      cancelTex="Cancelar" interface="popover">
+                      <ion-select-option value="Activa">Activa</ion-select-option>
+                      <ion-select-option value="Desactivada">Desactivada</ion-select-option>
+                    </ion-select></ion-item>
                   <!--detalles de contacto -->
                   <div style="background: #8ea8b3; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
                     <ion-label class="bold_lbl">Contactos</ion-label>
@@ -136,17 +144,17 @@
                     <ion-row *ngFor="let c of filtroCuentaAgua(P.id)">
                       <ion-col size="auto"><ion-icon name="water"></ion-icon></ion-col>
                       <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label>Nmuero Ciente:</ion-label></ion-col>
+                      <ion-col size="auto"><ion-label>Numuero Ciente:</ion-label></ion-col>
                       <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      <ion-col size="auto"
-                        *ngFor="let G of filtroGasto(c.numCliente) "><ion-label>${{G.Total }}</ion-label></ion-col>
+                      <ion-col size="auto" *ngFor="let G of filtroGasto(c.numCliente) "><ion-label>${{G.Total
+                          }}</ion-label></ion-col>
                       <ion-col size="auto"
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>{{G.Estado}}</ion-label></ion-col>
                     </ion-row>
                     <ion-row *ngFor="let c of filtroCuentaLuz(P.id)">
                       <ion-col size="auto"><ion-icon name="flash"></ion-icon></ion-col>
                       <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label>Nmuero Ciente:</ion-label></ion-col>
+                      <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
                       <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
                       <ion-col size="auto"
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>${{G.Total}}</ion-label></ion-col>
@@ -156,7 +164,7 @@
                     <ion-row *ngFor="let c of filtroCuentaGas(P.id)">
                       <ion-col size="auto"><ion-icon name="flame"></ion-icon></ion-col>
                       <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label>Nmuero Ciente:</ion-label></ion-col>
+                      <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
                       <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
                       <ion-col size="auto"
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>${{G.Total}}</ion-label></ion-col>
@@ -166,7 +174,7 @@
                     <ion-row *ngFor="let c of filtroCuentaInternet(P.id)">
                       <ion-col size="auto"><ion-icon name="globe"></ion-icon></ion-col>
                       <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label>Nmuero Ciente:</ion-label></ion-col>
+                      <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
                       <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
                       <ion-col size="auto"
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>${{G.Total}}</ion-label></ion-col>
@@ -174,9 +182,9 @@
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>{{G.Estado}}</ion-label></ion-col>
                     </ion-row>
                     <ion-row *ngFor="let c of filtroCuentaArriendo(P.id)">
-                      <ion-col size="auto"><ion-icon name="globe"></ion-icon></ion-col>
+                      <ion-col size="auto"><ion-icon name="business-outline"></ion-icon></ion-col>
                       <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label>Nmuero Ciente:</ion-label></ion-col>
+                      <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
                       <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
                       <ion-col size="auto"
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>${{G.Total}}</ion-label></ion-col>
@@ -184,9 +192,9 @@
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>{{G.Estado}}</ion-label></ion-col>
                     </ion-row>
                     <ion-row *ngFor="let c of filtroCuentaGGCC(P.id)">
-                      <ion-col size="auto"><ion-icon name="globe"></ion-icon></ion-col>
+                      <ion-col size="auto"><ion-icon name="newspaper-outline"></ion-icon></ion-col>
                       <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label>Nmuero Ciente:</ion-label></ion-col>
+                      <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
                       <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
                       <ion-col size="auto"
                         *ngFor="let G of filtroGasto(c.numCliente)"><ion-label>${{G.Total}}</ion-label></ion-col>

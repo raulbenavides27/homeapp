@@ -38,19 +38,13 @@
             <ion-select-option value="Gas">Gas</ion-select-option>
             <ion-select-option value="Internet/Cable">Internet/cable</ion-select-option>
             <ion-select-option value="Arriendo">Arriendo</ion-select-option>
+            <ion-select-option value="Gastos Comunes">Gastos Comunes</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Empresa</ion-label>
           <ion-select [(ngModel)]="newCuentas.empresa" interface="popover">
-            <ion-select-option value="Lipigas">Lipigas</ion-select-option>
-            <ion-select-option value="Gasco">Gasco</ion-select-option>
-            <ion-select-option value="Aguas Andinas">Aguas Andinas</ion-select-option>
-            <ion-select-option value="VTR">VTR</ion-select-option>
-            <ion-select-option value="Movistar">Movistar</ion-select-option>
-            <ion-select-option value="Enel">Enel</ion-select-option>
-            <ion-select-option value="Arriendo">Abastible</ion-select-option>
-            <ion-select-option value="Otro">Otro</ion-select-option>
+            <ion-select-option *ngFor="let Empresa of filtroEmpresa()" [value]="Empresa.nombre">{{Empresa.nombre}}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>

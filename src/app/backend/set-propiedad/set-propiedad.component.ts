@@ -40,12 +40,12 @@ export class SetPropiedadComponent implements OnInit {
     public firebaseauthService: FirebaseauthService,
     private router: Router) { }
 
-  async ngOnInit() 
-  {
+  async ngOnInit() {
     this.getPropiedad();
     this.getContacto();
     this.getCuenta();
     this.getGasto();
+   
   }
   async guardarPropiedad() {
     this.presentLoading();
@@ -119,6 +119,21 @@ export class SetPropiedadComponent implements OnInit {
   filtroGasto(N_Cliente: string) {
     return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente)
   }
+  cambiarEstado(id_P: string, estado: string) {
+    console.log('estado selecion:', 'cambiarEstado()')
+    const path = 'Propiedad/'
+    const updateDoc = { estado }
+    const id = id_P;
+    this.FirestoService.updateDoc(updateDoc, path, id).then(() => {
+      console.log('estado cambiado')
+    })
+    if(estado == "Desactivada"){
+
+      document.documentElement.style.setProperty('--background',"yellow");
+      
+      }
+  }
+
   // eliminar propiedad 
   async deletePropiedad(P: Propiedad) {
     const alert = await this.alertController.create({
@@ -166,7 +181,7 @@ export class SetPropiedadComponent implements OnInit {
       telefono: 0,
       fecha: new Date(),
       tipo: '',
-      estado: '',
+      estado: 'Activa',
       condicion: '',
       ubicacion: '',
 
