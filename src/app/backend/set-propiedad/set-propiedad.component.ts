@@ -117,7 +117,7 @@ export class SetPropiedadComponent implements OnInit {
     });
   }
   filtroGasto(N_Cliente: string) {
-    return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente)
+    return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente && gastos.Estado !=='Pagada')
   }
   cambiarEstado(id_P: string, estado: string) {
     console.log('estado selecion:', 'cambiarEstado()')
