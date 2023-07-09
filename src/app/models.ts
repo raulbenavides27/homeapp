@@ -30,7 +30,6 @@ export interface Cliente {
 export interface Entidad {
     id_entidad: string;
     id_propiedad: string;
-    //  id_responsable: string; // para cuando exista historial
     nombre: string;
     apellidop: string;
     apellidom: string;
@@ -42,7 +41,7 @@ export interface Entidad {
     direccion: string;
     telefono: string;
     tipoServicio: string;
-    //  whatsapp: string;
+   
 }
 export interface Cuentas {
     idCuentas: string,
@@ -57,13 +56,13 @@ export interface Gastos {
     Nombre_emisor: string,
     Num_documento: number,
     Numero_cliente: string,
-    Total: string,
+    Total: number,
     fecha_emision: Date,
     fecha_vencimiento: Date,
     rut_emisor: string,
-    neto: string,
+    neto: number,
     id_documento: string,
-    iva: string,
+    iva: number,
     giro: string,
     
 }
