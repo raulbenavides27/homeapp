@@ -140,20 +140,46 @@ export class SetPropiedadComponent implements OnInit {
       cssClass: '',
       header: 'Advertencia',
       message: '¿Seguro desea <strong>eliminar</strong> esta propiedad?',
-      buttons: [{
+      inputs: [
+      {
+        name: 'cambio',
+        type: 'radio',
+        label: 'cambio de arrendatario',
+        value: 'cambio de arrendatario'
+      },
+      {
+        name: 'impago',
+        type: 'radio',
+        label: 'Cuentas impagas',
+        value: 'Cuentas impagas'
+      },
+      {
+        name: 'fin',
+        type: 'radio',
+        label: 'Finalizacion de contrato',
+        value: 'Finalizacion de contrato'
+      },
+      {
+        name: 'dano',
+        type: 'radio',
+        label: 'Daño a la propiedad',
+        value: 'Daño a la propiedad'
+      },
+    ],
+    buttons: [{
         text: 'Cancelar',
         role: 'Cancel',
         cssClass: '',
         handler: (blah) => { console.log('confirm Cancel: blah'); }
       },
       {
-        text: 'ok',
-        handler: () => {
-          console.log('Confirm Okay');
-          const path = 'Propiedad/';
-          this.FirestoService.deletDoc(path, P.id).then(res => {
-            this.presentToast('Eliminado con exito');
-            this.alertController.dismiss();
+      text:'ok',
+      handler:() =>{
+        console.log('Confirm Okay');
+        const path = 'Propiedad/';
+        this.FirestoService.deletDoc(path,P.id).then(res =>{
+          this.presentToast('Eliminado con exito');
+          this.alertController.dismiss(); 
           }).catch(error => {
             this.presentToast('Error intente mas tarde');
           });

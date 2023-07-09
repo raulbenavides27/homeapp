@@ -140,8 +140,8 @@ goToBack () {
 
   nombreControl = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);  
   emailControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/)]);
-  CpasswordControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/)]);
+  passwordControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]+$/)]);
+  CpasswordControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]+$/)]);
 
   
 }
