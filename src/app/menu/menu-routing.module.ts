@@ -30,8 +30,8 @@ const routes: Routes = [
           loadChildren: () => import('../cuentas/cuentas.module').then(m => m.CuentasPageModule)
         },
         {
-          path: 'soporte',
-          loadChildren: () => import('../soporte/soporte.module').then(m => m.SoportePageModule)
+          path: 'SoporteComponent',
+          loadChildren: () => import('./backend/soporte/soporte.component').then(m => m.SoportePageModule)
         }
   ]
   }
