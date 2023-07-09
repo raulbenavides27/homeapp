@@ -29,7 +29,7 @@ export class SetPropiedadComponent implements OnInit {
   uid: any;
   id_P: any;
   cliente!: Cliente;
-
+  laFechaHoy!: Date;
   constructor(
     public menucontroler: MenuController,
     public FirestoService: FirestoreService,
@@ -45,7 +45,7 @@ export class SetPropiedadComponent implements OnInit {
     this.getContacto();
     this.getCuenta();
     this.getGasto();
-   
+   this.laFechaHoy = new Date;
   }
   async guardarPropiedad() {
     this.presentLoading();
