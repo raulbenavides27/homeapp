@@ -5,7 +5,10 @@
     </ion-buttons>
     <ion-input type="text" placeholder="Buscar propiedades" [(ngModel)]="searchTerm"></ion-input>
     <ion-buttons slot="end">
-      <ion-button (click)="filterProperties()">Buscar</ion-button>
+      <ion-button (click)="filterProperties()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
