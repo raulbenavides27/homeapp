@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border" mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-input type="text" placeholder="Buscar propiedades" [(ngModel)]="searchTerm"></ion-input>
+    <ion-buttons slot="end">
+      <ion-button (click)="filterProperties()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    <ion-header>
+      <ion-toolbar>
+        <ion-segment color="dark" [(ngModel)]="selectedSegment">
+          <ion-segment-button value="Propiedad">
+            <ion-label>Propiedad</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Cuentas">
+            <ion-label>Cuentas</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-header>
+
+    <div *ngFor="let propiedad of filteredProperties">
+      <app-propiedad [propiedad]="propiedad"></app-propiedad>
+    </div>
+  </div>
+</ion-content>

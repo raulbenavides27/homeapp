@@ -15,10 +15,7 @@ const routes: Routes = [
           path: 'addpropiedad',
           loadChildren: () => import('../addpropiedad/addpropiedad.module').then( m => m.AddpropiedadPageModule),
         },
-        {
-          path: 'perfil',
-          loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
-        },
+       
          {
           path: 'ayuda',
           loadChildren: () => import('../ayuda/ayuda.module').then( m => m.AyudaPageModule)
@@ -26,8 +23,16 @@ const routes: Routes = [
         ,
         {
           path: 'ajuste',
-          loadChildren: () => import('../ajuste/ajuste.module').then( m => m.AjustePageModule)
-         }
+          loadChildren: () => import('../ajuste/ajuste.module').then(m => m.AjustePageModule)
+        },
+        {
+          path: 'cuentas',
+          loadChildren: () => import('../cuentas/cuentas.module').then(m => m.CuentasPageModule)
+        },
+        {
+          path: 'SoporteComponent',
+          loadChildren: () => import('./backend/soporte/soporte.component').then(m => m.SoportePageModule)
+        }
   ]
   }
 ];
