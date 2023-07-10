@@ -5,6 +5,7 @@ import { SetPropiedadComponent } from './backend/set-propiedad/set-propiedad.com
 import { CuentasComponent } from './backend/cuentas/cuentas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { AuthGuard } from './guards/auth.guard';
+import { EstadoComponent } from './backend/estado/estado.component';
 import { TareasComponent } from './pages/tareas/tareas.component';
 import { ContactoComponent } from './backend/contacto/contacto.component';
 import { SoporteComponent } from './backend/soporte/soporte.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'home'
   { path: 'set-propiedad', component: SetPropiedadComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'set-propiedad'
   { path: 'SoporteComponent', component: SoporteComponent, canActivate: [AuthGuard] },
+  { path: 'EstadoComponent', component: EstadoComponent, canActivate: [AuthGuard] },
   { path: 'contacto', component: ContactoComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'contacto'
   { path: 'gastos', component: AddGastosComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'gastos'
   { path: 'tareas', component: TareasComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'tareas'
