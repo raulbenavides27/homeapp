@@ -30,6 +30,9 @@ export class SetPropiedadComponent implements OnInit {
   id_P: any;
   cliente!: Cliente;
   laFechaHoy!: Date;
+  ZonaPropiedad = true;
+
+  
   constructor(
     public menucontroler: MenuController,
     public FirestoService: FirestoreService,
@@ -45,7 +48,7 @@ export class SetPropiedadComponent implements OnInit {
     this.getContacto();
     this.getCuenta();
     this.getGasto();
-   this.laFechaHoy = new Date;
+ 
   }
   async guardarPropiedad() {
     this.presentLoading();
@@ -120,6 +123,7 @@ export class SetPropiedadComponent implements OnInit {
     return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente && gastos.Estado !=='Pagada')
   }
   cambiarEstado(id_P: string, estado: string) {
+    
     console.log('estado selecion:', 'cambiarEstado()')
     const path = 'Propiedad/'
     const updateDoc = { estado }
@@ -127,11 +131,8 @@ export class SetPropiedadComponent implements OnInit {
     this.FirestoService.updateDoc(updateDoc, path, id).then(() => {
       console.log('estado cambiado')
     })
-    if(estado == "Desactivada"){
-
-      document.documentElement.style.setProperty('--background',"yellow");
-      
-      }
+ 
+  
   }
 
   // eliminar propiedad 

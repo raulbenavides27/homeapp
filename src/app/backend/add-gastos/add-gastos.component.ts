@@ -70,7 +70,7 @@ export class AddGastosComponent implements OnInit {
 
   btnLimpiar(){
     this.newGastos = {
-    Estado: 'Pendiente',
+    Estado: '',
     Nombre_emisor: '',
     Num_documento: 0,
     Numero_cliente: '',

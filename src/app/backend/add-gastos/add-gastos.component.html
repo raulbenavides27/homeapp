@@ -31,7 +31,7 @@
           </ion-select>
         </ion-item>
         <ion-item><ion-col size="auto"><ion-label>Rut Emisor:</ion-label></ion-col>
-          <ion-select [(ngModel)]="newGastos.rut_emisor">
+          <ion-select [(ngModel)]="newGastos.rut_emisor" interface="popover" >
             <ion-select-option  type="text" inputmode="text" *ngFor="let emp of filtroRut()" [value]="emp.rut">{{emp.rut}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -43,7 +43,7 @@
         </ion-item>
         <ion-item>
           <ion-col size="auto"><ion-label>Giro:</ion-label></ion-col>
-          <ion-select [(ngModel)]="newGastos.giro" >
+          <ion-select [(ngModel)]="newGastos.giro" interface="popover" >
             <ion-select-option type="text" inputmode="text"  *ngFor="let emp of filtroRut()">{{emp.giro}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -64,6 +64,13 @@
           <ion-col>
             <ion-input [(ngModel)]="newGastos.fecha_vencimiento" type="date" inputmode="date" value="dd/mm/aaaa"></ion-input>
           </ion-col>
+        </ion-item>
+        <ion-item><ion-col size="auto"><ion-label>Estado de gasto:</ion-label></ion-col>
+          <ion-select [(ngModel)]="newGastos.Estado" interface="popover">
+            <ion-select-option  type="text" inputmode="text" value="Vencida" >Vencida</ion-select-option>
+            <ion-select-option  type="text" inputmode="text" value="Pagada" >Pagada</ion-select-option>
+            <ion-select-option  type="text" inputmode="text" value="Vigente" >Vigente</ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item>
           <ion-col size="auto"><ion-label>Telefono +56</ion-label></ion-col>
@@ -101,7 +108,7 @@
           <ion-col><ion-label color="light">Tipo</ion-label></ion-col>
           <ion-col> <ion-label color="danger">N° Cliente</ion-label></ion-col>
           <ion-col><ion-label color="tertiary">Empresa</ion-label></ion-col>
-          <ion-col> <ion-label color="dark">Estado</ion-label></ion-col>
+        
 
         </ion-item>
         <ion-item *ngFor="let c of cuentas">
@@ -109,7 +116,7 @@
           <ion-col><ion-label color="light">{{c.tipoCuenta}}</ion-label></ion-col>
           <ion-col> <ion-label color="danger">{{c.numCliente}}</ion-label></ion-col>
           <ion-col><ion-label color="tertiary">{{c.empresa}}</ion-label></ion-col>
-          <ion-col> <ion-label color="dark">estado</ion-label></ion-col>
+       
         </ion-item>
       </ion-card-content>
       <!--gastos ingresado -->
