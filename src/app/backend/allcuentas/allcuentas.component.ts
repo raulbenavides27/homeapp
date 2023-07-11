@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cuentas } from 'src/app/models';
 
 @Component({
   selector: 'app-allcuentas',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./allcuentas.component.scss'],
 })
 export class AllcuentasComponent  implements OnInit {
-
+cuentas!: Cuentas;
   constructor() { }
 
   ngOnInit() {}
