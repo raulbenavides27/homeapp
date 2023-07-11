@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-button (click)="openMenu()">
         <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
@@ -12,7 +12,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-button (click)="bntNuevo()" color="secondary">
+      <ion-button (click)="bntNuevo()" >
         <ion-label>Nuevo</ion-label>
         <ion-icon name="add"></ion-icon>
       </ion-button>
@@ -83,14 +83,14 @@
 
         <ion-item>
           <ion-button (click)="guardarEstado()" (click)="enableNewEstado = false" (click)="enablelista = true "
-            color="secondary" expand="block" shape="round">Guardar</ion-button>
+             expand="block" shape="round">Guardar</ion-button>
         </ion-item>
       </div>
       <!--listas de Estadoes Cascada-->
 
       <ion-accordion-group *ngIf="enablelista" [multiple]="true" [value]="['first', 'third']" lines="none">
         <ion-accordion *ngFor="let P of Estado">
-          <ion-item slot="header" color="secondary">
+          <ion-item slot="header" >
             <ion-col>
               <ion-label>Estado de propiedad: {{P.paredes}}</ion-label>
             </ion-col>
