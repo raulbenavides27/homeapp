@@ -5,7 +5,12 @@
         <ion-icon slot="icon-only" name="menu-sharp"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Estado</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goPerfil()">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Estado Inmueble</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -79,6 +84,17 @@
             <ion-select-option value="mal">Mal estado</ion-select-option>
             <ion-select-option value="arreglo">Necesita arreglo</ion-select-option>
           </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label class="small_lbl">Agregar una foto</ion-label>
+          <ion-buttons>
+            <ion-button>
+              <label for="file-upload">
+                <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+              </label>
+              <input  id="file-upload" type="file" accept="image/*">
+            </ion-button>
+          </ion-buttons>
         </ion-item>
 
         <ion-item>

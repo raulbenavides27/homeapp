@@ -62,4 +62,7 @@ export class HomeComponent implements OnInit {
       this.filteredProperties = this.propiedades;
     }
   }
+  goPerfil() {
+    this.router.navigate(['perfil']);
+  }
 }

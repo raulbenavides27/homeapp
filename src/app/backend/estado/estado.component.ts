@@ -3,6 +3,7 @@ import { AlertController, LoadingController, MenuController, ToastController } f
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Estado } from 'src/app/models';
 import {FirestorageService} from 'src/app/services/firestorage.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estado',
@@ -23,7 +24,8 @@ export class EstadoComponent  implements OnInit {
               public loadingController:LoadingController,
               public toastController:ToastController,
               public alertController: AlertController,
-              public firestorageService: FirestorageService) { }
+              public firestorageService: FirestorageService,
+              public router: Router) { }
               
   ngOnInit(){
     this.getEstado();
@@ -117,7 +119,9 @@ async presentToast(msg: string){
   });
   toast.present();
 }
-
+goPerfil() {
+  this.router.navigate(['perfil']);
+}
 }
 
 
