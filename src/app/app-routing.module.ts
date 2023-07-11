@@ -9,6 +9,8 @@ import { TareasComponent } from './pages/tareas/tareas.component';
 import { ContactoComponent } from './backend/contacto/contacto.component';
 import { SoporteComponent } from './backend/soporte/soporte.component';
 import { AddGastosComponent } from './backend/add-gastos/add-gastos.component';
+import { AllcuentasComponent } from './backend/allcuentas/allcuentas.component';
+import { EstadoComponent } from './backend/estado/estado.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/bienvenido/bienvenido.module').then(m => m.BienvenidoPageModule) },
@@ -16,8 +18,10 @@ const routes: Routes = [
   { path: 'set-propiedad', component: SetPropiedadComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'set-propiedad'
   { path: 'SoporteComponent', component: SoporteComponent, canActivate: [AuthGuard] },
   { path: 'contacto', component: ContactoComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'contacto'
+  { path: 'estados', component: EstadoComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'contacto'
   { path: 'gastos', component: AddGastosComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'gastos'
   { path: 'tareas', component: TareasComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'tareas'
+  { path: 'allcuentas', component: AllcuentasComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'tareas'
   { path: 'cuentas', component: CuentasComponent, canActivate: [AuthGuard] }, // Aplicar canActivate en la ruta 'cuentas'
   { path: 'perfil', component: PerfilComponent}, // Aplicar canActivate en la ruta 'perfil'
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
