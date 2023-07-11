@@ -27,22 +27,22 @@
 
 ion-content {
     width: 100%;
-    --background:  #a6a6a8;
+    --background:  #F6F6F6;
 }
 
 
 
 ion-toolbar{
-     --background:  #b6b6b9;
+     --background:  #88C7C3;
       padding: 10px;
 }
 
 ion-item{
-    --background:  #b6b6b9;
+    --background:  #F6F6F6;
    
 }
 ion-card{
-    --background:  #b6b6b9;
+    --background:  #dddddd;
    
 }
 
@@ -57,7 +57,7 @@ ion-card{
     ion-button {
         margin: auto;
         max-width: 300px;
-        --background: #b6b6b9;
+        --background: #88C7C3;
 
         color: black;
     } 
@@ -77,12 +77,12 @@ ion-card{
     }
 ion-input {
         margin: auto;
-        background: rgba(70, 65, 69, 0.3);
+        background: rgba(0, 0, 0, 0.3);
         border-radius: 5px;
-        color: white;
+        color: rgb(2, 2, 2);
 ion-icon {
             margin-left: 10px;
-            color: white;
+            color: rgb(17, 16, 16);
         }
     }
 
