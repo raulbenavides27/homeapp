@@ -252,4 +252,3 @@ export class SetPropiedadComponent implements OnInit {
   }
 
 }
-
