@@ -17,7 +17,7 @@
 <ion-content>
   <!--este div contiene todo -->
   <div class="main_content_div">
-    <ion-card style="--background: white; max-width: 800px; margin: auto;">
+    <ion-card style="--background: #DDDDDD;  max-width: 800px; margin: auto;">
       <!--CABECERA -->
       <ion-card-header>
         <!--btn agregrar  -->
@@ -25,7 +25,7 @@
       <!--listas Cascada-->
         <ion-card-content style=" margin-bottom: 10px; border-radius: 5px;">
           <ion-label class="bold_lbl">Cuentas</ion-label>
-          <ion-grid  *ngFor="let c of cuentas" style="background:  #DDDDDD; margin-bottom: 10px; padding: 5px; border-radius: 5px;">
+          <ion-grid  *ngFor="let c of cuentas" style="background:white;  margin-bottom: 10px; padding: 5px; border-radius: 5px;">
             <ion-row>
               <ion-col size="auto">
                 <ion-label class="bold_lbl">{{c.tipoCuenta}}</ion-label>
