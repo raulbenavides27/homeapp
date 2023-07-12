@@ -10,12 +10,12 @@
 <ion-content>
   <!--FORMULARIO DE PERFIL-->
   <div *ngIf="!uid.length" class="main_content_div">
-    <ion-card style="--background:  #808081; max-width: 800px; margin: auto; padding: 10px;">
+    <ion-card style=" max-width: 800px; margin: auto; padding: 10px;">
       <ion-col>
         <ion-label class="bold_lbl">Bienvenido</ion-label>
       </ion-col>
       <!--registro-->
-      <ion-card-content style="background:  #b6b6b9 ; max-width: 500px; margin: auto; border-radius: 20px;">
+      <ion-card-content style=" max-width: 500px; margin: auto; border-radius: 20px;">
         <ion-col>
           <ion-label class="small_lbl">Ingresa tus datos</ion-label>
         </ion-col>
@@ -85,8 +85,6 @@
             </ion-label>
           </ion-item>
         </div>
-
-
         <ion-col>
           <ion-button *ngIf="ingresarEnable" (click)="registrarse()" expand="block" color="medium">registrar
           </ion-button>
@@ -142,8 +140,7 @@
           <ion-button style="margin-top: 20px;" (click)="guardarUser()" expand="block" size="small">guardar</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button style="margin-top: 10px;" (click)="salir()" expand="block" size="small">Cerrar
-            cesion</ion-button>
+          <ion-button style="margin-top: 10px;" (click)="salir()" expand="block" size="small">Cerrar Sesión</ion-button>
         </ion-col>
       </ion-card-content>
     </ion-card>

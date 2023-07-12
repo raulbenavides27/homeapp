@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Propiedad } from 'src/app/models';
+import { Cuentas, Propiedad } from 'src/app/models';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +10,10 @@ import { Propiedad } from 'src/app/models';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  private path = 'Propiedad/';
+ 
   propiedades: Propiedad[] = [];
+  cuentas :Cuentas[]= [];
+
   filteredProperties: Propiedad[] = [];
   searchTerm: string = '';
   selectedSegment: string = 'Propiedad';
@@ -32,11 +34,22 @@ export class HomeComponent implements OnInit {
   }
 
   loadProductos() {
-    this.firestoreService.getColletion<Propiedad>(this.path).subscribe((res) => {
+    const path = 'Propiedad/';
+    this.firestoreService.getColletion<Propiedad>(path).subscribe((res) => {
       console.log(res);
       this.propiedades = res;
       this.filteredProperties = res; // Initialize the filtered properties array
     });
+  }
+  loadCuentas() {
+    const path = 'Cuentas/'
+    this.firestoreService.getColletion<Cuentas>(path).subscribe((res) => {
+      console.log(res);
+      this.cuentas = res;
+    });
+  }
+  path<T>(path: any) {
+    throw new Error('Method not implemented.');
   }
 
   filterProperties() {
@@ -48,5 +61,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.filteredProperties = this.propiedades;
     }
+  }
+  goPerfil() {
+    this.router.navigate(['perfil']);
   }
 }

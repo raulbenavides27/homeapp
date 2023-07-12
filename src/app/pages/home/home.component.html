@@ -8,7 +8,11 @@
       <ion-button (click)="filterProperties()">
         <ion-icon name="search-outline"></ion-icon>
       </ion-button>
-
+    </ion-buttons>
+    <ion-buttons  (click)="goPerfil()" slot="end">
+      <ion-button >
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -19,6 +23,11 @@
 
     <div *ngFor="let propiedad of filteredProperties">
       <app-propiedad [propiedad]="propiedad"></app-propiedad>
+    </div>
+
+
+    <div *ngFor="let cuentas of cuentas">
+      <app-cuenta></app-cuenta>
     </div>
   </div>
 </ion-content>
