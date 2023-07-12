@@ -8,28 +8,26 @@
       <ion-button (click)="filterProperties()">
         <ion-icon name="search-outline"></ion-icon>
       </ion-button>
-
+    </ion-buttons>
+    <ion-buttons  (click)="goPerfil()" slot="end">
+      <ion-button >
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="main_content_div">
-    <ion-header>
-      <ion-toolbar>
-        <ion-segment color="dark" [(ngModel)]="selectedSegment">
-          <ion-segment-button value="Propiedad">
-            <ion-label>Propiedad</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="Cuentas">
-            <ion-label>Cuentas</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
-    </ion-header>
+
 
     <div *ngFor="let propiedad of filteredProperties">
       <app-propiedad [propiedad]="propiedad"></app-propiedad>
+    </div>
+
+
+    <div *ngFor="let cuentas of cuentas">
+      <app-cuenta></app-cuenta>
     </div>
   </div>
 </ion-content>

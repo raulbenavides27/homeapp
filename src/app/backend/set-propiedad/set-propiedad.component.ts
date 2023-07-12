@@ -101,7 +101,7 @@ export class SetPropiedadComponent implements OnInit {
     return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Gas')
   }
   filtroCuentaInternet(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Internet/cable')
+    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Internet-cable')
   }
   filtroCuentaArriendo(id_P: string) {
     return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Arriendo')
@@ -119,8 +119,8 @@ export class SetPropiedadComponent implements OnInit {
       }
     });
   }
-  filtroGasto(N_Cliente: string) {
-    return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente && gastos.Estado !=='Pagada')
+  filtroGasto(N_Cliente: string, nomEmpCuentas:string) {
+    return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente && gastos.Estado !=='Pagada' && gastos.Nombre_emisor == nomEmpCuentas  )
   }
   cambiarEstado(id_P: string, estado: string) {
     
@@ -250,6 +250,5 @@ export class SetPropiedadComponent implements OnInit {
 
 
   }
-
+ 
 }
-

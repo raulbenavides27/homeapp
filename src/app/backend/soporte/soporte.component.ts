@@ -5,6 +5,7 @@ import { FirestorageService } from 'src/app/services/firestorage.service';
 import { Soporte } from 'src/app/models';
 import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-soporte',
@@ -17,7 +18,8 @@ export class SoporteComponent {
   descripcion: string = '';
   enviandoSolicitud: boolean = false;
 
-  constructor(private toastController: ToastController) {}
+  constructor(private toastController: ToastController,
+    public router: Router) {}
 
   async enviarSolicitud() {
     this.enviandoSolicitud = true;
@@ -40,5 +42,8 @@ export class SoporteComponent {
     this.correo = '';
     this.descripcion = '';
     this.enviandoSolicitud = false;
+  }
+  goPerfil() {
+    this.router.navigate(['perfil']);
   }
 }

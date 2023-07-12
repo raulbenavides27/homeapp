@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { PropiedadComponent } from './propiedad/propiedad.component';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
+import { CuentaComponent } from './cuenta/cuenta.component';
+
 
 
 
 @NgModule({
   declarations: [
-    PropiedadComponent
+    PropiedadComponent,
+    CuentaComponent
+
   ],
   imports: [
     CommonModule,
@@ -16,7 +20,8 @@ import { Router, RouterModule } from '@angular/router';
     RouterModule,
 
   ], exports:[
-    PropiedadComponent
+    PropiedadComponent,
+    CuentaComponent
   ]
  
 })

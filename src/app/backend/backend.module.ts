@@ -9,6 +9,7 @@ import { EstadoComponent } from './estado/estado.component';
 import { SoporteComponent } from './soporte/soporte.component';
 import { RouterModule } from '@angular/router';
 import { AddGastosComponent } from './add-gastos/add-gastos.component';
+import { AllcuentasComponent } from './allcuentas/allcuentas.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { AddGastosComponent } from './add-gastos/add-gastos.component';
     EstadoComponent,
     SoporteComponent,
     ContactoComponent,
-    AddGastosComponent
+    AddGastosComponent,
+    AllcuentasComponent
+    
   ],
   imports: [
     CommonModule,
