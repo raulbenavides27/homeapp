@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Cliente, Cuentas, Entidad, Gastos, Propiedad } from 'src/app/models';
+import { Cliente, Cuentas, Entidad, Estado, Gastos, Propiedad } from 'src/app/models';
 import { FirestorageService } from 'src/app/services/firestorage.service';
 import { Router } from '@angular/router';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
@@ -15,11 +15,10 @@ export class EstadoComponent  implements OnInit {
   Propiedades: Propiedad[] = [] //propiedades 
   contacto: Entidad[] = []; // contactos 
   cuentas: Cuentas[] = []; // cuentas 
-  gastos: Gastos[] = []; // facturas 
-  estad0: Gastos[] = []; // facturas 
-  newPropiedad!: Propiedad;
+  estados: Estado[] = []; // facturas 
+  newEstado!: Estado;
   newContacto!: Propiedad;
-  enableNewPropiedad = false;
+  enableNewEstado = false;
   enableNewContacto = false;
   enablelista = true;
   btnClose = false;
@@ -47,18 +46,17 @@ export class EstadoComponent  implements OnInit {
   async ngOnInit() {
     this.getPropiedad();
     this.getContacto();
-    this.getCuenta();
-    this.getGasto();
+    this.getEstado();
  
   }
-  async guardarPropiedad() {
+  async guardarEstado() {
     this.presentLoading();
-    const path = 'Propiedad';
-    const name = this.newPropiedad.id_propiedad;
+    const path = 'Estado';
+    const name = this.newEstado.id;
     if (this.newfile !== undefined) {
       const res = await this.firestorageService.uploadImage(this.newfile, path, name);
     }
-    this.FirestoService.creatDoc(this.newPropiedad, path, this.newPropiedad.id).then(res => {
+    this.FirestoService.creatDoc(this.newEstado, path, this.newEstado.id).then(res => {
       this.loading.dismiss();
       this.presentToast('Guardado con exito');
     }).catch(error => {
@@ -69,6 +67,11 @@ export class EstadoComponent  implements OnInit {
     const path = 'Propiedad/';
     this.FirestoService.getColletion<Propiedad>(path).subscribe(res => { this.Propiedades = res; });
     console.log('se esta obteniendo propiedad', this.Propiedades)
+  }
+  getEstado() {
+    const path = 'Estado/';
+    this.FirestoService.getColletion<Estado>(path).subscribe(res => { this.estados = res; });
+    console.log('estados', this.estados)
   }
   getContacto() {
     const path = 'Entidad/';
@@ -111,18 +114,8 @@ export class EstadoComponent  implements OnInit {
     return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Gastos Comunes')
   }
   // obtener boletas para consultar cuenta en relacion con gasto  
-  getGasto() {
-    const path = 'Gastos/';
-    this.FirestoService.getColletion<Gastos>(path).subscribe(res => {
-      if (res.length) {
-        this.gastos = res;
-        console.log('gasto es: ', this.gastos)
-      }
-    });
-  }
-  filtroGasto(N_Cliente: string, nomEmpCuentas:string) {
-    return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente && gastos.Estado !=='Pagada' && gastos.Nombre_emisor == nomEmpCuentas  )
-  }
+
+
   cambiarEstado(id_P: string, estado: string) {
     
     console.log('estado selecion:', 'cambiarEstado()')
@@ -136,38 +129,13 @@ export class EstadoComponent  implements OnInit {
   
   }
 
-  // eliminar propiedad 
-  async deletePropiedad(P: Propiedad) {
+  // eliminar  
+  async deleteEstado(P: Estado) {
     const alert = await this.alertController.create({
       cssClass: '',
       header: 'Advertencia',
-      message: '¿Seguro desea <strong>eliminar</strong> esta propiedad?',
-      inputs: [
-      {
-        name: 'cambio',
-        type: 'radio',
-        label: 'cambio de arrendatario',
-        value: 'cambio de arrendatario'
-      },
-      {
-        name: 'impago',
-        type: 'radio',
-        label: 'Cuentas impagas',
-        value: 'Cuentas impagas'
-      },
-      {
-        name: 'fin',
-        type: 'radio',
-        label: 'Finalizacion de contrato',
-        value: 'Finalizacion de contrato'
-      },
-      {
-        name: 'dano',
-        type: 'radio',
-        label: 'Daño a la propiedad',
-        value: 'Daño a la propiedad'
-      },
-    ],
+      message: '¿Seguro desea <strong>eliminar</strong> este registro?',
+ 
     buttons: [{
         text: 'Cancelar',
         role: 'Cancel',
@@ -194,29 +162,30 @@ export class EstadoComponent  implements OnInit {
   }
   // btn para aggregar nueva propiedad 
   bntNuevo() {
-    this.enableNewPropiedad = true;
+    this.enableNewEstado = true;
     this.enablelista = false;
     this.btnClose = true;
-    this.newPropiedad = {
+    this.newEstado = {
 
       id: this.FirestoService.getId(),
       id_propiedad: '',
-      direccion: '',
-      numero: 0,
-      comuna: '',
-      referencia: '',
-      contacto: '',
-      telefono: 0,
       fecha: new Date(),
-      tipo: '',
-      estado: 'Activa',
-      condicion: '',
-      ubicacion: '',
+      puertas:'',
+      piso: '',
+      paredes: '',
+      ventanas: '',
+      muebles: '',
+      cocina: '',
+      foto: '',
+      bano: '',
+      dormitorios:'',
+      sala: '',
+      cielo: '',
+      enchufes:'',
+      grifos:'',
+      observacion: '',
 
     };
-
-
-
   }
   async presentLoading() {
     this.loading = await this.loadingController.create({

@@ -26,13 +26,13 @@
           <ion-icon name="add"></ion-icon>
         </ion-button>
         <!--btn cancelar -->
-        <ion-button *ngIf="!enablelista" (click)="enableNewPropiedad = false " (click)="enablelista = true">
+        <ion-button *ngIf="!enablelista" (click)="enableNewEstado = false " (click)="enablelista = true">
           <ion-label>cancelar</ion-label>
           <ion-icon name="close"></ion-icon>
         </ion-button>
       </ion-card-header>
       <!--contenedor de agregar-->
-      <ion-card-content *ngIf="enableNewPropiedad">
+      <ion-card-content *ngIf="enableNewEstado">
         <ion-item >
             <ion-label>Selecionar Propiedad</ion-label>
             <ion-select  aria-label="Fruit" label="Popover" interface="popover">
@@ -42,8 +42,14 @@
             </ion-select>
         </ion-item>
         <ion-item>
+          <ion-col size="auto"><ion-label>Fecha emision:</ion-label></ion-col>
+          <ion-col>
+            <ion-input [(ngModel)]="newEstado.fecha" type="date" inputmode="date" value="dd/mm/aaaa"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
             <ion-label>N° 1 Puertas</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.puertas" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -51,7 +57,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 2 Piso</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.piso"  aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -59,7 +65,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 3 Paredes</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.paredes" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -67,7 +73,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 4 Ventanas</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.ventanas" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -75,7 +81,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 5 Muebles</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.muebles" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -83,7 +89,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 6 Cocina</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.cocina" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -91,7 +97,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 7 Baño</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.bano" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -99,7 +105,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 8 Dormitorios</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.dormitorios" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -107,7 +113,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 9 Sala</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.sala" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -115,7 +121,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 10 cielo</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.cielo" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -123,7 +129,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 11 Enchufes</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.enchufes"  aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -131,7 +137,7 @@
         </ion-item>
         <ion-item>
             <ion-label>N° 12 Grifos</ion-label>
-            <ion-select  aria-label="Fruit" interface="popover">
+            <ion-select [(ngModel)]="newEstado.grifos" aria-label="Fruit" interface="popover">
               <ion-select-option value="excelente estado">excelente estado</ion-select-option>
               <ion-select-option value="buen estado">buen estado</ion-select-option>
               <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
@@ -155,172 +161,60 @@
             </ion-buttons>
           </ion-item>
           <ion-col>
-          <ion-button (click)="guardarPropiedad()" (click)="enableNewPropiedad = false " (click)="enablelista = true "
+          <ion-button (click)="guardarEstado()" (click)="enableNewEstado = false " (click)="enablelista = true "
             expand="block">Guardar</ion-button>
         </ion-col>
       </ion-card-content>
       <!--listas de propiedades Cascada-->
       <div *ngIf="enablelista">
-        <ion-card *ngFor="let P of Propiedades">
+    
+        <ion-card *ngFor="let P of estados">
           <ion-accordion-group [multiple]="true" [value]="['first', 'third']">
             <ion-accordion>
+                           
+       <ion-col size="auto"><ion-label>{{P.id}}</ion-label></ion-col>
+       <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
+       <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
               <ion-item slot="header">
                 <ion-grid [fixed]="true">
-                  <ion-row [ngStyle]="{'background':P.estado === 'Desactivada' ? '#8ea8b3' : '' }">
-                    <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.tipo}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.numero}},</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.direccion}},</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.comuna}}</ion-label></ion-col>
+                  <ion-row>
+                
+       <ion-col size="auto"><ion-label>{{P.id}}</ion-label></ion-col>
+       <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
+       <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
+       <ion-col size="auto"><ion-label value="dd/mm/yyyy">{{P.fecha}}</ion-label></ion-col>
+     
                   </ion-row>
                 </ion-grid>
               </ion-item>
               <ion-item slot="content">
+
                 <ion-grid [fixed]="true">
-              
-                    <ion-item ><ion-col size="auto"><ion-label>Estado:</ion-label></ion-col>
-                  <ion-select #c (ionChange)="cambiarEstado(P.id, c.value)" [value]="P.estado" interface="popover">
-                      <ion-select-option value="Activa">Activa</ion-select-option>
-                      <ion-select-option value="Desactivada">Desactivada</ion-select-option>
-                    </ion-select></ion-item>
-                
-                  <!--detalles de contacto -->
-                  <div  *ngIf="P.estado == 'Activa'" style="background: #8ea8b3; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
-                    <ion-label class="bold_lbl">Contactos</ion-label>
-                    <ion-row *ngFor="let c of filtroContacto(P.id)">
-                      <ion-col size="auto"> <ion-label> <ion-icon name="person-circle"></ion-icon> {{c.nombre}}
-                          {{c.apellidop}} {{c.apellidom}}</ion-label></ion-col>
-                      <ion-col size="auto"><ion-label><ion-icon name="call"></ion-icon>
-                          {{c.telefono}}</ion-label></ion-col>
-                      <ion-button href="https://api.whatsapp.com/send?phone=56{{c.telefono}}&text=" color="success"
-                        size="small" style="margin: 5px;">
-                        <ion-icon name="logo-whatsapp"></ion-icon>
-                      </ion-button>
-                    </ion-row>
-                    <ion-button [routerLink]="['/contacto']" (click)="addContacto(P)" color="secondary" size="small"
-                      style="margin: 5px;">
-                      <ion-icon name="person-add"></ion-icon><ion-label>contacto</ion-label>
-                    </ion-button>
-                  </div>
-                  <div  *ngIf="P.estado == 'Activa'"  style="background: #8ea8b3; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
-                    <ion-label class="bold_lbl">Contactos</ion-label>
-                    <ion-grid *ngFor="let c of filtroCuentaAgua(P.id)">
-                      <ion-row>
-                        <ion-col size="auto"><ion-icon name="water"></ion-icon></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Numuero Ciente:</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      </ion-row>
-                      <ion-row *ngFor="let G of filtroGasto(c.numCliente, c.empresa)">
-                        <ion-col size="auto"><ion-label>N°: {{G.Num_documento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Vcto: {{G.fecha_vencimiento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>${{G.Total}}</ion-label></ion-col>
-                        <ion-col size="auto">
-                          <ion-label style="padding-left: 5px; padding-right: 5px; border-radius: 5px;"
-                            [ngStyle]="{'background':G.Estado === 'Vencida' ? '#f40716ba' :'#2dd36f'}">
-                            {{G.Estado}}</ion-label></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <ion-grid *ngFor="let c of filtroCuentaLuz(P.id)">
-                      <ion-row>
-                        <ion-col size="auto"><ion-icon name="flash"></ion-icon></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      </ion-row>
-                      <ion-row *ngFor="let G of filtroGasto(c.numCliente, c.empresa)">
-                        <ion-col size="auto"><ion-label>N°: {{G.Num_documento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Vcto: {{G.fecha_vencimiento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>${{G.Total}}</ion-label></ion-col>
-                        <ion-col size="auto">
-                          <ion-label style="padding-left: 5px; padding-right: 5px; border-radius: 5px;"
-                            [ngStyle]="{'background':G.Estado === 'Vencida' ? '#f40716ba' :'#2dd36f'}">
-                            {{G.Estado}}</ion-label></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <ion-grid *ngFor="let c of filtroCuentaGas(P.id)">
-                      <ion-row>
-                        <ion-col size="auto"><ion-icon name="flame"></ion-icon></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      </ion-row>
-                      <ion-row *ngFor="let G of filtroGasto(c.numCliente, c.empresa)">
-                        <ion-col size="auto"><ion-label>N°: {{G.Num_documento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Vcto: {{G.fecha_vencimiento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>${{G.Total}}</ion-label></ion-col>
-                        <ion-col size="auto">
-                          <ion-label style="padding-left: 5px; padding-right: 5px; border-radius: 5px;"
-                            [ngStyle]="{'background':G.Estado === 'Vencida' ? '#f40716ba' :'#2dd36f'}">
-                            {{G.Estado}}</ion-label></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <ion-grid *ngFor="let c of filtroCuentaInternet(P.id)">
-                      <ion-row>
-                        <ion-col size="auto"><ion-icon name="globe"></ion-icon></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      </ion-row>
-                      <ion-row *ngFor="let G of filtroGasto(c.numCliente, c.empresa)">
-                        <ion-col size="auto"><ion-label>N°: {{G.Num_documento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Vcto: {{G.fecha_vencimiento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>${{G.Total}}</ion-label></ion-col>
-                        <ion-col size="auto">
-                          <ion-label style="padding-left: 5px; padding-right: 5px; border-radius: 5px;"
-                            [ngStyle]="{'background':G.Estado === 'Vencida' ? '#f40716ba' :'#2dd36f'}">
-                            {{G.Estado}}</ion-label></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <ion-grid *ngFor="let c of filtroCuentaArriendo(P.id)">
-                      <ion-row>
-                        <ion-col size="auto"><ion-icon name="business-outline"></ion-icon></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      </ion-row>
-                      <ion-row *ngFor="let G of filtroGasto(c.numCliente, c.empresa)">
-                        <ion-col size="auto"><ion-label>N°: {{G.Num_documento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Vcto: {{G.fecha_vencimiento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>${{G.Total}}</ion-label></ion-col>
-                        <ion-col size="auto">
-                          <ion-label style="padding-left: 5px; padding-right: 5px; border-radius: 5px;"
-                            [ngStyle]="{'background':G.Estado === 'Vencida' ? '#f40716ba' :'#2dd36f'}">
-                            {{G.Estado}}</ion-label></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <ion-grid *ngFor="let c of filtroCuentaGGCC(P.id)">
-                      <ion-row>
-                        <ion-col size="auto"><ion-icon name="newspaper-outline"></ion-icon></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.empresa}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Numero Ciente:</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>{{c.numCliente}}</ion-label></ion-col>
-                      </ion-row>
-                      <ion-row *ngFor="let G of filtroGasto(c.numCliente, c.empresa)">
-                        <ion-col size="auto"><ion-label>N°: {{G.Num_documento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>Vcto:{{G.fecha_vencimiento}}</ion-label></ion-col>
-                        <ion-col size="auto"><ion-label>${{G.Total}}</ion-label></ion-col>
-                        <ion-col size="auto">
-                          <ion-label style="padding-left: 5px; padding-right: 5px; border-radius: 5px;"
-                            [ngStyle]="{'background':G.Estado === 'Vencida' ? '#f40716ba' :'#2dd36f'}">
-                            {{G.Estado}}</ion-label></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <ion-button [routerLink]="['/cuentas']" (click)="addContacto(P)" color="primary" size="small"
-                      style="margin: 5px;">
-                      <ion-icon name="add-circle-outline"></ion-icon><ion-label>Cuentas</ion-label>
-                    </ion-button>
-                  </div>
-                
-                  <ion-row  *ngIf="P.estado == 'Activa'" >
+                  <ion-row  >
+                    <ion-col size="auto"><ion-label>{{P.puertas}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.piso }}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.paredes}}</ion-label></ion-col> 
+                    <ion-col size="auto"><ion-label>{{P.ventanas}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.muebles}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.cocina}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.foto}}</ion-label></ion-col> 
+                    <ion-col size="auto"><ion-label>{{P.bano}}</ion-label></ion-col> 
+                    <ion-col size="auto"><ion-label>{{P.dormitorios}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.sala}}</ion-label></ion-col> 
+                    <ion-col size="auto"><ion-label>{{P.cielo}}</ion-label></ion-col> 
+                    <ion-col size="auto"><ion-label>{{P.enchufes}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.grifos}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{P.observacion}}</ion-label></ion-col>
+                  
+                  </ion-row>
+                    <ion-row>
                     <ion-col size="auto">
-                      <ion-button (click)="newPropiedad = P; enableNewPropiedad = true; enablelista = false "
+                      <ion-button (click)="newEstado = P; enableNewEstado = true; enablelista = false "
                         color="warning" size="small">
                         <ion-icon name="create-outline"></ion-icon>
                       </ion-button></ion-col>
                     <ion-col size="auto">
-                      <ion-button (click)="deletePropiedad(P)" color="danger" size="small">
+                      <ion-button (click)="deleteEstado(P)" color="danger" size="small">
                         <ion-icon name="trash-outline"></ion-icon>
                       </ion-button>
                     </ion-col>
