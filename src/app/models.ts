@@ -74,7 +74,8 @@ export interface Estado {
     suelo: string,
     muebles: string,
     wc: string,
-    cocina: string
+    cocina: string,
+    foto: string;
 }
 
 export interface Soporte{
