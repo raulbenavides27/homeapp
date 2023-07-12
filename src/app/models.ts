@@ -68,22 +68,23 @@ export interface Gastos {
 }
 export interface Estado {
     id: string,
-    id_Propiedad: string
+    id_propiedad: string
     //idEstado: string,
     puertas:string,
-    Piso: string,
+    piso: string,
     paredes: string,
     ventanas: string,
     muebles: string,
     cocina: string,
     foto: string;
-    baño: string,
+    bano: string,
     dormitorios: string,
     sala: string
     cielo: string,
     enchufes:string,
     grifos:string,
     observacion: string,
+    fecha: Date,
 }
 
 export interface Soporte{
