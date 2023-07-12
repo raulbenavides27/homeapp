@@ -16,6 +16,7 @@ export class EstadoComponent  implements OnInit {
   contacto: Entidad[] = []; // contactos 
   cuentas: Cuentas[] = []; // cuentas 
   gastos: Gastos[] = []; // facturas 
+  estad0: Gastos[] = []; // facturas 
   newPropiedad!: Propiedad;
   newContacto!: Propiedad;
   enableNewPropiedad = false;
