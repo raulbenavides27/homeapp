@@ -20,14 +20,12 @@
 <ion-content>
   <div class="main_content_div">
 
-
+    <ion-card style="--background:  #DDDDDD; max-width: 800px; margin: auto;">
     <div *ngFor="let propiedad of filteredProperties">
       <app-propiedad [propiedad]="propiedad"></app-propiedad>
     </div>
 
 
-    <div *ngFor="let cuentas of cuentas">
-      <app-cuenta></app-cuenta>
-    </div>
+  </ion-card>
   </div>
 </ion-content>
