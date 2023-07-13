@@ -27,6 +27,10 @@ export class AllcuentasComponent  implements OnInit {
   laFechaHoy!: Date;
   ZonaPropiedad = true;
 
+  filteredcuentas: Cuentas[] = [];
+  searchTerm: string = '';
+  selectedSegment: string = 'Cuentas';
+
   
   constructor(
     public menucontroler: MenuController,
@@ -78,6 +82,17 @@ export class AllcuentasComponent  implements OnInit {
   }
   goPerfil() {
     this.router.navigate(['perfil']);
+  }
+
+  filterProperties() {
+    if (this.searchTerm.trim() !== '') {
+      this.filteredcuentas = this.cuentas.filter((prop) => {
+        const propValues = Object.values(prop).join(' ').toLowerCase();
+        return propValues.includes(this.searchTerm.toLowerCase());
+      });
+    } else {
+      this.filteredcuentas = this.cuentas;
+    }
   }
 
 }

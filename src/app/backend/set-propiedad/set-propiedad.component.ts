@@ -32,6 +32,11 @@ export class SetPropiedadComponent implements OnInit {
   laFechaHoy!: Date;
   ZonaPropiedad = true;
 
+  filteredProperties: Propiedad[] = [];
+  searchTerm: string = '';
+  selectedSegment: string = 'Propiedad';
+
+
   
   constructor(
     public menucontroler: MenuController,
@@ -251,4 +256,14 @@ export class SetPropiedadComponent implements OnInit {
 
   }
  
+   filterProperties() {
+    if (this.searchTerm.trim() !== '') {
+      this.filteredProperties = this.Propiedades.filter((prop) => {
+        const propValues = Object.values(prop).join(' ').toLowerCase();
+        return propValues.includes(this.searchTerm.toLowerCase());
+      });
+    } else {
+      this.filteredProperties = this.Propiedades;
+    }
+  }
 }
