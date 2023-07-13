@@ -32,6 +32,9 @@ export class SetPropiedadComponent implements OnInit {
   laFechaHoy!: Date;
   ZonaPropiedad = true;
 
+  filteredProperties: Propiedad[] = [];
+  searchTerm: string = '';
+  selectedSegment: string = 'Propiedad';
   
   constructor(
     public menucontroler: MenuController,
@@ -41,7 +44,9 @@ export class SetPropiedadComponent implements OnInit {
     public alertController: AlertController,
     public firestorageService: FirestorageService,
     public firebaseauthService: FirebaseauthService,
-    private router: Router) { }
+    private router: Router) {
+      this.loadProductos();
+     }
 
   async ngOnInit() {
     this.getPropiedad();
@@ -49,6 +54,15 @@ export class SetPropiedadComponent implements OnInit {
     this.getCuenta();
     this.getGasto();
  
+  }
+
+  loadProductos() {
+    const path = 'Propiedad/';
+    this.FirestoService.getColletion<Propiedad>(path).subscribe((res) => {
+      console.log(res);
+      this.Propiedades = res;
+      this.filteredProperties = res; // Initialize the filtered properties array
+    });
   }
   async guardarPropiedad() {
     this.presentLoading();
@@ -251,4 +265,14 @@ export class SetPropiedadComponent implements OnInit {
 
   }
  
+  filterProperties() {
+    if (this.searchTerm.trim() !== '') {
+      this.filteredProperties = this.Propiedades.filter((prop) => {
+        const propValues = Object.values(prop).join(' ').toLowerCase();
+        return propValues.includes(this.searchTerm.toLowerCase());
+      });
+    } else {
+      this.filteredProperties = this.Propiedades;
+    }
+  }
 }
