@@ -22,16 +22,18 @@ export class EstadoComponent  implements OnInit {
   enableNewContacto = false;
   enablelista = true;
   btnClose = false;
-  newfile = '';
-  loading: any;
   id_seleccion: any;
   propiedad!: Propiedad;
-  uid: any;
+  propiedad2!: Propiedad;
   id_P: any;
   cliente!: Cliente;
   laFechaHoy!: Date;
   ZonaPropiedad = true;
-
+  newfile: any; 
+  uid = '';
+  loading: any;
+  ingresarEnable = false;
+  route: any;
   
   constructor(
     public menucontroler: MenuController,
@@ -48,11 +50,19 @@ export class EstadoComponent  implements OnInit {
     this.getContacto();
     this.getEstado();
  
+    
   }
+
+ 
+
+        
   async guardarEstado() {
+
     this.presentLoading();
     const path = 'Estado';
     const name = this.newEstado.id;
+
+
     if (this.newfile !== undefined) {
       const res = await this.firestorageService.uploadImage(this.newfile, path, name);
     }
@@ -95,24 +105,7 @@ export class EstadoComponent  implements OnInit {
       }
     });
   }
-  filtroCuentaAgua(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Agua')
-  }
-  filtroCuentaLuz(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Luz')
-  }
-  filtroCuentaGas(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Gas')
-  }
-  filtroCuentaInternet(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Internet-cable')
-  }
-  filtroCuentaArriendo(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Arriendo')
-  }
-  filtroCuentaGGCC(id_P: string) {
-    return this.cuentas.filter(cuentas => cuentas.id_propiedad == id_P && cuentas.tipoCuenta == 'Gastos Comunes')
-  }
+
   // obtener boletas para consultar cuenta en relacion con gasto  
 
 
@@ -146,7 +139,7 @@ export class EstadoComponent  implements OnInit {
       text:'ok',
       handler:() =>{
         console.log('Confirm Okay');
-        const path = 'Propiedad/';
+        const path = 'Estado/';
         this.FirestoService.deletDoc(path,P.id).then(res =>{
           this.presentToast('Eliminado con exito');
           this.alertController.dismiss(); 
@@ -176,7 +169,7 @@ export class EstadoComponent  implements OnInit {
       ventanas: '',
       muebles: '',
       cocina: '',
-      foto: '',
+      foto:'',
       bano: '',
       dormitorios:'',
       sala: '',
@@ -187,6 +180,18 @@ export class EstadoComponent  implements OnInit {
 
     };
   }
+ /* async newImageUpload(event:any){ 
+    if (event.target.files && event.target.files[0]){ 
+       this.newfile = event.target.files[0]; 
+       const reader = new FileReader();
+       reader.onload = ((image:any)=>{    
+          this.newEstado.foto = image.target.result as string;   
+         
+         });
+     reader.readAsDataURL(event.target.files[0]);
+   }
+  
+  }*/
   async presentLoading() {
     this.loading = await this.loadingController.create({
       cssClass: '',
@@ -221,7 +226,15 @@ export class EstadoComponent  implements OnInit {
 
   }
  
-
+  handleChange(value: string) {
+    return this.id_P = value;
+  }
+  filtroPropiedad() {
+    return this.Propiedades.filter(Propiedades => Propiedades.id === this.id_P )
+  }
+  capId(id_P: string){
+    return this.Propiedades.filter(Propiedades => Propiedades.id === id_P )
+  }
 }
 
 
