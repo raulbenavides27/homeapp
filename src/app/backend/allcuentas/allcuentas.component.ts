@@ -126,7 +126,8 @@ export class AllcuentasComponent  implements OnInit {
     this.enableVigentes = true 
   }
 
-  filterProperties() {
+  }
+  filterProperties(){
     if (this.searchTerm.trim() !== '') {
       this.filteredcuentas = this.cuentas.filter((prop) => {
         const propValues = Object.values(prop).join(' ').toLowerCase();
@@ -138,4 +139,4 @@ export class AllcuentasComponent  implements OnInit {
   }
 
 }
-}
+
