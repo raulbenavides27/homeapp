@@ -17,6 +17,7 @@ export class AllcuentasComponent  implements OnInit {
   gastos: Gastos[] = []; // facturas 
   newPropiedad!: Propiedad;
   newContacto!: Propiedad;
+  empresa: Entidad[] = [];
   newfile = '';
   loading: any;
   id_seleccion: any;
@@ -26,10 +27,13 @@ export class AllcuentasComponent  implements OnInit {
   cliente!: Cliente;
   laFechaHoy!: Date;
   ZonaPropiedad = true;
-
   filteredcuentas: Cuentas[] = [];
   searchTerm: string = '';
   selectedSegment: string = 'Cuentas';
+  enableTodas = true
+  enablePagadas = false
+  enableVencidas = false
+  enableVigentes = false
 
   
   constructor(
@@ -77,11 +81,49 @@ export class AllcuentasComponent  implements OnInit {
       }
     });
   }
-  filtroGasto(N_Cliente: string, nomEmpCuentas:string) {
-    return this.gastos.filter(gastos => gastos.Numero_cliente == N_Cliente && gastos.Nombre_emisor == nomEmpCuentas  )
+  getEmpresa() {
+    const path = 'Entidad/';
+    this.FirestoService.getColletion<Entidad>(path).subscribe(res => {
+      if (res.length) {
+        this.empresa = res;
+        console.log('gasto es: ', this.gastos)
+      }
+    });
   }
+  filtroGastos2() {
+    return this.gastos.filter(gastos =>  gastos.Estado == 'Vencida' )
+  }
+  filtroGasto() {
+    return this.gastos.filter(gastos =>  gastos.Estado == 'Vigente' )
+  }
+  filtroGasto1() {
+    return this.gastos.filter(gastos =>  gastos.Estado == 'Pagada' )
+  }
+
   goPerfil() {
     this.router.navigate(['perfil']);
+  }
+  handleChange(estado: any) {
+    if(estado == 'Todas'){
+      this.enableTodas = true
+      this.enablePagadas = false
+      this.enableVencidas = false
+      this.enableVigentes = false 
+    }if(estado == 'Pagadas'){
+      this.enableTodas = false
+      this.enablePagadas = true
+      this.enableVencidas = false
+      this.enableVigentes = false 
+  }if(estado == 'Vencidas'){
+    this.enableTodas = false
+    this.enablePagadas = false
+    this.enableVencidas = true
+    this.enableVigentes = false 
+  }if(estado == 'Vigentes'){
+    this.enableTodas = false
+    this.enablePagadas = false
+    this.enableVencidas = false
+    this.enableVigentes = true 
   }
 
   filterProperties() {
@@ -95,4 +137,5 @@ export class AllcuentasComponent  implements OnInit {
     }
   }
 
+}
 }

@@ -35,11 +35,18 @@
       <ion-card-content *ngIf="enableNewEstado">
         <ion-item >
             <ion-label>Selecionar Propiedad</ion-label>
-            <ion-select  aria-label="Fruit" label="Popover" interface="popover">
-              <ion-select-option value="excelente estado">excelente estado</ion-select-option>
-              <ion-select-option value="buen estado">buen estado</ion-select-option>
-              <ion-select-option value="requiere reparacion">requiere reparacion</ion-select-option>
+            <ion-select  [(ngModel)]="newEstado.id_propiedad" aria-label="Fruit" label="Popover" interface="popover" #c (ionChange)="handleChange(c.value)">
+              <ion-select-option *ngFor="let Propiedad of Propiedades" [value]="Propiedad.id">{{Propiedad.id_propiedad}}</ion-select-option>
             </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-row *ngFor="let Pro of filtroPropiedad()" >
+            <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
+            <ion-col size="auto"><ion-label>{{Pro.tipo}}</ion-label></ion-col>
+            <ion-col size="auto"><ion-label>{{Pro.numero}},</ion-label></ion-col>
+            <ion-col size="auto"><ion-label>{{Pro.direccion}},</ion-label></ion-col>
+            <ion-col size="auto"><ion-label>{{Pro.comuna}}</ion-label></ion-col>
+          </ion-row>
         </ion-item>
         <ion-item>
           <ion-col size="auto"><ion-label>Fecha emision:</ion-label></ion-col>
@@ -147,19 +154,19 @@
             <ion-label>Observaciones</ion-label>
    
           <ion-item>
-            <ion-textarea  placeholder="Observaciones"></ion-textarea>
+            <ion-textarea [(ngModel)]="newEstado.observacion" placeholder="Observaciones"></ion-textarea>
           </ion-item>
-          <ion-item>
-            <ion-label class="small_lbl">Agregar Foto</ion-label>
+      <!--  <ion-item>
+            <ion-label class="small_lbl">Agregar imagen</ion-label>
             <ion-buttons>
               <ion-button>
                 <label for="file-upload">
                   <ion-icon slot="icon-only" name="images-outline"></ion-icon>
                 </label>
-                <input  id="file-upload" type="file" accept="image/*">
+                <input  (change)="newImageUpload($event)" id="file-upload" type="file" accept="image/*">
               </ion-button>
             </ion-buttons>
-          </ion-item>
+          </ion-item>-->  
           <ion-col>
           <ion-button (click)="guardarEstado()" (click)="enableNewEstado = false " (click)="enablelista = true "
             expand="block">Guardar</ion-button>
@@ -171,42 +178,36 @@
         <ion-card *ngFor="let P of estados">
           <ion-accordion-group [multiple]="true" [value]="['first', 'third']">
             <ion-accordion>
-                           
-       <ion-col size="auto"><ion-label>{{P.id}}</ion-label></ion-col>
-       <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
-       <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
-              <ion-item slot="header">
-                <ion-grid [fixed]="true">
-                  <ion-row>
-                
-       <ion-col size="auto"><ion-label>{{P.id}}</ion-label></ion-col>
-       <ion-col size="auto"><ion-label>{{P.id_propiedad}}</ion-label></ion-col>
-       <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
-       <ion-col size="auto"><ion-label value="dd/mm/yyyy">{{P.fecha}}</ion-label></ion-col>
-     
+                <ion-item slot="header">
+                  <ion-row *ngFor="let Pro of capId(P.id_propiedad)" >
+                    <ion-col size="auto"><ion-label>{{Pro.id_propiedad}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-icon name="home"></ion-icon></ion-col>
+                    <ion-col size="auto"><ion-label>{{Pro.tipo}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{Pro.numero}},</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{Pro.direccion}},</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>{{Pro.comuna}}</ion-label></ion-col>
+                    <ion-col size="auto"><ion-label>Fecha de revision: {{P.fecha}}</ion-label></ion-col>
                   </ion-row>
-                </ion-grid>
-              </ion-item>
+                </ion-item>
               <ion-item slot="content">
 
                 <ion-grid [fixed]="true">
-                  <ion-row  >
-                    <ion-col size="auto"><ion-label>{{P.puertas}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.piso }}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.paredes}}</ion-label></ion-col> 
-                    <ion-col size="auto"><ion-label>{{P.ventanas}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.muebles}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.cocina}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.foto}}</ion-label></ion-col> 
-                    <ion-col size="auto"><ion-label>{{P.bano}}</ion-label></ion-col> 
-                    <ion-col size="auto"><ion-label>{{P.dormitorios}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.sala}}</ion-label></ion-col> 
-                    <ion-col size="auto"><ion-label>{{P.cielo}}</ion-label></ion-col> 
-                    <ion-col size="auto"><ion-label>{{P.enchufes}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.grifos}}</ion-label></ion-col>
-                    <ion-col size="auto"><ion-label>{{P.observacion}}</ion-label></ion-col>
+                 
+                    <ion-row><ion-col size="auto"><ion-label>N.1 Puerta:{{P.puertas}}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.2 Piso: {{P.piso }}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.3 Paredes: {{P.paredes}}</ion-label></ion-col> </ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.4 Ventanas: {{P.ventanas}}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.5 Muebles: {{P.muebles}}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.6 Cocina: {{P.cocina}}</ion-label></ion-col> </ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.7 Baño: {{P.bano}}</ion-label></ion-col></ion-row> 
+                   <ion-row> <ion-col size="auto"><ion-label>N.8 Dormitorio:{{P.dormitorios}}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.9 Sala: {{P.sala}}</ion-label></ion-col></ion-row> 
+                   <ion-row> <ion-col size="auto"><ion-label>N.10 Cielo {{P.cielo}}</ion-label></ion-col></ion-row> 
+                   <ion-row> <ion-col size="auto"><ion-label>N.11 Enchufes: {{P.enchufes}}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>N.12 Grifos: {{P.grifos}}</ion-label></ion-col></ion-row>
+                   <ion-row> <ion-col size="auto"><ion-label>Observaciones: {{P.observacion}}</ion-label></ion-col></ion-row>
                   
-                  </ion-row>
+            
                     <ion-row>
                     <ion-col size="auto">
                       <ion-button (click)="newEstado = P; enableNewEstado = true; enablelista = false "
