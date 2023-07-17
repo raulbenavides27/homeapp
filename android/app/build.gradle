@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-
-    namespace 'com.homeapp.homeapp'
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.homeapp.homeapp"

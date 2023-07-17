@@ -36,6 +36,7 @@ export class SetPropiedadComponent implements OnInit {
   searchTerm: string = '';
   selectedSegment: string = 'Propiedad';
   
+  
   constructor(
     public menucontroler: MenuController,
     public FirestoService: FirestoreService,
@@ -264,7 +265,7 @@ export class SetPropiedadComponent implements OnInit {
 
 
   }
- 
+
   filterProperties() {
     if (this.searchTerm.trim() !== '') {
       this.filteredProperties = this.Propiedades.filter((prop) => {

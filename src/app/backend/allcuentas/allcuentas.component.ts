@@ -26,10 +26,15 @@ export class AllcuentasComponent  implements OnInit {
   id_P: any;
   cliente!: Cliente;
   laFechaHoy!: Date;
+  ZonaPropiedad = true;
+  filteredcuentas: Cuentas[] = [];
+  searchTerm: string = '';
+  selectedSegment: string = 'Cuentas';
   enableTodas = true
   enablePagadas = false
   enableVencidas = false
   enableVigentes = false
+
   
   constructor(
     public menucontroler: MenuController,
@@ -121,5 +126,17 @@ export class AllcuentasComponent  implements OnInit {
     this.enableVigentes = true 
   }
 
+  }
+  filterProperties(){
+    if (this.searchTerm.trim() !== '') {
+      this.filteredcuentas = this.cuentas.filter((prop) => {
+        const propValues = Object.values(prop).join(' ').toLowerCase();
+        return propValues.includes(this.searchTerm.toLowerCase());
+      });
+    } else {
+      this.filteredcuentas = this.cuentas;
+    }
+  }
+
 }
-}
+
