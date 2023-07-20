@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 //GUARDS
 import { AuthGuard } from './guards/auth.guard';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -34,6 +35,12 @@ import { AuthGuard } from './guards/auth.guard';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   
     
   ],
