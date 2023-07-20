@@ -46,7 +46,13 @@ ion-card{
    
 }
 
-
+.ion-label {
+    margin: auto;
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    display: block;
+}
 
 
 
@@ -90,7 +96,7 @@ ion-icon {
         margin: auto;
         text-align: center;
         color: black;
-        font-size: 18px;
+        font-size: 12px;
         display: block;
     }
 
@@ -98,7 +104,7 @@ ion-icon {
         margin: auto;
         text-align: center;
         color: black;
-        font-size: 14px;
+        font-size: 9px;
         
     }
 
