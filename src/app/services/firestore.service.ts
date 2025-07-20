@@ -1,48 +1,59 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 import { Propiedad } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-  
+
   seletPropiedad!: Propiedad;
 
   constructor(public database: AngularFirestore) { }
-  creatDoc(data:any, path:string, id:string){
-   const collection= this.database.collection(path);
-   return collection.doc(id).set(data);
 
-  }// llama a uno especifico
-  getDoc<tipo>(path: string, id: string){
-    const collection = this.database.collection<tipo>(path);
-    return collection.doc(id).valueChanges();
-
+  // Crear documento con ID personalizado
+  creatDoc<T extends firebase.firestore.DocumentData>(data: T, path: string, id: string) {
+    const collection = this.database.collection<T>(path);
+    return collection.doc(id).set(data);
   }
-  deletDoc(path: string, id: string){
+
+  // Obtener un documento por ID
+  getDoc<T extends firebase.firestore.DocumentData>(path: string, id: string) {
+    const collection = this.database.collection<T>(path);
+    return collection.doc(id).valueChanges();
+  }
+
+  // Eliminar un documento
+  deletDoc(path: string, id: string) {
     const collection = this.database.collection(path);
     return collection.doc(id).delete();
-}
-  updateDoc(data: any, path: string, id: string){
-  const collection = this.database.collection(path);
-  return collection.doc(id).update(data);
-}
-getId(){
-  return this.database.createId();
-}
-//llama a todos
-getColletion<tipo>(path:string){
- const collection = this.database.collection<tipo>(path);
- return collection.valueChanges();
-}
+  }
 
-//estos 2 servicios son para capturar caundo seleciono una propiedad
-setDoc(propiedad: Propiedad){
-this.seletPropiedad = propiedad;
+  // Actualizar un documento
+  updateDoc<T extends firebase.firestore.DocumentData>(data: Partial<T>, path: string, id: string) {
+    const collection = this.database.collection<T>(path);
+    return collection.doc(id).update(data);
+  }
+
+  // Obtener ID generado automáticamente
+  getId() {
+    return this.database.createId();
+  }
+
+  // Obtener todos los documentos de una colección
+  getColletion<T extends firebase.firestore.DocumentData>(path: string) {
+    const collection = this.database.collection<T>(path);
+    return collection.valueChanges();
+  }
+
+  // Seleccionar propiedad (para flujo interno)
+  setDoc(propiedad: Propiedad) {
+    this.seletPropiedad = propiedad;
+  }
+
+  getProp() {
+    return this.seletPropiedad;
+  }
 }
-getProp()
-{
-  return this.seletPropiedad
-}
- }
