@@ -3,6 +3,9 @@
  // font-size: 12px;
  // margin-left: 5px;
 }
+input[type="file"] {
+  display: none;
+}
 
 //.error-label ion-icon {
 //  color: red; /* Cambia este color según tus preferencias */
